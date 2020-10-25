@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Boolean\" />
+    <Folder Include="Boolean\Expression\" />
     <Folder Include="Integer\" />
   </ItemGroup>
 
