@@ -1,0 +1,10 @@
+﻿using Expressions.Integer;
+
+namespace Expressions.Bool
+{
+    public class LessThanOrEqualTo<TContext> : BinaryBoolExpression<TContext> where TContext : IContext
+    {
+        public override bool Interpret(TContext context) => Lhs.Interpret(context) <= Rhs.Interpret(context);
+        public LessThanOrEqualTo(IIntegerExpression<TContext> lhs, IIntegerExpression<TContext> rhs) : base(lhs, rhs) { }
+    }
+}

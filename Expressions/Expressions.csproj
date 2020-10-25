@@ -1,7 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net45;netcoreapp3.1</TargetFrameworks>
+    <RootNamespace>Aptacode.Expressions</RootNamespace>
+    <AssemblyName>Aptacode.Expressions</AssemblyName>
+    <Authors>Timothy Jones</Authors>
+    <Company>Aptacode</Company>
+    <Copyright>MIT</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/Aptacode/Expressions</PackageProjectUrl>
+    <PackageIconUrl />
+    <RepositoryUrl>https://github.com/Aptacode/Expressions</RepositoryUrl>
+    <RepositoryType />
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <Nullable>enable</Nullable>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
 </Project>
