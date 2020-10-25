@@ -1,10 +1,10 @@
 ﻿using Aptacode.Expressions.Integer;
 
-namespace Aptacode.Expressions.Bool
+namespace Aptacode.Expressions.Bool.Comparison
 {
-    public abstract class BinaryBoolExpression<TContext> : IBooleanExpression<TContext> where TContext : IContext
+    public abstract class BinaryBoolComparison<TContext> : IBooleanExpression<TContext> where TContext : IContext
     {
-        protected BinaryBoolExpression(IIntegerExpression<TContext> lhs, IIntegerExpression<TContext> rhs)
+        protected BinaryBoolComparison(IIntegerExpression<TContext> lhs, IIntegerExpression<TContext> rhs)
         {
             Lhs = lhs;
             Rhs = rhs;
