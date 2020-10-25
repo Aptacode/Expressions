@@ -1,4 +1,4 @@
-﻿namespace Expressions.Integer
+﻿namespace Aptacode.Expressions.Integer
 {
     public interface IIntegerExpression<in TContext> where TContext : IContext
     {

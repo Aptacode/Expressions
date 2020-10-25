@@ -1,4 +1,4 @@
-﻿namespace Expressions.Integer
+﻿namespace Aptacode.Expressions.Integer
 {
     public class ConstantInteger<TContext> : IIntegerExpression<TContext> where TContext : IContext
     {

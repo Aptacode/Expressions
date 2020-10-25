@@ -1,4 +1,4 @@
-﻿namespace Expressions.Bool
+﻿namespace Aptacode.Expressions.Bool
 {
     public interface IBooleanExpression<in TContext> where TContext : IContext
     {

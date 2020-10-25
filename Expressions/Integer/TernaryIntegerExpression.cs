@@ -1,6 +1,6 @@
-﻿using Expressions.Bool;
+﻿using Aptacode.Expressions.Bool;
 
-namespace Expressions.Integer
+namespace Aptacode.Expressions.Integer
 {
     public abstract class TernaryIntegerExpression<TContext> : IIntegerExpression<TContext> where TContext : IContext
     {

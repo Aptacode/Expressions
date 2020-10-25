@@ -1,6 +1,6 @@
-﻿using Expressions.Integer;
+﻿using Aptacode.Expressions.Integer;
 
-namespace Expressions.Bool
+namespace Aptacode.Expressions.Bool
 {
     public class GreaterThanOrEqualTo<TContext> : BinaryBoolExpression<TContext> where TContext : IContext
     {

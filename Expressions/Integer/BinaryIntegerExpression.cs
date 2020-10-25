@@ -1,4 +1,4 @@
-﻿namespace Expressions.Integer
+﻿namespace Aptacode.Expressions.Integer
 {
     public abstract class BinaryIntegerExpression<TContext> : IIntegerExpression<TContext> where TContext : IContext
     {

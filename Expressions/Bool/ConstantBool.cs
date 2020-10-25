@@ -1,4 +1,4 @@
-﻿namespace Expressions.Bool
+﻿namespace Aptacode.Expressions.Bool
 {
     public class ConstantBool<TContext> : IBooleanExpression<TContext> where TContext : IContext
     {

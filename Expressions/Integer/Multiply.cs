@@ -1,4 +1,4 @@
-﻿namespace Expressions.Integer
+﻿namespace Aptacode.Expressions.Integer
 {
     public class Multiply<TContext> : BinaryIntegerExpression<TContext> where TContext : IContext
     {
