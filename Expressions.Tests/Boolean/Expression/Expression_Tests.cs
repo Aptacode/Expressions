@@ -1,7 +1,5 @@
 ﻿using Xunit;
-using Aptacode.Expressions.Integer;
 using Aptacode.Expressions;
-using Aptacode.Expressions.Bool.Comparison;
 using Moq;
 using Aptacode.Expressions.Bool;
 using Aptacode.Expressions.Bool.Expression;
@@ -10,22 +8,26 @@ namespace Expressions.Tests.Boolean.Comparison
 {
     public class Expression_Tests
     {
-        private readonly IContext context;
+        private readonly IContext _context;
+        public Expression_Tests()
+        {
+            _context = new Mock<IContext>().Object;
+        }
 
         [Fact]
 
         public void And()
         {
             //Arrange
-            var TrueAndTrue = new And<IContext>(new ConstantBool<IContext>(true), new ConstantBool<IContext>(true));
-            var TrueAndFalse = new And<IContext>(new ConstantBool<IContext>(true), new ConstantBool<IContext>(false));
-            var FalseAndTrue = new And<IContext>(new ConstantBool<IContext>(false), new ConstantBool<IContext>(true));
-            var FalseAndFalse = new And<IContext>(new ConstantBool<IContext>(false), new ConstantBool<IContext>(false));
+            var trueAndTrue = new And<IContext>(new ConstantBool<IContext>(true), new ConstantBool<IContext>(true));
+            var trueAndFalse = new And<IContext>(new ConstantBool<IContext>(true), new ConstantBool<IContext>(false));
+            var falseAndTrue = new And<IContext>(new ConstantBool<IContext>(false), new ConstantBool<IContext>(true));
+            var falseAndFalse = new And<IContext>(new ConstantBool<IContext>(false), new ConstantBool<IContext>(false));
             //Act 
-            var sut1 = TrueAndTrue.Interpret(context);
-            var sut2 = TrueAndFalse.Interpret(context);
-            var sut3 = FalseAndTrue.Interpret(context);
-            var sut4 = FalseAndFalse.Interpret(context);
+            var sut1 = trueAndTrue.Interpret(_context);
+            var sut2 = trueAndFalse.Interpret(_context);
+            var sut3 = falseAndTrue.Interpret(_context);
+            var sut4 = falseAndFalse.Interpret(_context);
             //Assert
             Assert.True(sut1);
             Assert.False(sut2);
@@ -38,9 +40,9 @@ namespace Expressions.Tests.Boolean.Comparison
         public void Not()
         {
             //Arrange
-            var True = new ConstantBool<IContext>(true);
+            var trueConstant = new ConstantBool<IContext>(true);
             //Act
-            var sut = new Not<IContext>(True).Interpret(context);
+            var sut = new Not<IContext>(trueConstant).Interpret(_context);
             //Assert
             Assert.False(sut);
         }
@@ -51,15 +53,15 @@ namespace Expressions.Tests.Boolean.Comparison
         public void Or()
         {
             //Arrange
-            var TrueOrTrue = new Or<IContext>(new ConstantBool<IContext>(true), new ConstantBool<IContext>(true));
-            var TrueOrFalse = new Or<IContext>(new ConstantBool<IContext>(true), new ConstantBool<IContext>(false));
-            var FalseOrTrue = new Or<IContext>(new ConstantBool<IContext>(false), new ConstantBool<IContext>(true));
-            var FalseOrFalse = new Or<IContext>(new ConstantBool<IContext>(false), new ConstantBool<IContext>(false));
+            var trueOrTrue = new Or<IContext>(new ConstantBool<IContext>(true), new ConstantBool<IContext>(true));
+            var trueOrFalse = new Or<IContext>(new ConstantBool<IContext>(true), new ConstantBool<IContext>(false));
+            var falseOrTrue = new Or<IContext>(new ConstantBool<IContext>(false), new ConstantBool<IContext>(true));
+            var falseOrFalse = new Or<IContext>(new ConstantBool<IContext>(false), new ConstantBool<IContext>(false));
             //Act 
-            var sut1 = TrueOrTrue.Interpret(context);
-            var sut2 = TrueOrFalse.Interpret(context);
-            var sut3 = FalseOrTrue.Interpret(context);
-            var sut4 = FalseOrFalse.Interpret(context);
+            var sut1 = trueOrTrue.Interpret(_context);
+            var sut2 = trueOrFalse.Interpret(_context);
+            var sut3 = falseOrTrue.Interpret(_context);
+            var sut4 = falseOrFalse.Interpret(_context);
             //Assert
             Assert.True(sut1);
             Assert.True(sut2);
@@ -72,15 +74,15 @@ namespace Expressions.Tests.Boolean.Comparison
         public void XOr()
         {
             //Arrange
-            var TrueXOrTrue = new XOr<IContext>(new ConstantBool<IContext>(true), new ConstantBool<IContext>(true));
-            var TrueXOrFalse = new XOr<IContext>(new ConstantBool<IContext>(true), new ConstantBool<IContext>(false));
-            var FalseXOrTrue = new XOr<IContext>(new ConstantBool<IContext>(false), new ConstantBool<IContext>(true));
-            var FalseXOrFalse = new XOr<IContext>(new ConstantBool<IContext>(false), new ConstantBool<IContext>(false));
+            var trueXOrTrue = new XOr<IContext>(new ConstantBool<IContext>(true), new ConstantBool<IContext>(true));
+            var trueXOrFalse = new XOr<IContext>(new ConstantBool<IContext>(true), new ConstantBool<IContext>(false));
+            var falseXOrTrue = new XOr<IContext>(new ConstantBool<IContext>(false), new ConstantBool<IContext>(true));
+            var falseXOrFalse = new XOr<IContext>(new ConstantBool<IContext>(false), new ConstantBool<IContext>(false));
             //Act 
-            var sut1 = TrueXOrTrue.Interpret(context);
-            var sut2 = TrueXOrFalse.Interpret(context);
-            var sut3 = FalseXOrTrue.Interpret(context);
-            var sut4 = FalseXOrFalse.Interpret(context);
+            var sut1 = trueXOrTrue.Interpret(_context);
+            var sut2 = trueXOrFalse.Interpret(_context);
+            var sut3 = falseXOrTrue.Interpret(_context);
+            var sut4 = falseXOrFalse.Interpret(_context);
             //Assert
             Assert.False(sut1);
             Assert.True(sut2);
