@@ -7,6 +7,7 @@
             Lhs = lhs;
             Rhs = rhs;
         }
+
         public IBooleanExpression<TContext> Lhs { get; }
 
         public IBooleanExpression<TContext> Rhs { get; }

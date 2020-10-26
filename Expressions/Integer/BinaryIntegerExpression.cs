@@ -7,6 +7,7 @@
             Lhs = lhs;
             Rhs = rhs;
         }
+
         public IIntegerExpression<TContext> Lhs { get; }
 
         public IIntegerExpression<TContext> Rhs { get; }

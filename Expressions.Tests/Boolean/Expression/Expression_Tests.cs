@@ -1,21 +1,21 @@
-﻿using Xunit;
-using Aptacode.Expressions;
-using Moq;
+﻿using Aptacode.Expressions;
 using Aptacode.Expressions.Bool;
 using Aptacode.Expressions.Bool.Expression;
+using Moq;
+using Xunit;
 
-namespace Expressions.Tests.Boolean.Comparison
+namespace Expressions.Tests.Boolean.Expression
 {
     public class Expression_Tests
     {
-        private readonly IContext _context;
         public Expression_Tests()
         {
             _context = new Mock<IContext>().Object;
         }
 
-        [Fact]
+        private readonly IContext _context;
 
+        [Fact]
         public void And()
         {
             //Arrange
@@ -36,7 +36,6 @@ namespace Expressions.Tests.Boolean.Comparison
         }
 
         [Fact]
-
         public void Not()
         {
             //Arrange
@@ -49,7 +48,6 @@ namespace Expressions.Tests.Boolean.Comparison
 
 
         [Fact]
-
         public void Or()
         {
             //Arrange
@@ -70,7 +68,6 @@ namespace Expressions.Tests.Boolean.Comparison
         }
 
         [Fact]
-
         public void XOr()
         {
             //Arrange

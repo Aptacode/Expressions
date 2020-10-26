@@ -1,6 +1,4 @@
-﻿using Aptacode.Expressions.Integer;
-
-namespace Aptacode.Expressions.Bool
+﻿namespace Aptacode.Expressions.Bool
 {
     public abstract class UnaryBoolExpression<TContext> : IBooleanExpression<TContext> where TContext : IContext
     {

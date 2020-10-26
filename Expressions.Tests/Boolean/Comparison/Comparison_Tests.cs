@@ -1,9 +1,7 @@
-﻿using Xunit;
-using Aptacode.Expressions.Integer;
-using Aptacode.Expressions;
+﻿using Aptacode.Expressions;
 using Aptacode.Expressions.Bool.Comparison;
-using System.Runtime.InteropServices.ComTypes;
-using Moq;
+using Aptacode.Expressions.Integer;
+using Xunit;
 
 namespace Expressions.Tests.Boolean.Comparison
 {
@@ -12,7 +10,6 @@ namespace Expressions.Tests.Boolean.Comparison
         private readonly IContext context;
 
         [Fact]
-
         public void EqualTo()
         {
             //Arrange
@@ -22,12 +19,13 @@ namespace Expressions.Tests.Boolean.Comparison
             //Assert
             Assert.True(sut);
         }
-        [Fact]
 
+        [Fact]
         public void GreaterThan()
         {
             //Arrange
-            var IsGreaterThan = new GreaterThan<IContext>(new ConstantInteger<IContext>(2), new ConstantInteger<IContext>(1));
+            var IsGreaterThan =
+                new GreaterThan<IContext>(new ConstantInteger<IContext>(2), new ConstantInteger<IContext>(1));
             //Act 
             var sut = IsGreaterThan.Interpret(context);
             //Assert
@@ -35,12 +33,13 @@ namespace Expressions.Tests.Boolean.Comparison
         }
 
         [Fact]
-
         public void GreaterThanOrEqualTo()
         {
             //Arrange
-            var IsGreaterThan = new GreaterThanOrEqualTo<IContext>(new ConstantInteger<IContext>(2), new ConstantInteger<IContext>(1));
-            var IsEqual = new GreaterThanOrEqualTo<IContext>(new ConstantInteger<IContext>(1), new ConstantInteger<IContext>(1));
+            var IsGreaterThan =
+                new GreaterThanOrEqualTo<IContext>(new ConstantInteger<IContext>(2), new ConstantInteger<IContext>(1));
+            var IsEqual =
+                new GreaterThanOrEqualTo<IContext>(new ConstantInteger<IContext>(1), new ConstantInteger<IContext>(1));
             //Act 
             var sut1 = IsGreaterThan.Interpret(context);
             var sut2 = IsEqual.Interpret(context);
@@ -52,7 +51,6 @@ namespace Expressions.Tests.Boolean.Comparison
 
 
         [Fact]
-
         public void LessThan()
         {
             //Arrange
@@ -62,14 +60,15 @@ namespace Expressions.Tests.Boolean.Comparison
             //Assert
             Assert.True(sut);
         }
-        
-        [Fact]
 
+        [Fact]
         public void LessThanOrEqualTo()
         {
             //Arrange
-            var IsLessThan = new LessThanOrEqualTo<IContext>(new ConstantInteger<IContext>(1), new ConstantInteger<IContext>(2));
-            var IsEqual = new LessThanOrEqualTo<IContext>(new ConstantInteger<IContext>(1), new ConstantInteger<IContext>(1));
+            var IsLessThan =
+                new LessThanOrEqualTo<IContext>(new ConstantInteger<IContext>(1), new ConstantInteger<IContext>(2));
+            var IsEqual =
+                new LessThanOrEqualTo<IContext>(new ConstantInteger<IContext>(1), new ConstantInteger<IContext>(1));
             //Act 
             var sut1 = IsLessThan.Interpret(context);
             var sut2 = IsEqual.Interpret(context);
