@@ -9,6 +9,6 @@
 
         public bool Value { get; }
 
-        public bool Interpret(TContext context) => true;
+        public bool Interpret(TContext context) => Value;
     }
 }
