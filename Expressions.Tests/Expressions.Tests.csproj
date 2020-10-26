@@ -24,4 +24,8 @@
     <Folder Include="Integer\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Expressions\Expressions.csproj" />
+  </ItemGroup>
+
 </Project>
