@@ -1,9 +1,4 @@
-﻿using Aptacode.Expressions;
-using Xunit;
-
-namespace Expressions.Tests
+﻿namespace Expressions.Tests
 {
-    public class ExpressionFactory_Tests
-    {
-    }
+    public class ExpressionFactory_Tests { }
 }

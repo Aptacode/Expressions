@@ -8,11 +8,12 @@ namespace Expressions.Tests.Boolean.Comparison
 {
     public class Comparison_Tests
     {
-        private readonly IContext _context;
         public Comparison_Tests()
         {
             _context = new Mock<IContext>().Object;
         }
+
+        private readonly IContext _context;
 
         [Fact]
         public void EqualTo()
@@ -71,8 +72,10 @@ namespace Expressions.Tests.Boolean.Comparison
         public void LessThanOrEqualTo()
         {
             //Arrange
-            var isLessThan = new LessThanOrEqualTo<IContext>(new ConstantInteger<IContext>(1), new ConstantInteger<IContext>(2));
-            var isEqual = new LessThanOrEqualTo<IContext>(new ConstantInteger<IContext>(1), new ConstantInteger<IContext>(1));
+            var isLessThan =
+                new LessThanOrEqualTo<IContext>(new ConstantInteger<IContext>(1), new ConstantInteger<IContext>(2));
+            var isEqual =
+                new LessThanOrEqualTo<IContext>(new ConstantInteger<IContext>(1), new ConstantInteger<IContext>(1));
 
             //Act 
             var sut1 = isLessThan.Interpret(_context);

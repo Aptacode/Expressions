@@ -1,21 +1,20 @@
-﻿using Xunit;
+﻿using Aptacode.Expressions;
 using Aptacode.Expressions.Integer;
-using Aptacode.Expressions;
-using Aptacode.Expressions.Bool.Comparison;
-using System.Runtime.InteropServices.ComTypes;
 using Moq;
+using Xunit;
 
-namespace Expressions.Tests.Boolean.Comparison
+namespace Expressions.Tests.Integer
 {
     public class Integer_Tests
     {
-        private readonly IContext _context;
         public Integer_Tests()
         {
             _context = new Mock<IContext>().Object;
         }
-        [Fact]
 
+        private readonly IContext _context;
+
+        [Fact]
         public void Add()
         {
             //Arrange
@@ -24,8 +23,8 @@ namespace Expressions.Tests.Boolean.Comparison
             //Assert
             Assert.Equal(2, sut.Interpret(_context));
         }
-        [Fact]
 
+        [Fact]
         public void Multiply()
         {
             //Arrange
@@ -34,6 +33,7 @@ namespace Expressions.Tests.Boolean.Comparison
             //Assert
             Assert.Equal(4, sut.Interpret(_context));
         }
+
         [Fact]
         public void Subtract()
         {
