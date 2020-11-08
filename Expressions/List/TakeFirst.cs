@@ -9,9 +9,22 @@ namespace Aptacode.Expressions.List
         {
             CountExpression = countExpression;
         }
+
         public IIntegerExpression<TContext> CountExpression { get; }
 
-        public override int[] Interpret(TContext context) =>
-            Expression.Interpret(context).Take(CountExpression.Interpret(context)).ToArray();
+        public override int[] Interpret(TContext context)
+        {
+            var list = Expression.Interpret(context);
+            var count = CountExpression.Interpret(context);
+
+            if (list.Length <= count)
+            {
+                return list;
+            }
+            else
+            {
+                return Expression.Interpret(context).Take(CountExpression.Interpret(context)).ToArray();
+            }
+        }
     }
 }

@@ -13,7 +13,21 @@ namespace Aptacode.Expressions.List
 
         public IIntegerExpression<TContext> CountExpression { get; }
 
-        public override int[] Interpret(TContext context) => Expression.Interpret(context)
-            .TakeLastItems(CountExpression.Interpret(context)).ToArray();
+        public override int[] Interpret(TContext context)
+        {
+            var list = Expression.Interpret(context);
+            var count = CountExpression.Interpret(context);
+
+            if (list.Length <= count)
+            {
+                return list;
+            }
+            else
+            {
+                return Expression.Interpret(context)
+                    .TakeLastItems(CountExpression.Interpret(context)).ToArray();
+            }
+        }
+
     }
 }
