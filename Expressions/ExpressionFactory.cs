@@ -1,7 +1,10 @@
 ﻿using Aptacode.Expressions.Bool;
 using Aptacode.Expressions.Bool.Comparison;
 using Aptacode.Expressions.Bool.Expression;
+using Aptacode.Expressions.Color;
+using Aptacode.Expressions.Guid;
 using Aptacode.Expressions.Integer;
+using Aptacode.Expressions.String;
 
 namespace Aptacode.Expressions
 {
@@ -56,6 +59,39 @@ namespace Aptacode.Expressions
 
         public XOr<TContext> XOr(IBooleanExpression<TContext> lhs, IBooleanExpression<TContext> rhs) =>
             new XOr<TContext>(lhs, rhs);
+
+        #endregion
+
+        #region Color Expressions
+
+        public ConstantColor<TContext> Color(System.Drawing.Color value) => new ConstantColor<TContext>(value);
+
+        public ConditionalColor<TContext> Conditional(IBooleanExpression<TContext> condition,
+            IColorExpression<TContext> passExpression,
+            IColorExpression<TContext> failExpression) =>
+            new ConditionalColor<TContext>(condition, passExpression, failExpression);
+
+        #endregion
+
+        #region String Expressions
+
+        public ConstantString<TContext> String(string value) => new ConstantString<TContext>(value);
+
+        public ConditionalString<TContext> Conditional(IBooleanExpression<TContext> condition,
+            IStringExpression<TContext> passExpression,
+            IStringExpression<TContext> failExpression) =>
+            new ConditionalString<TContext>(condition, passExpression, failExpression);
+
+        #endregion
+
+        #region Guid Expressions
+
+        public ConstantGuid<TContext> Color(System.Guid value) => new ConstantGuid<TContext>(value);
+
+        public ConditionalGuid<TContext> Conditional(IBooleanExpression<TContext> condition,
+            IGuidExpression<TContext> passExpression,
+            IGuidExpression<TContext> failExpression) =>
+            new ConditionalGuid<TContext>(condition, passExpression, failExpression);
 
         #endregion
     }
