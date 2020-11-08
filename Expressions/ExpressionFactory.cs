@@ -1,9 +1,11 @@
-﻿using Aptacode.Expressions.Bool;
+﻿using System.Collections;
+using Aptacode.Expressions.Bool;
 using Aptacode.Expressions.Bool.Comparison;
 using Aptacode.Expressions.Bool.Expression;
 using Aptacode.Expressions.Color;
 using Aptacode.Expressions.Guid;
 using Aptacode.Expressions.Integer;
+using Aptacode.Expressions.List;
 using Aptacode.Expressions.String;
 
 namespace Aptacode.Expressions
@@ -11,7 +13,6 @@ namespace Aptacode.Expressions
     public class ExpressionFactory<TContext> where TContext : IContext
     {
         #region Integer Expressions
-
         public ConstantInteger<TContext> Int(int value) => new ConstantInteger<TContext>(value);
 
         public Add<TContext> Add(IIntegerExpression<TContext> lhs, IIntegerExpression<TContext> rhs) =>
@@ -92,6 +93,18 @@ namespace Aptacode.Expressions
             IGuidExpression<TContext> passExpression,
             IGuidExpression<TContext> failExpression) =>
             new ConditionalGuid<TContext>(condition, passExpression, failExpression);
+
+        #endregion
+
+        #region List Expressions
+
+        public ConstantList<TContext> List(int[] value) => new ConstantList<TContext>(value);
+
+        public ConcatList<TContext> Concat(IListExpression<TContext> lhs, IListExpression<TContext> rhs) => new ConcatList<TContext>(lhs, rhs);
+        public First<TContext> First(IListExpression<TContext> list) => new First<TContext>(list);
+        public Last<TContext> Last(IListExpression<TContext> list) => new Last<TContext>(list);
+        public TakeFirst<TContext> TakeFirst(IListExpression<TContext> list, IIntegerExpression<TContext> count) => new TakeFirst<TContext>(list, count);
+        public TakeLast<TContext> TakeLast(IListExpression<TContext> list, IIntegerExpression<TContext> count) => new TakeLast<TContext>(list, count);
 
         #endregion
     }
