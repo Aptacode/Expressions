@@ -1,6 +1,6 @@
 ﻿using Aptacode.Expressions.Integer;
 
-namespace Aptacode.Expressions.Bool.Comparison
+namespace Aptacode.Expressions.Bool
 {
     public abstract class BinaryBoolComparison<TContext> : IBooleanExpression<TContext> where TContext : IContext
     {

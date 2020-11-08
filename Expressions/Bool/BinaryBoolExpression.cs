@@ -1,4 +1,4 @@
-﻿namespace Aptacode.Expressions.Bool.Expression
+﻿namespace Aptacode.Expressions.Bool
 {
     public abstract class BinaryBoolExpression<TContext> : IBooleanExpression<TContext> where TContext : IContext
     {
