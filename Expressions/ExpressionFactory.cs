@@ -102,6 +102,7 @@ namespace Aptacode.Expressions
 
         public ConcatList<TContext> Concat(IListExpression<TContext> lhs, IListExpression<TContext> rhs) => new ConcatList<TContext>(lhs, rhs);
         public First<TContext> First(IListExpression<TContext> list) => new First<TContext>(list);
+        public Count<TContext> Count(IListExpression<TContext> list) => new Count<TContext>(list);
         public Last<TContext> Last(IListExpression<TContext> list) => new Last<TContext>(list);
         public TakeFirst<TContext> TakeFirst(IListExpression<TContext> list, IIntegerExpression<TContext> count) => new TakeFirst<TContext>(list, count);
         public TakeLast<TContext> TakeLast(IListExpression<TContext> list, IIntegerExpression<TContext> count) => new TakeLast<TContext>(list, count);
