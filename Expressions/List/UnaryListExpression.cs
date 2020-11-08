@@ -2,12 +2,12 @@
 {
     public abstract class UnaryListExpression<TContext> : IListExpression<TContext> where TContext : IContext
     {
-        protected UnaryListExpression(IListExpression<TContext> value)
+        protected UnaryListExpression(IListExpression<TContext> expression)
         {
-            Value = value;
+            Expression = expression;
         }
 
-        public IListExpression<TContext> Value { get; }
+        public IListExpression<TContext> Expression { get; }
 
         public abstract int[] Interpret(TContext context);
     }

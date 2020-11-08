@@ -4,20 +4,16 @@ using Aptacode.Expressions.Utilities;
 
 namespace Aptacode.Expressions.List
 {
-    public class TakeLast<TContext> : IListExpression<TContext> where TContext : IContext
+    public class TakeLast<TContext> : UnaryListExpression<TContext> where TContext : IContext
     {
-        public TakeLast(IListExpression<TContext> listExpression, IIntegerExpression<TContext> countExpression)
+        public TakeLast(IListExpression<TContext> expression, IIntegerExpression<TContext> countExpression) : base(expression)
         {
-            ListExpression = listExpression;
             CountExpression = countExpression;
         }
 
-        public IListExpression<TContext> ListExpression { get; }
         public IIntegerExpression<TContext> CountExpression { get; }
 
-        public int[] Interpret(TContext context)
-        {
-            return ListExpression.Interpret(context).TakeLastItems(CountExpression.Interpret(context)).ToArray();
-        }
+        public override int[] Interpret(TContext context) => Expression.Interpret(context)
+            .TakeLastItems(CountExpression.Interpret(context)).ToArray();
     }
 }

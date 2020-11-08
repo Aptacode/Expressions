@@ -11,9 +11,6 @@ namespace Aptacode.Expressions.List
 
         public IListExpression<TContext> ListExpression { get; }
 
-        public int Interpret(TContext context)
-        {
-            return ListExpression.Interpret(context).Length;
-        }
+        public int Interpret(TContext context) => ListExpression.Interpret(context).Length;
     }
 }

@@ -1,6 +1,4 @@
-﻿using Aptacode.Expressions.String;
-
-namespace Aptacode.Expressions.Color
+﻿namespace Aptacode.Expressions.Color
 {
     public class ConstantColor<TContext> : IColorExpression<TContext> where TContext : IContext
     {

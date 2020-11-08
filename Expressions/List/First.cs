@@ -12,9 +12,6 @@ namespace Aptacode.Expressions.List
 
         public IListExpression<TContext> Expression { get; }
 
-        public int Interpret(TContext context)
-        {
-            return Expression.Interpret(context).First();
-        }
+        public int Interpret(TContext context) => Expression.Interpret(context).First();
     }
 }
