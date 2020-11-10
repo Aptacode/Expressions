@@ -1,4 +1,6 @@
-﻿namespace Aptacode.Expressions.String
+﻿using Aptacode.Expressions.Visitor;
+
+namespace Aptacode.Expressions.String
 {
     public abstract class BinaryStringExpression<TContext> : IStringExpression<TContext> where TContext : IContext
     {
@@ -13,5 +15,10 @@
         public IStringExpression<TContext> Rhs { get; }
 
         public abstract string Interpret(TContext context);
+
+        public void Visit(IExpressionVisitor<TContext> visitor)
+        {
+            visitor.Visit(this);
+        }
     }
 }

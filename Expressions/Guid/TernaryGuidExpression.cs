@@ -1,4 +1,5 @@
 ﻿using Aptacode.Expressions.Bool;
+using Aptacode.Expressions.Visitor;
 
 namespace Aptacode.Expressions.Guid
 {
@@ -19,5 +20,10 @@ namespace Aptacode.Expressions.Guid
         public IGuidExpression<TContext> FailExpression { get; }
 
         public abstract System.Guid Interpret(TContext context);
+
+        public void Visit(IExpressionVisitor<TContext> visitor)
+        {
+            visitor.Visit(this);
+        }
     }
 }

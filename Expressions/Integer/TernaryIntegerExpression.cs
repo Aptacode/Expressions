@@ -1,4 +1,5 @@
 ﻿using Aptacode.Expressions.Bool;
+using Aptacode.Expressions.Visitor;
 
 namespace Aptacode.Expressions.Integer
 {
@@ -19,5 +20,10 @@ namespace Aptacode.Expressions.Integer
         public IIntegerExpression<TContext> FailExpression { get; }
 
         public abstract int Interpret(TContext context);
+
+        public void Visit(IExpressionVisitor<TContext> visitor)
+        {
+            visitor.Visit(this);
+        }
     }
 }

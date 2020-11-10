@@ -1,4 +1,6 @@
-﻿namespace Aptacode.Expressions.List
+﻿using Aptacode.Expressions.Visitor;
+
+namespace Aptacode.Expressions.List
 {
     public abstract class UnaryListExpression<TContext> : IListExpression<TContext> where TContext : IContext
     {
@@ -10,5 +12,10 @@
         public IListExpression<TContext> Expression { get; }
 
         public abstract int[] Interpret(TContext context);
+
+        public void Visit(IExpressionVisitor<TContext> visitor)
+        {
+            visitor.Visit(this);
+        }
     }
 }

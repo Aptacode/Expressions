@@ -1,6 +1,8 @@
-﻿namespace Aptacode.Expressions.Guid
+﻿using Aptacode.Expressions.Bool;
+
+namespace Aptacode.Expressions.Guid
 {
-    public class ConstantGuid<TContext> : IGuidExpression<TContext> where TContext : IContext
+    public class ConstantGuid<TContext> : TerminalGuidExpression<TContext> where TContext : IContext
     {
         public ConstantGuid(System.Guid value)
         {
@@ -9,6 +11,6 @@
 
         public System.Guid Value { get; }
 
-        public System.Guid Interpret(TContext context) => Value;
+        public override System.Guid Interpret(TContext context) => Value;
     }
 }

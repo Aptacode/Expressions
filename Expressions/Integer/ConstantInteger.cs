@@ -1,6 +1,8 @@
-﻿namespace Aptacode.Expressions.Integer
+﻿using Aptacode.Expressions.Bool;
+
+namespace Aptacode.Expressions.Integer
 {
-    public class ConstantInteger<TContext> : IIntegerExpression<TContext> where TContext : IContext
+    public class ConstantInteger<TContext> : TerminalIntegerExpression<TContext> where TContext : IContext
     {
         public ConstantInteger(int value)
         {
@@ -9,6 +11,6 @@
 
         public int Value { get; }
 
-        public int Interpret(TContext context) => Value;
+        public override int Interpret(TContext context) => Value;
     }
 }

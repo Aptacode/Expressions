@@ -1,4 +1,5 @@
 ﻿using Aptacode.Expressions.Bool;
+using Aptacode.Expressions.Visitor;
 
 namespace Aptacode.Expressions.Color
 {
@@ -19,5 +20,10 @@ namespace Aptacode.Expressions.Color
         public IColorExpression<TContext> FailExpression { get; }
 
         public abstract System.Drawing.Color Interpret(TContext context);
+
+        public void Visit(IExpressionVisitor<TContext> visitor)
+        {
+            visitor.Visit(this);
+        }
     }
 }

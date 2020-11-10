@@ -1,6 +1,8 @@
-﻿namespace Aptacode.Expressions.String
+﻿using Aptacode.Expressions.Bool;
+
+namespace Aptacode.Expressions.String
 {
-    public class ConstantString<TContext> : IStringExpression<TContext> where TContext : IContext
+    public class ConstantString<TContext> : TerminalStringExpression<TContext> where TContext : IContext
     {
         public ConstantString(string value)
         {
@@ -9,6 +11,6 @@
 
         public string Value { get; }
 
-        public string Interpret(TContext context) => Value;
+        public override string Interpret(TContext context) => Value;
     }
 }

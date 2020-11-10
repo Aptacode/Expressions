@@ -1,6 +1,6 @@
 ﻿namespace Aptacode.Expressions.Integer
 {
-    public interface IIntegerExpression<in TContext> where TContext : IContext
+    public interface IIntegerExpression<TContext> : IExpression<int, TContext> where TContext : IContext
     {
         int Interpret(TContext context);
     }

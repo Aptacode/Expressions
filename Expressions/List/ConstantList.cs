@@ -1,6 +1,8 @@
-﻿namespace Aptacode.Expressions.List
+﻿using Aptacode.Expressions.Bool;
+
+namespace Aptacode.Expressions.List
 {
-    public class ConstantList<TContext> : IListExpression<TContext> where TContext : IContext
+    public class ConstantList<TContext> : TerminalListExpression<TContext> where TContext : IContext
     {
         public ConstantList(int[] value)
         {
@@ -9,6 +11,6 @@
 
         public int[] Value { get; }
 
-        public int[] Interpret(TContext context) => Value;
+        public override int[] Interpret(TContext context) => Value;
     }
 }

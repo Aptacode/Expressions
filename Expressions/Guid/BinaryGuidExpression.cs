@@ -1,4 +1,6 @@
-﻿namespace Aptacode.Expressions.Guid
+﻿using Aptacode.Expressions.Visitor;
+
+namespace Aptacode.Expressions.Guid
 {
     public abstract class BinaryGuidExpression<TContext> : IGuidExpression<TContext> where TContext : IContext
     {
@@ -13,5 +15,10 @@
         public IGuidExpression<TContext> Rhs { get; }
 
         public abstract System.Guid Interpret(TContext context);
+
+        public void Visit(IExpressionVisitor<TContext> visitor)
+        {
+            visitor.Visit(this);
+        }
     }
 }
