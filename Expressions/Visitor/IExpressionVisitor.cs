@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text;
-using Aptacode.Expressions.Bool;
-using Aptacode.Expressions.Bool.Comparison;
+﻿using Aptacode.Expressions.Bool;
 using Aptacode.Expressions.Color;
 using Aptacode.Expressions.Guid;
 using Aptacode.Expressions.Integer;
@@ -14,7 +9,6 @@ namespace Aptacode.Expressions.Visitor
 {
     public interface IExpressionVisitor<T> where T : IContext
     {
-
         void Visit(BinaryIntegerExpression<T> expression);
         void Visit(TernaryIntegerExpression<T> expression);
         void Visit(TerminalIntegerExpression<T> expression);
