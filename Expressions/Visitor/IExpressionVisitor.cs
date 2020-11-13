@@ -9,16 +9,26 @@ namespace Aptacode.Expressions.Visitor
 {
     public interface IExpressionVisitor<T> where T : IContext
     {
+        #region Integer
+
         void Visit(UnaryIntegerExpression<T> expression);
         void Visit(BinaryIntegerExpression<T> expression);
         void Visit(TernaryIntegerExpression<T> expression);
         void Visit(TerminalIntegerExpression<T> expression);
         void Visit(ListIntegerExpression<T> expression);
 
+        #endregion
+
+        #region Bool
+
         void Visit(BinaryBoolExpression<T> expression);
         void Visit(BinaryBoolComparison<T> expression);
         void Visit(UnaryBoolExpression<T> expression);
         void Visit(TerminalBoolExpression<T> expression);
+        void Visit(NaryBoolExpression<T> expression);
+
+        #endregion
+
 
         void Visit(BinaryColorExpression<T> expression);
         void Visit(TernaryColorExpression<T> expression);

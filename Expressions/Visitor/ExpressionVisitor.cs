@@ -26,7 +26,6 @@ namespace Aptacode.Expressions.Visitor
                 case ListIntegerExpression<TContext> listExpression:
                     Visit(listExpression);
                     break;
-
             }
         }
 
@@ -87,6 +86,13 @@ namespace Aptacode.Expressions.Visitor
             expression.Rhs.Visit(this);
         }
 
+        public virtual void Visit(NaryBoolExpression<TContext> expression)
+        {
+            foreach (var innerExpression in expression.Expressions)
+            {
+                innerExpression.Visit(this);
+            }
+        }
 
         public virtual void Visit(BinaryBoolComparison<TContext> expression)
         {
