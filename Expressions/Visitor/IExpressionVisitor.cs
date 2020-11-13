@@ -9,6 +9,7 @@ namespace Aptacode.Expressions.Visitor
 {
     public interface IExpressionVisitor<T> where T : IContext
     {
+        void Visit(UnaryIntegerExpression<T> expression);
         void Visit(BinaryIntegerExpression<T> expression);
         void Visit(TernaryIntegerExpression<T> expression);
         void Visit(TerminalIntegerExpression<T> expression);

@@ -47,6 +47,11 @@ namespace Aptacode.Expressions.Visitor
         {
 
         }
+        
+        public virtual void Visit(UnaryIntegerExpression<TContext> expression)
+        {
+            expression.Expression.Visit(this);
+        }
 
         public virtual void Visit(ListIntegerExpression<TContext> expression)
         {

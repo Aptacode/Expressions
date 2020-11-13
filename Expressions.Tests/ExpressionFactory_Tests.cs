@@ -22,14 +22,14 @@ namespace Expressions.Tests
 
         [Fact]
 
-        public void ExpressionFactoryBool_SuccessfullyCreates_ConstantBoolExpression_Test()
+        public void ExpressionFactoryBool_SuccessfullyCreates_ConstantBoolExpression_Test() //Not sure if this is the best way to make this assertion. Could also use the Intepret like below.
         {
             //Arrange
-            var constantInt = new ConstantBool<IContext>(true);
+            var constantBool = new ConstantBool<IContext>(true);
             //Act
             var sut = _expressions.Bool(true);
             //Assert
-            Assert.Equal(constantInt.GetType(), sut.GetType());
+            Assert.Equal(constantBool.GetType(), sut.GetType());
 
         }
 
