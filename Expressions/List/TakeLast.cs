@@ -6,7 +6,8 @@ namespace Aptacode.Expressions.List
 {
     public class TakeLast<TContext> : UnaryListExpression<TContext> where TContext : IContext
     {
-        public TakeLast(IListExpression<TContext> expression, IIntegerExpression<TContext> countExpression) : base(expression)
+        public TakeLast(IListExpression<TContext> expression, IIntegerExpression<TContext> countExpression) :
+            base(expression)
         {
             CountExpression = countExpression;
         }
@@ -22,12 +23,9 @@ namespace Aptacode.Expressions.List
             {
                 return list;
             }
-            else
-            {
-                return Expression.Interpret(context)
-                    .TakeLastItems(CountExpression.Interpret(context)).ToArray();
-            }
-        }
 
+            return Expression.Interpret(context)
+                .TakeLastItems(CountExpression.Interpret(context)).ToArray();
+        }
     }
 }

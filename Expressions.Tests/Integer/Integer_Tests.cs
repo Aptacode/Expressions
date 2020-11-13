@@ -27,10 +27,35 @@ namespace Expressions.Tests.Integer
         }
 
         [Fact]
+        public void Conditional_EvaluatesToFailExpression_OnFalseCondition()
+        {
+            //Arrange
+            var conditional = new Conditional<IContext>(new ConstantBool<IContext>(false),
+                new ConstantInteger<IContext>(1), new ConstantInteger<IContext>(0));
+            //Act
+            var sut = conditional.Interpret(_context);
+            //Assert
+            Assert.Equal(0, sut);
+        }
+
+        [Fact]
+        public void Conditional_EvaluatesToPassExpression_OnTrueCondition()
+        {
+            //Arrange
+            var conditional = new Conditional<IContext>(new ConstantBool<IContext>(true),
+                new ConstantInteger<IContext>(1), new ConstantInteger<IContext>(0));
+            //Act
+            var sut = conditional.Interpret(_context);
+            //Assert
+            Assert.Equal(1, sut);
+        }
+
+        [Fact]
         public void Multiply_SuccessfullyMultiplies_Two_ConstantIntegers_Test()
         {
             //Arrange
-            var multiplyExpression = new Multiply<IContext>(new ConstantInteger<IContext>(2), new ConstantInteger<IContext>(2));
+            var multiplyExpression =
+                new Multiply<IContext>(new ConstantInteger<IContext>(2), new ConstantInteger<IContext>(2));
             //Act
             var sut = multiplyExpression.Interpret(_context);
             //Assert
@@ -41,35 +66,12 @@ namespace Expressions.Tests.Integer
         public void Subtract_SuccessfullySubtracts_Two_ConstantIntegers_Test()
         {
             //Arrange
-            var subtractExpression = new Subtract<IContext>(new ConstantInteger<IContext>(2), new ConstantInteger<IContext>(1));
+            var subtractExpression =
+                new Subtract<IContext>(new ConstantInteger<IContext>(2), new ConstantInteger<IContext>(1));
             //Act
             var sut = subtractExpression.Interpret(_context);
             //Assert
             Assert.Equal(1, sut);
-        }
-
-        [Fact]
-
-        public void Conditional_EvaluatesToPassExpression_OnTrueCondition()
-        {
-            //Arrange
-            var conditional = new Conditional<IContext>(new ConstantBool<IContext>(true), new ConstantInteger<IContext>(1), new ConstantInteger<IContext>(0));
-            //Act
-            var sut = conditional.Interpret(_context);
-            //Assert
-            Assert.Equal(1, sut);
-        }
-
-        [Fact]
-
-        public void Conditional_EvaluatesToFailExpression_OnFalseCondition()
-        {
-            //Arrange
-            var conditional = new Conditional<IContext>(new ConstantBool<IContext>(false), new ConstantInteger<IContext>(1), new ConstantInteger<IContext>(0));
-            //Act
-            var sut = conditional.Interpret(_context);
-            //Assert
-            Assert.Equal(0, sut);
         }
     }
 }

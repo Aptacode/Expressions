@@ -8,7 +8,8 @@ namespace Aptacode.Expressions.Bool.Expression
 
         public override bool Interpret(TContext context)
         {
-            return Expressions.Aggregate(false, (current, booleanExpression) => current || booleanExpression.Interpret(context));
+            return Expressions.Aggregate(false,
+                (current, booleanExpression) => current || booleanExpression.Interpret(context));
         }
     }
 }

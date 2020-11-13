@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 
 namespace Aptacode.Expressions.Bool.Expression
 {
@@ -9,7 +8,8 @@ namespace Aptacode.Expressions.Bool.Expression
 
         public override bool Interpret(TContext context)
         {
-            return Expressions.Aggregate(true, (current, booleanExpression) => current && booleanExpression.Interpret(context));
+            return Expressions.Aggregate(true,
+                (current, booleanExpression) => current && booleanExpression.Interpret(context));
         }
     }
 }

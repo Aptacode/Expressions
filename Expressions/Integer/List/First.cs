@@ -5,9 +5,7 @@ namespace Aptacode.Expressions.Integer.List
 {
     public class First<TContext> : ListIntegerExpression<TContext> where TContext : IContext
     {
-        public First(IListExpression<TContext> expression) : base(expression)
-        {
-        }
+        public First(IListExpression<TContext> expression) : base(expression) { }
 
         public override int Interpret(TContext context)
         {

@@ -1,6 +1,4 @@
-﻿using Aptacode.Expressions.Bool;
-
-namespace Aptacode.Expressions.Guid
+﻿namespace Aptacode.Expressions.Guid
 {
     public class ConstantGuid<TContext> : TerminalGuidExpression<TContext> where TContext : IContext
     {

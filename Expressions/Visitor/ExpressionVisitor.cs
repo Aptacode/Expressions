@@ -7,9 +7,10 @@ using Aptacode.Expressions.String;
 
 namespace Aptacode.Expressions.Visitor
 {
-    public class ExpressionVisitor<TContext> :IExpressionVisitor<TContext> where TContext : IContext
+    public class ExpressionVisitor<TContext> : IExpressionVisitor<TContext> where TContext : IContext
     {
         #region Integer
+
         public virtual void Schedule(IIntegerExpression<TContext> expression)
         {
             switch (expression)
@@ -22,7 +23,7 @@ namespace Aptacode.Expressions.Visitor
                     break;
                 case TerminalIntegerExpression<TContext> terminalExpression:
                     Visit(terminalExpression);
-                    break;     
+                    break;
                 case ListIntegerExpression<TContext> listExpression:
                     Visit(listExpression);
                     break;
@@ -42,11 +43,8 @@ namespace Aptacode.Expressions.Visitor
             expression.PassExpression.Visit(this);
         }
 
-        public virtual void Visit(TerminalIntegerExpression<TContext> expression)
-        {
+        public virtual void Visit(TerminalIntegerExpression<TContext> expression) { }
 
-        }
-        
         public virtual void Visit(UnaryIntegerExpression<TContext> expression)
         {
             expression.Expression.Visit(this);
@@ -70,10 +68,10 @@ namespace Aptacode.Expressions.Visitor
                     break;
                 case BinaryBoolComparison<TContext> binaryBoolComparison:
                     Visit(binaryBoolComparison);
-                    break;         
+                    break;
                 case UnaryBoolExpression<TContext> unaryBoolExpression:
                     Visit(unaryBoolExpression);
-                    break;        
+                    break;
                 case TerminalBoolExpression<TContext> terminalBoolExpression:
                     Visit(terminalBoolExpression);
                     break;
@@ -105,10 +103,7 @@ namespace Aptacode.Expressions.Visitor
             expression.Expression.Visit(this);
         }
 
-        public virtual void Visit(TerminalBoolExpression<TContext> expression)
-        {
-
-        }
+        public virtual void Visit(TerminalBoolExpression<TContext> expression) { }
 
         #endregion
 
@@ -144,11 +139,7 @@ namespace Aptacode.Expressions.Visitor
             expression.PassExpression.Visit(this);
         }
 
-        public virtual void Visit(TerminalColorExpression<TContext> expression)
-        {
-
-        }
-
+        public virtual void Visit(TerminalColorExpression<TContext> expression) { }
 
         #endregion
 
@@ -184,11 +175,7 @@ namespace Aptacode.Expressions.Visitor
             expression.PassExpression.Visit(this);
         }
 
-        public virtual void Visit(TerminalGuidExpression<TContext> expression)
-        {
-
-        }
-
+        public virtual void Visit(TerminalGuidExpression<TContext> expression) { }
 
         #endregion
 
@@ -203,10 +190,10 @@ namespace Aptacode.Expressions.Visitor
                     break;
                 case BinaryListExpression<TContext> binaryListExpression:
                     Visit(binaryListExpression);
-                    break; 
+                    break;
                 case TernaryListExpression<TContext> ternaryListExpression:
                     Visit(ternaryListExpression);
-                    break;      
+                    break;
                 case TerminalListExpression<TContext> terminalListExpression:
                     Visit(terminalListExpression);
                     break;
@@ -231,10 +218,7 @@ namespace Aptacode.Expressions.Visitor
             expression.PassExpression.Visit(this);
         }
 
-        public virtual void Visit(TerminalListExpression<TContext> expression)
-        {
-
-        }
+        public virtual void Visit(TerminalListExpression<TContext> expression) { }
 
         #endregion
 
@@ -269,13 +253,8 @@ namespace Aptacode.Expressions.Visitor
             expression.PassExpression.Visit(this);
         }
 
-        public virtual void Visit(TerminalStringExpression<TContext> expression)
-        {
-
-        }
+        public virtual void Visit(TerminalStringExpression<TContext> expression) { }
 
         #endregion
-
-
     }
 }

@@ -1,6 +1,4 @@
-﻿using Aptacode.Expressions.Bool;
-
-namespace Aptacode.Expressions.List
+﻿namespace Aptacode.Expressions.List
 {
     public class ConstantList<TContext> : TerminalListExpression<TContext> where TContext : IContext
     {

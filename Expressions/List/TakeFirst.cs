@@ -5,7 +5,8 @@ namespace Aptacode.Expressions.List
 {
     public class TakeFirst<TContext> : UnaryListExpression<TContext> where TContext : IContext
     {
-        public TakeFirst(IListExpression<TContext> expression, IIntegerExpression<TContext> countExpression) : base(expression)
+        public TakeFirst(IListExpression<TContext> expression, IIntegerExpression<TContext> countExpression) :
+            base(expression)
         {
             CountExpression = countExpression;
         }
@@ -21,10 +22,8 @@ namespace Aptacode.Expressions.List
             {
                 return list;
             }
-            else
-            {
-                return Expression.Interpret(context).Take(CountExpression.Interpret(context)).ToArray();
-            }
+
+            return Expression.Interpret(context).Take(CountExpression.Interpret(context)).ToArray();
         }
     }
 }

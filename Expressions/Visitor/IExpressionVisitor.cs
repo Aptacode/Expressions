@@ -9,6 +9,23 @@ namespace Aptacode.Expressions.Visitor
 {
     public interface IExpressionVisitor<T> where T : IContext
     {
+        void Visit(BinaryColorExpression<T> expression);
+        void Visit(TernaryColorExpression<T> expression);
+        void Visit(TerminalColorExpression<T> expression);
+
+        void Visit(BinaryGuidExpression<T> expression);
+        void Visit(TernaryGuidExpression<T> expression);
+        void Visit(TerminalGuidExpression<T> expression);
+
+        void Visit(UnaryListExpression<T> expression);
+        void Visit(BinaryListExpression<T> expression);
+        void Visit(TernaryListExpression<T> expression);
+        void Visit(TerminalListExpression<T> expression);
+
+        void Visit(BinaryStringExpression<T> expression);
+        void Visit(TernaryStringExpression<T> expression);
+        void Visit(TerminalStringExpression<T> expression);
+
         #region Integer
 
         void Visit(UnaryIntegerExpression<T> expression);
@@ -28,23 +45,5 @@ namespace Aptacode.Expressions.Visitor
         void Visit(NaryBoolExpression<T> expression);
 
         #endregion
-
-
-        void Visit(BinaryColorExpression<T> expression);
-        void Visit(TernaryColorExpression<T> expression);
-        void Visit(TerminalColorExpression<T> expression);
-
-        void Visit(BinaryGuidExpression<T> expression);
-        void Visit(TernaryGuidExpression<T> expression);
-        void Visit(TerminalGuidExpression<T> expression);
-
-        void Visit(UnaryListExpression<T> expression);
-        void Visit(BinaryListExpression<T> expression);
-        void Visit(TernaryListExpression<T> expression);
-        void Visit(TerminalListExpression<T> expression);
-
-        void Visit(BinaryStringExpression<T> expression);
-        void Visit(TernaryStringExpression<T> expression);
-        void Visit(TerminalStringExpression<T> expression);
     }
 }

@@ -1,6 +1,4 @@
-﻿using Aptacode.Expressions.Bool;
-
-namespace Aptacode.Expressions.Color
+﻿namespace Aptacode.Expressions.Color
 {
     public class ConstantColor<TContext> : TerminalColorExpression<TContext> where TContext : IContext
     {
