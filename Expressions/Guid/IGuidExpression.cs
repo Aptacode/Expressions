@@ -2,6 +2,6 @@
 {
     public interface IGuidExpression<TContext> : IExpression<System.Guid, TContext> where TContext : IContext
     {
-        System.Guid Interpret(TContext context);
+        new System.Guid Interpret(TContext context);
     }
 }

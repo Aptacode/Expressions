@@ -2,6 +2,6 @@
 {
     public interface IStringExpression<TContext> : IExpression<string, TContext> where TContext : IContext
     {
-        string Interpret(TContext context);
+        new string Interpret(TContext context);
     }
 }
