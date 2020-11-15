@@ -2,7 +2,7 @@
 
 namespace Aptacode.Expressions.Integer.List
 {
-    public class Count<TContext> : ListIntegerExpression<TContext> where TContext : IContext
+    public class Count<TContext> : ListIntegerExpression<TContext> 
     {
         public Count(IListExpression<TContext> expression) : base(expression) { }
 

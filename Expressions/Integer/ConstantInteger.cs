@@ -1,6 +1,6 @@
 ﻿namespace Aptacode.Expressions.Integer
 {
-    public class ConstantInteger<TContext> : TerminalIntegerExpression<TContext> where TContext : IContext
+    public class ConstantInteger<TContext> : TerminalIntegerExpression<TContext> 
     {
         public ConstantInteger(int value)
         {

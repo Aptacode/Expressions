@@ -3,6 +3,7 @@ using Aptacode.Expressions.Bool;
 using Aptacode.Expressions.Bool.Comparison;
 using Aptacode.Expressions.Bool.Expression;
 using Aptacode.Expressions.Integer;
+using Expressions.Tests.Boolean.Comparison;
 using Moq;
 using Xunit;
 
@@ -150,7 +151,6 @@ namespace Expressions.Tests
             Assert.True(sut.Interpret(_context));
         }
 
-
         [Fact]
         public void GreaterThanOrEqualTo_ReturnsFalse_When_LHS_IsNot_GreaterThanOrEqualTo_RHS_Test()
         {
@@ -230,7 +230,6 @@ namespace Expressions.Tests
             Assert.True(sut1.Interpret(_context));
             Assert.True(sut2.Interpret(_context));
         }
-
 
         [Fact]
         public void Not_SuccessfullyCreates_NotExpression_Test()

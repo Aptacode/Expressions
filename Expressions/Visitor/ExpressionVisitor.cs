@@ -7,8 +7,7 @@ using Aptacode.Expressions.String;
 
 namespace Aptacode.Expressions.Visitor
 {
-    public class ExpressionVisitor<TContext> : IExpressionVisitor<TContext> where TContext : IContext
-    {
+    public class ExpressionVisitor<TContext> : IExpressionVisitor<TContext> {
         #region Integer
 
         public virtual void Schedule(IIntegerExpression<TContext> expression)
@@ -107,7 +106,6 @@ namespace Aptacode.Expressions.Visitor
 
         #endregion
 
-
         #region Color
 
         public virtual void Schedule(IColorExpression<TContext> expression)
@@ -142,7 +140,6 @@ namespace Aptacode.Expressions.Visitor
         public virtual void Visit(TerminalColorExpression<TContext> expression) { }
 
         #endregion
-
 
         #region Guid
 

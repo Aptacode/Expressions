@@ -2,7 +2,7 @@
 
 namespace Aptacode.Expressions.Integer
 {
-    public class Conditional<TContext> : TernaryIntegerExpression<TContext> where TContext : IContext
+    public class Conditional<TContext> : TernaryIntegerExpression<TContext> 
     {
         public Conditional(IBooleanExpression<TContext> condition, IIntegerExpression<TContext> passExpression,
             IIntegerExpression<TContext> failExpression) : base(condition, passExpression, failExpression) { }

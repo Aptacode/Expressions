@@ -1,6 +1,6 @@
 ﻿namespace Aptacode.Expressions.Guid
 {
-    public class ConstantGuid<TContext> : TerminalGuidExpression<TContext> where TContext : IContext
+    public class ConstantGuid<TContext> : TerminalGuidExpression<TContext> 
     {
         public ConstantGuid(System.Guid value)
         {

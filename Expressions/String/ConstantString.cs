@@ -1,6 +1,6 @@
 ﻿namespace Aptacode.Expressions.String
 {
-    public class ConstantString<TContext> : TerminalStringExpression<TContext> where TContext : IContext
+    public class ConstantString<TContext> : TerminalStringExpression<TContext> 
     {
         public ConstantString(string value)
         {

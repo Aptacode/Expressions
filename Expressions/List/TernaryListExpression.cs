@@ -3,7 +3,7 @@ using Aptacode.Expressions.Visitor;
 
 namespace Aptacode.Expressions.List
 {
-    public abstract class TernaryListExpression<TContext> : IListExpression<TContext> where TContext : IContext
+    public abstract class TernaryListExpression<TContext> : IListExpression<TContext> 
     {
         protected TernaryListExpression(IBooleanExpression<TContext> condition,
             IListExpression<TContext> passExpression, IListExpression<TContext> failExpression)

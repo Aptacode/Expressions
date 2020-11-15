@@ -2,7 +2,7 @@
 
 namespace Aptacode.Expressions.String
 {
-    public class ConditionalString<TContext> : TernaryStringExpression<TContext> where TContext : IContext
+    public class ConditionalString<TContext> : TernaryStringExpression<TContext> 
     {
         public ConditionalString(IBooleanExpression<TContext> condition, IStringExpression<TContext> passExpression,
             IStringExpression<TContext> failExpression) : base(condition, passExpression, failExpression) { }

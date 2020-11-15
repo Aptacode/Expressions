@@ -1,6 +1,6 @@
 ﻿namespace Aptacode.Expressions.Color
 {
-    public class ConstantColor<TContext> : TerminalColorExpression<TContext> where TContext : IContext
+    public class ConstantColor<TContext> : TerminalColorExpression<TContext> 
     {
         public ConstantColor(System.Drawing.Color value)
         {

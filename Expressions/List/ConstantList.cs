@@ -1,6 +1,6 @@
 ﻿namespace Aptacode.Expressions.List
 {
-    public class ConstantList<TContext> : TerminalListExpression<TContext> where TContext : IContext
+    public class ConstantList<TContext> : TerminalListExpression<TContext> 
     {
         public ConstantList(int[] value)
         {

@@ -3,7 +3,7 @@ using Aptacode.Expressions.Visitor;
 
 namespace Aptacode.Expressions.Guid
 {
-    public abstract class TernaryGuidExpression<TContext> : IGuidExpression<TContext> where TContext : IContext
+    public abstract class TernaryGuidExpression<TContext> : IGuidExpression<TContext> 
     {
         protected TernaryGuidExpression(IBooleanExpression<TContext> condition,
             IGuidExpression<TContext> passExpression, IGuidExpression<TContext> failExpression)

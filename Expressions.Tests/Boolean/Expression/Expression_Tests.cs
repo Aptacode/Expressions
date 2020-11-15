@@ -1,6 +1,7 @@
 ﻿using Aptacode.Expressions;
 using Aptacode.Expressions.Bool;
 using Aptacode.Expressions.Bool.Expression;
+using Expressions.Tests.Boolean.Comparison;
 using Moq;
 using Xunit;
 
@@ -45,7 +46,6 @@ namespace Expressions.Tests.Boolean.Expression
             //Assert
             Assert.False(sut);
         }
-
 
         [Fact]
         public void Or()

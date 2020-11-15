@@ -3,7 +3,7 @@ using Aptacode.Expressions.List;
 
 namespace Aptacode.Expressions.Integer.List
 {
-    public class First<TContext> : ListIntegerExpression<TContext> where TContext : IContext
+    public class First<TContext> : ListIntegerExpression<TContext> 
     {
         public First(IListExpression<TContext> expression) : base(expression) { }
 

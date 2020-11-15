@@ -3,7 +3,7 @@ using Aptacode.Expressions.Integer;
 
 namespace Aptacode.Expressions.List
 {
-    public class TakeFirst<TContext> : UnaryListExpression<TContext> where TContext : IContext
+    public class TakeFirst<TContext> : UnaryListExpression<TContext> 
     {
         public TakeFirst(IListExpression<TContext> expression, IIntegerExpression<TContext> countExpression) :
             base(expression)

@@ -2,7 +2,7 @@
 
 namespace Aptacode.Expressions.Integer
 {
-    public abstract class UnaryIntegerExpression<TContext> : IIntegerExpression<TContext> where TContext : IContext
+    public abstract class UnaryIntegerExpression<TContext> : IIntegerExpression<TContext>
     {
         protected UnaryIntegerExpression(IIntegerExpression<TContext> expression)
         {

@@ -2,7 +2,7 @@
 
 namespace Aptacode.Expressions.Guid
 {
-    public class ConditionalGuid<TContext> : TernaryGuidExpression<TContext> where TContext : IContext
+    public class ConditionalGuid<TContext> : TernaryGuidExpression<TContext> 
     {
         public ConditionalGuid(IBooleanExpression<TContext> condition, IGuidExpression<TContext> passExpression,
             IGuidExpression<TContext> failExpression) : base(condition, passExpression, failExpression) { }

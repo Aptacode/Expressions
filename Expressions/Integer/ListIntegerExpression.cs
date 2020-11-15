@@ -3,7 +3,7 @@ using Aptacode.Expressions.Visitor;
 
 namespace Aptacode.Expressions.Integer
 {
-    public abstract class ListIntegerExpression<TContext> : IIntegerExpression<TContext> where TContext : IContext
+    public abstract class ListIntegerExpression<TContext> : IIntegerExpression<TContext> 
     {
         protected ListIntegerExpression(IListExpression<TContext> expression)
         {

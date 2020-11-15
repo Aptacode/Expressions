@@ -4,7 +4,7 @@ using Aptacode.Expressions.Utilities;
 
 namespace Aptacode.Expressions.List
 {
-    public class TakeLast<TContext> : UnaryListExpression<TContext> where TContext : IContext
+    public class TakeLast<TContext> : UnaryListExpression<TContext> 
     {
         public TakeLast(IListExpression<TContext> expression, IIntegerExpression<TContext> countExpression) :
             base(expression)

@@ -3,7 +3,7 @@ using Aptacode.Expressions.Visitor;
 
 namespace Aptacode.Expressions.Bool
 {
-    public abstract class BinaryBoolComparison<TContext> : IBooleanExpression<TContext> where TContext : IContext
+    public abstract class BinaryBoolComparison<TContext> : IBooleanExpression<TContext>
     {
         protected BinaryBoolComparison(IIntegerExpression<TContext> lhs, IIntegerExpression<TContext> rhs)
         {

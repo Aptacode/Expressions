@@ -2,7 +2,7 @@
 
 namespace Aptacode.Expressions.Bool.Comparison
 {
-    public class GreaterThanOrEqualTo<TContext> : BinaryBoolComparison<TContext> where TContext : IContext
+    public class GreaterThanOrEqualTo<TContext> : BinaryBoolComparison<TContext> 
     {
         public GreaterThanOrEqualTo(IIntegerExpression<TContext> lhs, IIntegerExpression<TContext> rhs) :
             base(lhs, rhs) { }

@@ -56,7 +56,6 @@ namespace Expressions.Tests.Boolean.Comparison
             Assert.True(sut2);
         }
 
-
         [Fact]
         public void LessThan()
         {

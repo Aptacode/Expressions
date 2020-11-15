@@ -1,6 +1,6 @@
 ﻿namespace Aptacode.Expressions.String
 {
-    public interface IStringExpression<TContext> : IExpression<string, TContext> where TContext : IContext
+    public interface IStringExpression<TContext> : IExpression<string, TContext>
     {
         new string Interpret(TContext context);
     }

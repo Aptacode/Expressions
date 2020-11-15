@@ -2,7 +2,7 @@
 
 namespace Aptacode.Expressions.Bool.Expression
 {
-    public class All<TContext> : NaryBoolExpression<TContext> where TContext : IContext
+    public class All<TContext> : NaryBoolExpression<TContext> 
     {
         public All(params IBooleanExpression<TContext>[] expressions) : base(expressions) { }
 

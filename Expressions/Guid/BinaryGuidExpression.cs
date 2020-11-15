@@ -2,7 +2,7 @@
 
 namespace Aptacode.Expressions.Guid
 {
-    public abstract class BinaryGuidExpression<TContext> : IGuidExpression<TContext> where TContext : IContext
+    public abstract class BinaryGuidExpression<TContext> : IGuidExpression<TContext>
     {
         protected BinaryGuidExpression(IGuidExpression<TContext> lhs, IGuidExpression<TContext> rhs)
         {

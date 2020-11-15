@@ -10,7 +10,7 @@ using Aptacode.Expressions.String;
 
 namespace Aptacode.Expressions
 {
-    public class ExpressionFactory<TContext> where TContext : IContext
+    public class ExpressionFactory<TContext> 
     {
         #region Integer Expressions
 

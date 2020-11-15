@@ -2,7 +2,7 @@
 
 namespace Aptacode.Expressions.Guid
 {
-    public abstract class TerminalGuidExpression<TContext> : IGuidExpression<TContext> where TContext : IContext
+    public abstract class TerminalGuidExpression<TContext> : IGuidExpression<TContext> 
     {
         public abstract System.Guid Interpret(TContext context);
 

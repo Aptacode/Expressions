@@ -2,7 +2,7 @@
 
 namespace Aptacode.Expressions.List
 {
-    public abstract class UnaryListExpression<TContext> : IListExpression<TContext> where TContext : IContext
+    public abstract class UnaryListExpression<TContext> : IListExpression<TContext> 
     {
         protected UnaryListExpression(IListExpression<TContext> expression)
         {

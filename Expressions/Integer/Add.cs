@@ -1,6 +1,6 @@
 ﻿namespace Aptacode.Expressions.Integer
 {
-    public class Add<TContext> : BinaryIntegerExpression<TContext> where TContext : IContext
+    public class Add<TContext> : BinaryIntegerExpression<TContext> 
     {
         public Add(IIntegerExpression<TContext> lhs, IIntegerExpression<TContext> rhs) : base(lhs, rhs) { }
 

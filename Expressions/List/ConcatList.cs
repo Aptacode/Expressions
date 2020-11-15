@@ -2,7 +2,7 @@
 
 namespace Aptacode.Expressions.List
 {
-    public class ConcatList<TContext> : BinaryListExpression<TContext> where TContext : IContext
+    public class ConcatList<TContext> : BinaryListExpression<TContext> 
     {
         public ConcatList(IListExpression<TContext> lhs, IListExpression<TContext> rhs) : base(lhs, rhs) { }
 

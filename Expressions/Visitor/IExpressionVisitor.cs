@@ -7,7 +7,7 @@ using Aptacode.Expressions.String;
 
 namespace Aptacode.Expressions.Visitor
 {
-    public interface IExpressionVisitor<T> where T : IContext
+    public interface IExpressionVisitor<T>
     {
         void Visit(BinaryColorExpression<T> expression);
         void Visit(TernaryColorExpression<T> expression);

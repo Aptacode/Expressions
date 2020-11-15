@@ -3,7 +3,7 @@ using Aptacode.Expressions.Visitor;
 
 namespace Aptacode.Expressions.Color
 {
-    public abstract class TernaryColorExpression<TContext> : IColorExpression<TContext> where TContext : IContext
+    public abstract class TernaryColorExpression<TContext> : IColorExpression<TContext> 
     {
         protected TernaryColorExpression(IBooleanExpression<TContext> condition,
             IColorExpression<TContext> passExpression, IColorExpression<TContext> failExpression)

@@ -2,7 +2,7 @@
 
 namespace Aptacode.Expressions.Integer
 {
-    public abstract class BinaryIntegerExpression<TContext> : IIntegerExpression<TContext> where TContext : IContext
+    public abstract class BinaryIntegerExpression<TContext> : IIntegerExpression<TContext> 
     {
         protected BinaryIntegerExpression(IIntegerExpression<TContext> lhs, IIntegerExpression<TContext> rhs)
         {
