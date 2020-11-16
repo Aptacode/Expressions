@@ -18,7 +18,7 @@ var Expression = new And<TContext>( //An expression following the usual boolean 
                         new ConstantInteger<TContext>(4), new ConstantInteger<TContext>(1)),
                      new EqualTo<TContext>(new ConstantInteger<TContext>(1), new ConstantInteger<TContext>(1))); //An expression for the equality operator.
 ```
-To evaluate these expressions into the correct context, the Expressions library utilises the Interpreter design pattern; Every expression type has an `.Interpret()` method. When called on a given context, any non-terminal expressions will recursively call `.Interpret()` (in the same context) on the expressions within them until a terminal expression is reached. Terminal expressions can then be evaluated to their respective values and value types in the given context. These in turn are passed on the containing non-terminal expressions until the expression is completely evaluated.
+To evaluate these expressions into the correct context, the Expressions library utilises the Interpreter design pattern; Every expression type has an `.Interpret(context)` method. When called on a given context, any non-terminal expressions will recursively call `.Interpret(context)` (passing through the same context) on the expressions within them until a terminal expression is reached. Terminal expressions can then be evaluated to their respective values and value types in the given context. These in turn are passed on the containing non-terminal expressions until the expression is completely evaluated.
 
 ## Usage and Examples
 
