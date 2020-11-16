@@ -53,5 +53,16 @@ var LessThanExpression = new LessThan<TContext>(new ConstantInteger<TContext>(1)
 var GreaterThanOrEqualToExpression = new GreaterThanOrEqualTo<TContext>(new ConstantInteger<TContext>(1), new ConstantInteger<TContext>(2)) // An expression representing the comparison 1 >= 2
 ```
 
+## ExpressionFactory and Fluent API
+
+Building complex expressions manually can be a bit messy syntactically and so there is also an `ExpressionFactory` class.
+
+```csharp
+public readonly ExpressionFactory<TContext> _ex = new ExpressionFactory<TContext>();
+var one = _ex.Int(1); //Creates a new ConstantInteger expression with value 1
+var true = new _ex.Bool(ture); //Creates a new ConstantBool expression with value true
+var SevenIsGreaterThanFive = new _ex.GreaterThan(_ex.Int(7), _ex.Int(5)); //This is much tidier than the basic implementation
+```
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
