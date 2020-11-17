@@ -1,7 +1,6 @@
-﻿namespace Aptacode.Expressions.Integer
+﻿using Aptacode.Expressions.Numeric;
+
+namespace Aptacode.Expressions.Integer
 {
-    public interface IIntegerExpression<TContext> : IExpression<int, TContext>
-    {
-        new int Interpret(TContext context);
-    }
+    public interface IIntegerExpression<TContext> : INumericExpression<int, TContext> { }
 }

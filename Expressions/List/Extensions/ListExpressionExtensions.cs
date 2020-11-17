@@ -1,39 +1,46 @@
-﻿using System.Linq;
-using Aptacode.Expressions.Integer;
-using Aptacode.Expressions.Integer.List;
+﻿using System;
+using System.Linq;
+using Aptacode.Expressions.Numeric;
+using Aptacode.Expressions.Numeric.List;
 
 namespace Aptacode.Expressions.List.Extensions
 {
     public static class ListExpressionExtensions
     {
-        public static IIntegerExpression<TContext> Count<TContext>(this IListExpression<TContext> expression)
-             =>
-            new Count<TContext>(expression);
+        public static INumericExpression<int, TContext> Count<TType, TContext>(
+            this IListExpression<TType, TContext> expression) where TType : struct, IConvertible, IEquatable<TType>
+            =>
+                new Count<TType, TContext>(expression);
 
-        public static IIntegerExpression<TContext> First<TContext>(this IListExpression<TContext> expression)
-             =>
-            new First<TContext>(expression);
+        public static UnaryListItemExpression<TType, TContext> First<TType, TContext>(
+            this IListExpression<TType, TContext> expression) where TType : struct, IConvertible, IEquatable<TType>
+            =>
+                new First<TType, TContext>(expression);
 
-        public static IIntegerExpression<TContext> Last<TContext>(this IListExpression<TContext> expression)
-             =>
-            new Last<TContext>(expression);
+        public static UnaryListItemExpression<TType, TContext> Last<TType, TContext>(
+            this IListExpression<TType, TContext> expression) where TType : struct, IConvertible, IEquatable<TType>
+            =>
+                new Last<TType, TContext>(expression);
 
-        public static IListExpression<TContext> TakeFirst<TContext>(this IListExpression<TContext> expression,
-            IIntegerExpression<TContext> count)
-             =>
-            new TakeFirst<TContext>(expression, count);
+        public static IListExpression<TType, TContext> TakeFirst<TType, TContext>(
+            this IListExpression<TType, TContext> expression,
+            INumericExpression<int, TContext> count) where TType : struct, IConvertible, IEquatable<TType>
+            =>
+                new TakeFirst<TType, TContext>(expression, count);
 
-        public static IListExpression<TContext> TakeLast<TContext>(this IListExpression<TContext> expression,
-            IIntegerExpression<TContext> count)
-             =>
-            new TakeLast<TContext>(expression, count);
+        public static IListExpression<TType, TContext> TakeLast<TType, TContext>(
+            this IListExpression<TType, TContext> expression,
+            INumericExpression<int, TContext> count) where TType : struct, IConvertible, IEquatable<TType>
+            =>
+                new TakeLast<TType, TContext>(expression, count);
 
-        public static IListExpression<TContext> Concat<TContext>(this IListExpression<TContext> expression,
-            params IListExpression<TContext>[] expressions)
-            
+        public static IListExpression<TType, TContext> Concat<TType, TContext>(
+            this IListExpression<TType, TContext> expression,
+            params IListExpression<TType, TContext>[] expressions) where TType : struct, IConvertible, IEquatable<TType>
+
         {
             return expressions.Aggregate(expression,
-                (current, listExpression) => new ConcatList<TContext>(current, listExpression));
+                (current, listExpression) => new ConcatList<TType, TContext>(current, listExpression));
         }
     }
 }

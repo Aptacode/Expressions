@@ -1,5 +1,4 @@
-﻿namespace Expressions.Tests.Boolean.Comparison {
-    public interface IContext
-    {
-    }
+﻿namespace Expressions.Tests.Boolean.Comparison
+{
+    public interface IContext { }
 }

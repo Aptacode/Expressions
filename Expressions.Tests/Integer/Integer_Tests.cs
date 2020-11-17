@@ -1,6 +1,6 @@
-﻿using Aptacode.Expressions;
-using Aptacode.Expressions.Bool;
+﻿using Aptacode.Expressions.Bool;
 using Aptacode.Expressions.Integer;
+using Aptacode.Expressions.Numeric;
 using Expressions.Tests.Boolean.Comparison;
 using Moq;
 using Xunit;
@@ -20,7 +20,8 @@ namespace Expressions.Tests.Integer
         public void Add_SuccessfullyAdds_Two_ConstantIntegers_Test()
         {
             //Arrange
-            var addExpression = new Add<IContext>(new ConstantInteger<IContext>(1), new ConstantInteger<IContext>(1));
+            var addExpression =
+                new Add<int, IContext>(new ConstantInteger<IContext>(1), new ConstantInteger<IContext>(1));
             //Act
             var sut = addExpression.Interpret(_context);
             //Assert
@@ -31,7 +32,7 @@ namespace Expressions.Tests.Integer
         public void Conditional_EvaluatesToFailExpression_OnFalseCondition()
         {
             //Arrange
-            var conditional = new Conditional<IContext>(new ConstantBool<IContext>(false),
+            var conditional = new ConditionalNumeric<int, IContext>(new ConstantBool<IContext>(false),
                 new ConstantInteger<IContext>(1), new ConstantInteger<IContext>(0));
             //Act
             var sut = conditional.Interpret(_context);
@@ -43,7 +44,7 @@ namespace Expressions.Tests.Integer
         public void Conditional_EvaluatesToPassExpression_OnTrueCondition()
         {
             //Arrange
-            var conditional = new Conditional<IContext>(new ConstantBool<IContext>(true),
+            var conditional = new ConditionalNumeric<int, IContext>(new ConstantBool<IContext>(true),
                 new ConstantInteger<IContext>(1), new ConstantInteger<IContext>(0));
             //Act
             var sut = conditional.Interpret(_context);
@@ -56,7 +57,7 @@ namespace Expressions.Tests.Integer
         {
             //Arrange
             var multiplyExpression =
-                new Multiply<IContext>(new ConstantInteger<IContext>(2), new ConstantInteger<IContext>(2));
+                new Multiply<int, IContext>(new ConstantInteger<IContext>(2), new ConstantInteger<IContext>(2));
             //Act
             var sut = multiplyExpression.Interpret(_context);
             //Assert
@@ -68,7 +69,7 @@ namespace Expressions.Tests.Integer
         {
             //Arrange
             var subtractExpression =
-                new Subtract<IContext>(new ConstantInteger<IContext>(2), new ConstantInteger<IContext>(1));
+                new Subtract<int, IContext>(new ConstantInteger<IContext>(2), new ConstantInteger<IContext>(1));
             //Act
             var sut = subtractExpression.Interpret(_context);
             //Assert

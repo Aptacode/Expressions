@@ -1,20 +1,22 @@
-﻿using Aptacode.Expressions.Visitor;
+﻿using System;
+using Aptacode.Expressions.Visitor;
 
 namespace Aptacode.Expressions.List
 {
-    public abstract class BinaryListExpression<TContext> : IListExpression<TContext>
+    public abstract class BinaryListExpression<TType, TContext> : IListExpression<TType, TContext>
+        where TType : struct, IConvertible, IEquatable<TType>
     {
-        protected BinaryListExpression(IListExpression<TContext> lhs, IListExpression<TContext> rhs)
+        protected BinaryListExpression(IListExpression<TType, TContext> lhs, IListExpression<TType, TContext> rhs)
         {
             Lhs = lhs;
             Rhs = rhs;
         }
 
-        public IListExpression<TContext> Lhs { get; }
+        public IListExpression<TType, TContext> Lhs { get; }
 
-        public IListExpression<TContext> Rhs { get; }
+        public IListExpression<TType, TContext> Rhs { get; }
 
-        public abstract int[] Interpret(TContext context);
+        public abstract TType[] Interpret(TContext context);
 
         public void Visit(IExpressionVisitor<TContext> visitor)
         {

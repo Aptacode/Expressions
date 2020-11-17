@@ -1,9 +1,9 @@
-﻿namespace Aptacode.Expressions.Float
+﻿using Aptacode.Expressions.Numeric;
+
+namespace Aptacode.Expressions.Float
 {
-    public class AddFloat<TContext> : BinaryFloatExpression<TContext> 
+    public class AddFloat<TContext> : Add<float, TContext>
     {
         public AddFloat(IFloatExpression<TContext> lhs, IFloatExpression<TContext> rhs) : base(lhs, rhs) { }
-
-        public override float Interpret(TContext context) => Lhs.Interpret(context) + Rhs.Interpret(context);
     }
 }

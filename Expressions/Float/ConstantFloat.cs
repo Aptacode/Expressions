@@ -1,14 +1,9 @@
-﻿namespace Aptacode.Expressions.Float
+﻿using Aptacode.Expressions.Numeric;
+
+namespace Aptacode.Expressions.Float
 {
-    public class ConstantFloat<TContext> : TerminalFloatExpression<TContext> 
+    public class ConstantFloat<TContext> : ConstantNumericExpression<float, TContext>
     {
-        public ConstantFloat(float value)
-        {
-            Value = value;
-        }
-
-        public float Value { get; }
-
-        public override float Interpret(TContext context) => Value;
+        public ConstantFloat(float value) : base(value) { }
     }
 }

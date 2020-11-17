@@ -1,7 +1,6 @@
-﻿namespace Aptacode.Expressions.Float
+﻿using Aptacode.Expressions.Numeric;
+
+namespace Aptacode.Expressions.Float
 {
-    public interface IFloatExpression<TContext> : IExpression<float, TContext>
-    {
-        new float Interpret(TContext context);
-    }
+    public interface IFloatExpression<TContext> : INumericExpression<float, TContext> { }
 }

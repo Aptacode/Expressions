@@ -1,14 +1,9 @@
-﻿namespace Aptacode.Expressions.Integer
+﻿using Aptacode.Expressions.Numeric;
+
+namespace Aptacode.Expressions.Integer
 {
-    public class ConstantInteger<TContext> : TerminalIntegerExpression<TContext> 
+    public class ConstantInteger<TContext> : ConstantNumericExpression<int, TContext>
     {
-        public ConstantInteger(int value)
-        {
-            Value = value;
-        }
-
-        public int Value { get; }
-
-        public override int Interpret(TContext context) => Value;
+        public ConstantInteger(int value) : base(value) { }
     }
 }

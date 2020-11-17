@@ -1,11 +1,10 @@
-﻿using Aptacode.Expressions.Bool;
+﻿using System;
+using Aptacode.Expressions.Bool;
+using Aptacode.Expressions.Bool.Comparison;
 using Aptacode.Expressions.Color;
-using Aptacode.Expressions.Decimal;
-using Aptacode.Expressions.Double;
-using Aptacode.Expressions.Float;
 using Aptacode.Expressions.Guid;
-using Aptacode.Expressions.Integer;
 using Aptacode.Expressions.List;
+using Aptacode.Expressions.Numeric;
 using Aptacode.Expressions.String;
 
 namespace Aptacode.Expressions.Visitor
@@ -30,10 +29,23 @@ namespace Aptacode.Expressions.Visitor
 
         #region List
 
-        void Visit(UnaryListExpression<T> expression);
-        void Visit(BinaryListExpression<T> expression);
-        void Visit(TernaryListExpression<T> expression);
-        void Visit(TerminalListExpression<T> expression);
+        void Visit<TType>(UnaryListExpression<TType, T> expression)
+            where TType : struct, IConvertible, IEquatable<TType>;
+
+        void Visit<TType>(BinaryListExpression<TType, T> expression)
+            where TType : struct, IConvertible, IEquatable<TType>;
+
+        void Visit<TType>(TernaryListExpression<TType, T> expression)
+            where TType : struct, IConvertible, IEquatable<TType>;
+
+        void Visit<TType>(TerminalListExpression<TType, T> expression)
+            where TType : struct, IConvertible, IEquatable<TType>;
+
+        void Visit<TType>(UnaryListItemExpression<TType, T> expression)
+            where TType : struct, IConvertible, IEquatable<TType>;
+
+        void Visit<TType>(UnaryListIntegerExpression<TType, T> expression)
+            where TType : struct, IConvertible, IEquatable<TType>;
 
         #endregion
 
@@ -47,45 +59,27 @@ namespace Aptacode.Expressions.Visitor
 
         #region Integer
 
-        void Visit(UnaryIntegerExpression<T> expression);
-        void Visit(BinaryIntegerExpression<T> expression);
-        void Visit(TernaryIntegerExpression<T> expression);
-        void Visit(TerminalIntegerExpression<T> expression);
-        void Visit(ListIntegerExpression<T> expression);
+        void Visit<TType>(UnaryNumericExpression<TType, T> expression)
+            where TType : struct, IConvertible, IEquatable<TType>;
 
-        #endregion
+        void Visit<TType>(BinaryNumericExpression<TType, T> expression)
+            where TType : struct, IConvertible, IEquatable<TType>;
 
-        #region Float
+        void Visit<TType>(TernaryNumericExpression<TType, T> expression)
+            where TType : struct, IConvertible, IEquatable<TType>;
 
-        void Visit(UnaryFloatExpression<T> expression);
-        void Visit(BinaryFloatExpression<T> expression);
-        void Visit(TernaryFloatExpression<T> expression);
-        void Visit(TerminalFloatExpression<T> expression);
-
-        #endregion
-
-        #region Double
-
-        void Visit(UnaryDoubleExpression<T> expression);
-        void Visit(BinaryDoubleExpression<T> expression);
-        void Visit(TernaryDoubleExpression<T> expression);
-        void Visit(TerminalDoubleExpression<T> expression);
-
-        #endregion
-        
-        #region Decimal
-
-        void Visit(UnaryDecimalExpression<T> expression);
-        void Visit(BinaryDecimalExpression<T> expression);
-        void Visit(TernaryDecimalExpression<T> expression);
-        void Visit(TerminalDecimalExpression<T> expression);
+        void Visit<TType>(ITerminalNumericExpression<TType, T> expression)
+            where TType : struct, IConvertible, IEquatable<TType>;
 
         #endregion
 
         #region Bool
 
         void Visit(BinaryBoolExpression<T> expression);
-        void Visit(BinaryBoolComparison<T> expression);
+
+        void Visit<TType>(BinaryBoolComparison<TType, T> expression)
+            where TType : struct, IConvertible, IEquatable<TType>;
+
         void Visit(UnaryBoolExpression<T> expression);
         void Visit(TerminalBoolExpression<T> expression);
         void Visit(NaryBoolExpression<T> expression);

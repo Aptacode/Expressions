@@ -1,4 +1,5 @@
-﻿using Aptacode.Expressions.Bool;
+﻿using System;
+using Aptacode.Expressions.Bool;
 using Aptacode.Expressions.Bool.Comparison;
 using Aptacode.Expressions.Bool.Expression;
 using Aptacode.Expressions.Color;
@@ -7,35 +8,60 @@ using Aptacode.Expressions.Double;
 using Aptacode.Expressions.Float;
 using Aptacode.Expressions.Guid;
 using Aptacode.Expressions.Integer;
-using Aptacode.Expressions.Integer.List;
 using Aptacode.Expressions.List;
+using Aptacode.Expressions.Numeric;
+using Aptacode.Expressions.Numeric.List;
 using Aptacode.Expressions.String;
 
 namespace Aptacode.Expressions
 {
-    public class ExpressionFactory<TContext> 
+    public class ExpressionFactory<TContext>
     {
+        #region Numeric
+
+        public Add<TType, TContext> Add<TType>(INumericExpression<TType, TContext> lhs,
+            INumericExpression<TType, TContext> rhs) where TType : struct, IConvertible, IEquatable<TType> =>
+            new Add<TType, TContext>(lhs, rhs);
+
+        public Multiply<TType, TContext> Multiply<TType>(INumericExpression<TType, TContext> lhs,
+            INumericExpression<TType, TContext> rhs) where TType : struct, IConvertible, IEquatable<TType> =>
+            new Multiply<TType, TContext>(lhs, rhs);
+
+        public Subtract<TType, TContext> Subtract<TType>(INumericExpression<TType, TContext> lhs,
+            INumericExpression<TType, TContext> rhs) where TType : struct, IConvertible, IEquatable<TType> =>
+            new Subtract<TType, TContext>(lhs, rhs);
+
+        public ConditionalNumeric<TType, TContext> Conditional<TType>(IBooleanExpression<TContext> condition,
+            INumericExpression<TType, TContext> passExpression,
+            INumericExpression<TType, TContext> failExpression) where TType : struct, IConvertible, IEquatable<TType> =>
+            new ConditionalNumeric<TType, TContext>(condition, passExpression, failExpression);
+
+        #endregion
+
         #region Integer Expressions
 
         public ConstantInteger<TContext> Int(int value) => new ConstantInteger<TContext>(value);
 
-        public Add<TContext> Add(IIntegerExpression<TContext> lhs, IIntegerExpression<TContext> rhs) =>
-            new Add<TContext>(lhs, rhs);
+        public AddInteger<TContext> AddInteger(IIntegerExpression<TContext> lhs, IIntegerExpression<TContext> rhs) =>
+            new AddInteger<TContext>(lhs, rhs);
 
-        public Multiply<TContext> Multiply(IIntegerExpression<TContext> lhs, IIntegerExpression<TContext> rhs) =>
-            new Multiply<TContext>(lhs, rhs);
+        public MultiplyInteger<TContext> MultiplyInteger(IIntegerExpression<TContext> lhs,
+            IIntegerExpression<TContext> rhs) =>
+            new MultiplyInteger<TContext>(lhs, rhs);
 
-        public Subtract<TContext> Subtract(IIntegerExpression<TContext> lhs, IIntegerExpression<TContext> rhs) =>
-            new Subtract<TContext>(lhs, rhs);
+        public SubtractInteger<TContext> SubtractInteger(IIntegerExpression<TContext> lhs,
+            IIntegerExpression<TContext> rhs) =>
+            new SubtractInteger<TContext>(lhs, rhs);
 
-        public Conditional<TContext> Conditional(IBooleanExpression<TContext> condition,
+        public ConditionalNumeric<int, TContext> Conditional(IBooleanExpression<TContext> condition,
             IIntegerExpression<TContext> passExpression,
             IIntegerExpression<TContext> failExpression) =>
-            new Conditional<TContext>(condition, passExpression, failExpression);
+            new ConditionalNumeric<int, TContext>(condition, passExpression, failExpression);
 
         #endregion
 
         #region Float Expressions
+
         public ConstantFloat<TContext> Float(float value) => new ConstantFloat<TContext>(value);
 
         public AddFloat<TContext> AddFloat(IFloatExpression<TContext> lhs, IFloatExpression<TContext> rhs) =>
@@ -47,10 +73,10 @@ namespace Aptacode.Expressions
         public SubtractFloat<TContext> SubtractFloat(IFloatExpression<TContext> lhs, IFloatExpression<TContext> rhs) =>
             new SubtractFloat<TContext>(lhs, rhs);
 
-        public ConditionalFloat<TContext> Conditional(IBooleanExpression<TContext> condition,
+        public ConditionalNumeric<float, TContext> Conditional(IBooleanExpression<TContext> condition,
             IFloatExpression<TContext> passExpression,
             IFloatExpression<TContext> failExpression) =>
-            new ConditionalFloat<TContext>(condition, passExpression, failExpression);
+            new ConditionalNumeric<float, TContext>(condition, passExpression, failExpression);
 
         #endregion
 
@@ -62,16 +88,18 @@ namespace Aptacode.Expressions
         public AddDouble<TContext> AddDouble(IDoubleExpression<TContext> lhs, IDoubleExpression<TContext> rhs) =>
             new AddDouble<TContext>(lhs, rhs);
 
-        public MultiplyDouble<TContext> MultiplyFloat(IDoubleExpression<TContext> lhs, IDoubleExpression<TContext> rhs) =>
+        public MultiplyDouble<TContext>
+            MultiplyFloat(IDoubleExpression<TContext> lhs, IDoubleExpression<TContext> rhs) =>
             new MultiplyDouble<TContext>(lhs, rhs);
 
-        public SubtractDouble<TContext> SubtractDouble(IDoubleExpression<TContext> lhs, IDoubleExpression<TContext> rhs) =>
+        public SubtractDouble<TContext>
+            SubtractDouble(IDoubleExpression<TContext> lhs, IDoubleExpression<TContext> rhs) =>
             new SubtractDouble<TContext>(lhs, rhs);
 
-        public ConditionalDouble<TContext> ConditionalDouble(IBooleanExpression<TContext> condition,
+        public ConditionalNumeric<double, TContext> ConditionalDouble(IBooleanExpression<TContext> condition,
             IDoubleExpression<TContext> passExpression,
             IDoubleExpression<TContext> failExpression) =>
-            new ConditionalDouble<TContext>(condition, passExpression, failExpression);
+            new ConditionalNumeric<double, TContext>(condition, passExpression, failExpression);
 
         #endregion
 
@@ -82,16 +110,18 @@ namespace Aptacode.Expressions
         public AddDecimal<TContext> AddDecimal(IDecimalExpression<TContext> lhs, IDecimalExpression<TContext> rhs) =>
             new AddDecimal<TContext>(lhs, rhs);
 
-        public MultiplyDecimal<TContext> MultiplyFloat(IDecimalExpression<TContext> lhs, IDecimalExpression<TContext> rhs) =>
+        public MultiplyDecimal<TContext> MultiplyFloat(IDecimalExpression<TContext> lhs,
+            IDecimalExpression<TContext> rhs) =>
             new MultiplyDecimal<TContext>(lhs, rhs);
 
-        public SubtractDecimal<TContext> SubtractDecimal(IDecimalExpression<TContext> lhs, IDecimalExpression<TContext> rhs) =>
+        public SubtractDecimal<TContext> SubtractDecimal(IDecimalExpression<TContext> lhs,
+            IDecimalExpression<TContext> rhs) =>
             new SubtractDecimal<TContext>(lhs, rhs);
 
-        public ConditionalDecimal<TContext> ConditionalDecimal(IBooleanExpression<TContext> condition,
+        public ConditionalNumeric<decimal, TContext> ConditionalDecimal(IBooleanExpression<TContext> condition,
             IDecimalExpression<TContext> passExpression,
             IDecimalExpression<TContext> failExpression) =>
-            new ConditionalDecimal<TContext>(condition, passExpression, failExpression);
+            new ConditionalNumeric<decimal, TContext>(condition, passExpression, failExpression);
 
         #endregion
 
@@ -99,20 +129,26 @@ namespace Aptacode.Expressions
 
         public ConstantBool<TContext> Bool(bool value) => new ConstantBool<TContext>(value);
 
-        public EqualTo<TContext> EqualTo(IIntegerExpression<TContext> lhs, IIntegerExpression<TContext> rhs) =>
-            new EqualTo<TContext>(lhs, rhs);
+        public EqualTo<TType, TContext> EqualTo<TType>(INumericExpression<TType, TContext> lhs,
+            INumericExpression<TType, TContext> rhs) where TType : struct, IConvertible, IEquatable<TType> =>
+            new EqualTo<TType, TContext>(lhs, rhs);
 
-        public GreaterThan<TContext> GreaterThan(IIntegerExpression<TContext> lhs, IIntegerExpression<TContext> rhs) =>
-            new GreaterThan<TContext>(lhs, rhs);
+        public GreaterThan<TType, TContext> GreaterThan<TType>(INumericExpression<TType, TContext> lhs,
+            INumericExpression<TType, TContext> rhs) where TType : struct, IConvertible, IEquatable<TType> =>
+            new GreaterThan<TType, TContext>(lhs, rhs);
 
-        public GreaterThanOrEqualTo<TContext> GreaterThanOrEqualTo(IIntegerExpression<TContext> lhs,
-            IIntegerExpression<TContext> rhs) => new GreaterThanOrEqualTo<TContext>(lhs, rhs);
+        public GreaterThanOrEqualTo<TType, TContext> GreaterThanOrEqualTo<TType>(
+            INumericExpression<TType, TContext> lhs,
+            INumericExpression<TType, TContext> rhs) where TType : struct, IConvertible, IEquatable<TType> =>
+            new GreaterThanOrEqualTo<TType, TContext>(lhs, rhs);
 
-        public LessThan<TContext> LessThan(IIntegerExpression<TContext> lhs, IIntegerExpression<TContext> rhs) =>
-            new LessThan<TContext>(lhs, rhs);
+        public LessThan<TType, TContext> LessThan<TType>(INumericExpression<TType, TContext> lhs,
+            INumericExpression<TType, TContext> rhs) where TType : struct, IConvertible, IEquatable<TType> =>
+            new LessThan<TType, TContext>(lhs, rhs);
 
-        public LessThanOrEqualTo<TContext> LessThanOrEqualTo(IIntegerExpression<TContext> lhs,
-            IIntegerExpression<TContext> rhs) => new LessThanOrEqualTo<TContext>(lhs, rhs);
+        public LessThanOrEqualTo<TType, TContext> LessThanOrEqualTo<TType>(INumericExpression<TType, TContext> lhs,
+            INumericExpression<TType, TContext> rhs) where TType : struct, IConvertible, IEquatable<TType> =>
+            new LessThanOrEqualTo<TType, TContext>(lhs, rhs);
 
         public And<TContext> And(IBooleanExpression<TContext> lhs, IBooleanExpression<TContext> rhs) =>
             new And<TContext>(lhs, rhs);
@@ -162,20 +198,29 @@ namespace Aptacode.Expressions
 
         #region List Expressions
 
-        public ConstantList<TContext> List(int[] value) => new ConstantList<TContext>(value);
+        public ConstantList<TType, TContext> List<TType>(TType[] value)
+            where TType : struct, IConvertible, IEquatable<TType> => new ConstantList<TType, TContext>(value);
 
-        public ConcatList<TContext> Concat(IListExpression<TContext> lhs, IListExpression<TContext> rhs) =>
-            new ConcatList<TContext>(lhs, rhs);
+        public ConcatList<TType, TContext> Concat<TType>(IListExpression<TType, TContext> lhs,
+            IListExpression<TType, TContext> rhs) where TType : struct, IConvertible, IEquatable<TType> =>
+            new ConcatList<TType, TContext>(lhs, rhs);
 
-        public First<TContext> First(IListExpression<TContext> list) => new First<TContext>(list);
-        public Count<TContext> Count(IListExpression<TContext> list) => new Count<TContext>(list);
-        public Last<TContext> Last(IListExpression<TContext> list) => new Last<TContext>(list);
+        public First<TType, TContext> First<TType>(IListExpression<TType, TContext> list)
+            where TType : struct, IConvertible, IEquatable<TType> => new First<TType, TContext>(list);
 
-        public TakeFirst<TContext> TakeFirst(IListExpression<TContext> list, IIntegerExpression<TContext> count) =>
-            new TakeFirst<TContext>(list, count);
+        public Count<TType, TContext> Count<TType>(IListExpression<TType, TContext> list)
+            where TType : struct, IConvertible, IEquatable<TType> => new Count<TType, TContext>(list);
 
-        public TakeLast<TContext> TakeLast(IListExpression<TContext> list, IIntegerExpression<TContext> count) =>
-            new TakeLast<TContext>(list, count);
+        public Last<TType, TContext> Last<TType>(IListExpression<TType, TContext> list)
+            where TType : struct, IConvertible, IEquatable<TType> => new Last<TType, TContext>(list);
+
+        public TakeFirst<TType, TContext> TakeFirst<TType>(IListExpression<TType, TContext> list,
+            INumericExpression<int, TContext> count) where TType : struct, IConvertible, IEquatable<TType> =>
+            new TakeFirst<TType, TContext>(list, count);
+
+        public TakeLast<TType, TContext> TakeLast<TType>(IListExpression<TType, TContext> list,
+            INumericExpression<int, TContext> count) where TType : struct, IConvertible, IEquatable<TType> =>
+            new TakeLast<TType, TContext>(list, count);
 
         #endregion
     }

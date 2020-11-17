@@ -22,12 +22,14 @@ namespace Aptacode.Expressions.Bool.Extensions
         }
 
         public static IBooleanExpression<TContext> Not<TContext>(this IBooleanExpression<TContext> expression)
-             => new Not<TContext>(expression);
+            => new Not<TContext>(expression);
 
-        public static IBooleanExpression<TContext> Or<TContext>(this IBooleanExpression<TContext> lhs, IBooleanExpression<TContext> rhs)
-     => new Or<TContext>(lhs, rhs);
+        public static IBooleanExpression<TContext> Or<TContext>(this IBooleanExpression<TContext> lhs,
+            IBooleanExpression<TContext> rhs)
+            => new Or<TContext>(lhs, rhs);
 
-        public static IBooleanExpression<TContext> And<TContext>(this IBooleanExpression<TContext> lhs, IBooleanExpression<TContext> rhs)
-     => new And<TContext>(lhs, rhs);
+        public static IBooleanExpression<TContext> And<TContext>(this IBooleanExpression<TContext> lhs,
+            IBooleanExpression<TContext> rhs)
+            => new And<TContext>(lhs, rhs);
     }
 }

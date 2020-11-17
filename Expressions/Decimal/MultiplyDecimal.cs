@@ -1,8 +1,9 @@
-﻿namespace Aptacode.Expressions.Decimal
+﻿using Aptacode.Expressions.Numeric;
+
+namespace Aptacode.Expressions.Decimal
 {
-    public class MultiplyDecimal<TContext> : BinaryDecimalExpression<TContext> 
+    public class MultiplyDecimal<TContext> : Multiply<decimal, TContext>
     {
         public MultiplyDecimal(IDecimalExpression<TContext> lhs, IDecimalExpression<TContext> rhs) : base(lhs, rhs) { }
-        public override decimal Interpret(TContext context) => Lhs.Interpret(context) * Rhs.Interpret(context);
     }
 }

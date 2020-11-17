@@ -1,6 +1,6 @@
 ﻿namespace Aptacode.Expressions.Bool
 {
-    public class ConstantBool<TContext> : TerminalBoolExpression<TContext> 
+    public class ConstantBool<TContext> : TerminalBoolExpression<TContext>
     {
         public ConstantBool(bool value)
         {

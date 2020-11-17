@@ -1,20 +1,23 @@
-﻿using System.Linq;
-using Aptacode.Expressions.Integer;
+﻿using System;
+using System.Linq;
+using Aptacode.Expressions.Numeric;
 using Aptacode.Expressions.Utilities;
 
 namespace Aptacode.Expressions.List
 {
-    public class TakeLast<TContext> : UnaryListExpression<TContext> 
+    public class TakeLast<TType, TContext> : UnaryListExpression<TType, TContext>
+        where TType : struct, IConvertible, IEquatable<TType>
     {
-        public TakeLast(IListExpression<TContext> expression, IIntegerExpression<TContext> countExpression) :
+        public TakeLast(IListExpression<TType, TContext> expression,
+            INumericExpression<int, TContext> countExpression) :
             base(expression)
         {
             CountExpression = countExpression;
         }
 
-        public IIntegerExpression<TContext> CountExpression { get; }
+        public INumericExpression<int, TContext> CountExpression { get; }
 
-        public override int[] Interpret(TContext context)
+        public override TType[] Interpret(TContext context)
         {
             var list = Expression.Interpret(context);
             var count = CountExpression.Interpret(context);

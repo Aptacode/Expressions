@@ -1,12 +1,14 @@
-﻿using Aptacode.Expressions.Bool;
+﻿using System;
+using Aptacode.Expressions.Bool;
 using Aptacode.Expressions.Visitor;
 
 namespace Aptacode.Expressions.List
 {
-    public abstract class TernaryListExpression<TContext> : IListExpression<TContext> 
+    public abstract class TernaryListExpression<TType, TContext> : IListExpression<TType, TContext>
+        where TType : struct, IConvertible, IEquatable<TType>
     {
         protected TernaryListExpression(IBooleanExpression<TContext> condition,
-            IListExpression<TContext> passExpression, IListExpression<TContext> failExpression)
+            IListExpression<TType, TContext> passExpression, IListExpression<TType, TContext> failExpression)
         {
             Condition = condition;
             PassExpression = passExpression;
@@ -15,11 +17,11 @@ namespace Aptacode.Expressions.List
 
         public IBooleanExpression<TContext> Condition { get; }
 
-        public IListExpression<TContext> PassExpression { get; }
+        public IListExpression<TType, TContext> PassExpression { get; }
 
-        public IListExpression<TContext> FailExpression { get; }
+        public IListExpression<TType, TContext> FailExpression { get; }
 
-        public abstract int[] Interpret(TContext context);
+        public abstract TType[] Interpret(TContext context);
 
         public void Visit(IExpressionVisitor<TContext> visitor)
         {

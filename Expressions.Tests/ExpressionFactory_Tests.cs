@@ -3,6 +3,7 @@ using Aptacode.Expressions.Bool;
 using Aptacode.Expressions.Bool.Comparison;
 using Aptacode.Expressions.Bool.Expression;
 using Aptacode.Expressions.Integer;
+using Aptacode.Expressions.Numeric;
 using Expressions.Tests.Boolean.Comparison;
 using Moq;
 using Xunit;
@@ -109,7 +110,8 @@ namespace Expressions.Tests
         {
             //Arrange
             var intConditional =
-                new Conditional<IContext>(_expressions.Bool(true), _expressions.Int(1), _expressions.Int(0));
+                new ConditionalNumeric<int, IContext>(_expressions.Bool(true), _expressions.Int(1),
+                    _expressions.Int(0));
             //Act
             var sut = _expressions.Conditional(_expressions.Bool(true), _expressions.Int(1), _expressions.Int(0));
             //Assert
@@ -124,7 +126,7 @@ namespace Expressions.Tests
             //Act
             var sut = _expressions.Int(1);
             //Assert
-            Assert.True(new EqualTo<IContext>(constantInt, sut).Interpret(_context));
+            Assert.True(new EqualTo<int, IContext>(constantInt, sut).Interpret(_context));
         }
 
         [Fact]
@@ -265,6 +267,6 @@ namespace Expressions.Tests
             var sut = _expressions.XOr(True, True);
             //Assert
             Assert.Equal(TrueXOrTrueEx.Interpret(_context), sut.Interpret(_context));
-        }        
+        }
     }
 }

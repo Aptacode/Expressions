@@ -1,10 +1,16 @@
-﻿using Aptacode.Expressions.Integer;
+﻿using System;
+using System.Collections.Generic;
+using Aptacode.Expressions.Numeric;
 
 namespace Aptacode.Expressions.Bool.Comparison
 {
-    public class GreaterThan<TContext> : BinaryBoolComparison<TContext>
+    public class GreaterThan<TType, TContext> : BinaryBoolComparison<TType, TContext>
+        where TType : struct, IConvertible, IEquatable<TType>
     {
-        public GreaterThan(IIntegerExpression<TContext> lhs, IIntegerExpression<TContext> rhs) : base(lhs, rhs) { }
-        public override bool Interpret(TContext context) => Lhs.Interpret(context) > Rhs.Interpret(context);
+        public GreaterThan(INumericExpression<TType, TContext> lhs, INumericExpression<TType, TContext> rhs) : base(lhs,
+            rhs) { }
+
+        public override bool Interpret(TContext context) =>
+            Comparer<TType>.Default.Compare(Lhs.Interpret(context), Rhs.Interpret(context)) > 0;
     }
 }

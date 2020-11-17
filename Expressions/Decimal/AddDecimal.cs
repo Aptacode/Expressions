@@ -1,9 +1,9 @@
-﻿namespace Aptacode.Expressions.Decimal
+﻿using Aptacode.Expressions.Numeric;
+
+namespace Aptacode.Expressions.Decimal
 {
-    public class AddDecimal<TContext> : BinaryDecimalExpression<TContext> 
+    public class AddDecimal<TContext> : Add<decimal, TContext>
     {
         public AddDecimal(IDecimalExpression<TContext> lhs, IDecimalExpression<TContext> rhs) : base(lhs, rhs) { }
-
-        public override decimal Interpret(TContext context) => Lhs.Interpret(context) + Rhs.Interpret(context);
     }
 }

@@ -1,14 +1,9 @@
-﻿namespace Aptacode.Expressions.Double
+﻿using Aptacode.Expressions.Numeric;
+
+namespace Aptacode.Expressions.Double
 {
-    public class ConstantDouble<TContext> : TerminalDoubleExpression<TContext> 
+    public class ConstantDouble<TContext> : ConstantNumericExpression<double, TContext>
     {
-        public ConstantDouble(double value)
-        {
-            Value = value;
-        }
-
-        public double Value { get; }
-
-        public override double Interpret(TContext context) => Value;
+        public ConstantDouble(double value) : base(value) { }
     }
 }

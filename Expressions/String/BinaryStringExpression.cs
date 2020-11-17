@@ -2,7 +2,7 @@
 
 namespace Aptacode.Expressions.String
 {
-    public abstract class BinaryStringExpression<TContext> : IStringExpression<TContext> 
+    public abstract class BinaryStringExpression<TContext> : IStringExpression<TContext>
     {
         protected BinaryStringExpression(IStringExpression<TContext> lhs, IStringExpression<TContext> rhs)
         {

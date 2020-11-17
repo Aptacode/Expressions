@@ -2,7 +2,7 @@
 
 namespace Aptacode.Expressions.Bool
 {
-    public abstract class UnaryBoolExpression<TContext> : IBooleanExpression<TContext> 
+    public abstract class UnaryBoolExpression<TContext> : IBooleanExpression<TContext>
     {
         protected UnaryBoolExpression(IBooleanExpression<TContext> expression)
         {

@@ -2,7 +2,7 @@
 
 namespace Aptacode.Expressions.Color
 {
-    public abstract class BinaryColorExpression<TContext> : IColorExpression<TContext> 
+    public abstract class BinaryColorExpression<TContext> : IColorExpression<TContext>
     {
         protected BinaryColorExpression(IColorExpression<TContext> lhs, IColorExpression<TContext> rhs)
         {

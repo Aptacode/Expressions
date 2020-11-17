@@ -1,178 +1,64 @@
-﻿using Aptacode.Expressions.Bool;
+﻿using System;
+using Aptacode.Expressions.Bool;
+using Aptacode.Expressions.Bool.Comparison;
 using Aptacode.Expressions.Color;
-using Aptacode.Expressions.Decimal;
-using Aptacode.Expressions.Double;
-using Aptacode.Expressions.Float;
 using Aptacode.Expressions.Guid;
-using Aptacode.Expressions.Integer;
 using Aptacode.Expressions.List;
+using Aptacode.Expressions.Numeric;
 using Aptacode.Expressions.String;
 
 namespace Aptacode.Expressions.Visitor
 {
-    public class ExpressionVisitor<TContext> : IExpressionVisitor<TContext> {
+    public class ExpressionVisitor<TContext> : IExpressionVisitor<TContext>
+    {
         #region Integer
 
-        public virtual void Schedule(IIntegerExpression<TContext> expression)
+        public virtual void Schedule<TType>(INumericExpression<TType, TContext> expression)
+            where TType : struct, IConvertible, IEquatable<TType>
         {
             switch (expression)
             {
-                case BinaryIntegerExpression<TContext> binaryExpression:
+                case BinaryNumericExpression<TType, TContext> binaryExpression:
                     Visit(binaryExpression);
                     break;
-                case TernaryIntegerExpression<TContext> ternaryExpression:
+                case TernaryNumericExpression<TType, TContext> ternaryExpression:
                     Visit(ternaryExpression);
                     break;
-                case TerminalIntegerExpression<TContext> terminalExpression:
+                case ITerminalNumericExpression<TType, TContext> terminalExpression:
                     Visit(terminalExpression);
                     break;
-                case ListIntegerExpression<TContext> listExpression:
+                case UnaryListIntegerExpression<TType, TContext> listExpression:
                     Visit(listExpression);
                     break;
             }
         }
 
-        public virtual void Visit(BinaryIntegerExpression<TContext> expression)
+        public virtual void Visit<TType>(BinaryNumericExpression<TType, TContext> expression)
+            where TType : struct, IConvertible, IEquatable<TType>
         {
             expression.Lhs.Visit(this);
             expression.Rhs.Visit(this);
         }
 
-        public virtual void Visit(TernaryIntegerExpression<TContext> expression)
+        public virtual void Visit<TType>(TernaryNumericExpression<TType, TContext> expression)
+            where TType : struct, IConvertible, IEquatable<TType>
         {
             expression.Condition.Visit(this);
             expression.FailExpression.Visit(this);
             expression.PassExpression.Visit(this);
         }
 
-        public virtual void Visit(TerminalIntegerExpression<TContext> expression) { }
+        public virtual void Visit<TType>(ITerminalNumericExpression<TType, TContext> expression)
+            where TType : struct, IConvertible, IEquatable<TType> { }
 
-        public virtual void Visit(UnaryIntegerExpression<TContext> expression)
+        public virtual void Visit<TType>(UnaryNumericExpression<TType, TContext> expression)
+            where TType : struct, IConvertible, IEquatable<TType>
         {
             expression.Expression.Visit(this);
         }
 
-        public virtual void Visit(ListIntegerExpression<TContext> expression)
-        {
-            expression.Expression.Visit(this);
-        }
-
-        #endregion
-
-        #region Float
-
-        public virtual void Schedule(IFloatExpression<TContext> expression)
-        {
-            switch (expression)
-            {
-                case BinaryFloatExpression<TContext> binaryExpression:
-                    Visit(binaryExpression);
-                    break;
-                case TernaryFloatExpression<TContext> ternaryExpression:
-                    Visit(ternaryExpression);
-                    break;
-                case TerminalFloatExpression<TContext> terminalExpression:
-                    Visit(terminalExpression);
-                    break;
-            }
-        }
-
-        public virtual void Visit(BinaryFloatExpression<TContext> expression)
-        {
-            expression.Lhs.Visit(this);
-            expression.Rhs.Visit(this);
-        }
-
-        public virtual void Visit(TernaryFloatExpression<TContext> expression)
-        {
-            expression.Condition.Visit(this);
-            expression.FailExpression.Visit(this);
-            expression.PassExpression.Visit(this);
-        }
-
-        public virtual void Visit(TerminalFloatExpression<TContext> expression) { }
-
-        public virtual void Visit(UnaryFloatExpression<TContext> expression)
-        {
-            expression.Expression.Visit(this);
-        }
-
-        #endregion
-
-        #region Double
-
-        public virtual void Schedule(IDoubleExpression<TContext> expression)
-        {
-            switch (expression)
-            {
-                case BinaryDoubleExpression<TContext> binaryExpression:
-                    Visit(binaryExpression);
-                    break;
-                case TernaryDoubleExpression<TContext> ternaryExpression:
-                    Visit(ternaryExpression);
-                    break;
-                case TerminalDoubleExpression<TContext> terminalExpression:
-                    Visit(terminalExpression);
-                    break;
-            }
-        }
-
-        public virtual void Visit(BinaryDoubleExpression<TContext> expression)
-        {
-            expression.Lhs.Visit(this);
-            expression.Rhs.Visit(this);
-        }
-
-        public virtual void Visit(TernaryDoubleExpression<TContext> expression)
-        {
-            expression.Condition.Visit(this);
-            expression.FailExpression.Visit(this);
-            expression.PassExpression.Visit(this);
-        }
-
-        public virtual void Visit(TerminalDoubleExpression<TContext> expression) { }
-
-        public virtual void Visit(UnaryDoubleExpression<TContext> expression)
-        {
-            expression.Expression.Visit(this);
-        }
-
-        #endregion
-        
-        #region Double
-
-        public virtual void Schedule(IDecimalExpression<TContext> expression)
-        {
-            switch (expression)
-            {
-                case BinaryDecimalExpression<TContext> binaryExpression:
-                    Visit(binaryExpression);
-                    break;
-                case TernaryDecimalExpression<TContext> ternaryExpression:
-                    Visit(ternaryExpression);
-                    break;
-                case TerminalDecimalExpression<TContext> terminalExpression:
-                    Visit(terminalExpression);
-                    break;
-            }
-        }
-
-        public virtual void Visit(BinaryDecimalExpression<TContext> expression)
-        {
-            expression.Lhs.Visit(this);
-            expression.Rhs.Visit(this);
-        }
-
-        public virtual void Visit(TernaryDecimalExpression<TContext> expression)
-        {
-            expression.Condition.Visit(this);
-            expression.FailExpression.Visit(this);
-            expression.PassExpression.Visit(this);
-        }
-
-        public virtual void Visit(TerminalDecimalExpression<TContext> expression) { }
-
-        public virtual void Visit(UnaryDecimalExpression<TContext> expression)
+        public virtual void Visit<TType>(UnaryListIntegerExpression<TType, TContext> expression)
+            where TType : struct, IConvertible, IEquatable<TType>
         {
             expression.Expression.Visit(this);
         }
@@ -187,9 +73,6 @@ namespace Aptacode.Expressions.Visitor
             {
                 case BinaryBoolExpression<TContext> binaryBoolExpression:
                     Visit(binaryBoolExpression);
-                    break;
-                case BinaryBoolComparison<TContext> binaryBoolComparison:
-                    Visit(binaryBoolComparison);
                     break;
                 case UnaryBoolExpression<TContext> unaryBoolExpression:
                     Visit(unaryBoolExpression);
@@ -214,7 +97,8 @@ namespace Aptacode.Expressions.Visitor
             }
         }
 
-        public virtual void Visit(BinaryBoolComparison<TContext> expression)
+        public virtual void Visit<TType>(BinaryBoolComparison<TType, TContext> expression)
+            where TType : struct, IConvertible, IEquatable<TType>
         {
             expression.Lhs.Visit(this);
             expression.Rhs.Visit(this);
@@ -301,44 +185,55 @@ namespace Aptacode.Expressions.Visitor
 
         #region List
 
-        public virtual void Schedule(IListExpression<TContext> expression)
+        public virtual void Schedule<TType>(IListExpression<TType, TContext> expression)
+            where TType : struct, IConvertible, IEquatable<TType>
         {
             switch (expression)
             {
-                case UnaryListExpression<TContext> unaryListExpression:
+                case UnaryListExpression<TType, TContext> unaryListExpression:
                     Visit(unaryListExpression);
                     break;
-                case BinaryListExpression<TContext> binaryListExpression:
+                case BinaryListExpression<TType, TContext> binaryListExpression:
                     Visit(binaryListExpression);
                     break;
-                case TernaryListExpression<TContext> ternaryListExpression:
+                case TernaryListExpression<TType, TContext> ternaryListExpression:
                     Visit(ternaryListExpression);
                     break;
-                case TerminalListExpression<TContext> terminalListExpression:
+                case TerminalListExpression<TType, TContext> terminalListExpression:
                     Visit(terminalListExpression);
                     break;
             }
         }
 
-        public virtual void Visit(UnaryListExpression<TContext> expression)
+        public virtual void Visit<TType>(UnaryListExpression<TType, TContext> expression)
+            where TType : struct, IConvertible, IEquatable<TType>
         {
             expression.Expression.Visit(this);
         }
 
-        public virtual void Visit(BinaryListExpression<TContext> expression)
+        public virtual void Visit<TType>(BinaryListExpression<TType, TContext> expression)
+            where TType : struct, IConvertible, IEquatable<TType>
         {
             expression.Lhs.Visit(this);
             expression.Rhs.Visit(this);
         }
 
-        public virtual void Visit(TernaryListExpression<TContext> expression)
+        public virtual void Visit<TType>(TernaryListExpression<TType, TContext> expression)
+            where TType : struct, IConvertible, IEquatable<TType>
         {
             expression.Condition.Visit(this);
             expression.FailExpression.Visit(this);
             expression.PassExpression.Visit(this);
         }
 
-        public virtual void Visit(TerminalListExpression<TContext> expression) { }
+        public virtual void Visit<TType>(TerminalListExpression<TType, TContext> expression)
+            where TType : struct, IConvertible, IEquatable<TType> { }
+
+        public void Visit<TType>(UnaryListItemExpression<TType, TContext> expression)
+            where TType : struct, IConvertible, IEquatable<TType>
+        {
+            expression.Expression.Visit(this);
+        }
 
         #endregion
 

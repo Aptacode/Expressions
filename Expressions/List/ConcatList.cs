@@ -1,12 +1,15 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace Aptacode.Expressions.List
 {
-    public class ConcatList<TContext> : BinaryListExpression<TContext> 
+    public class ConcatList<TType, TContext> : BinaryListExpression<TType, TContext>
+        where TType : struct, IConvertible, IEquatable<TType>
     {
-        public ConcatList(IListExpression<TContext> lhs, IListExpression<TContext> rhs) : base(lhs, rhs) { }
+        public ConcatList(IListExpression<TType, TContext> lhs, IListExpression<TType, TContext> rhs) :
+            base(lhs, rhs) { }
 
-        public override int[] Interpret(TContext context) =>
+        public override TType[] Interpret(TContext context) =>
             Lhs.Interpret(context).Concat(Rhs.Interpret(context)).ToArray();
     }
 }

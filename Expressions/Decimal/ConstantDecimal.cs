@@ -1,14 +1,9 @@
-﻿namespace Aptacode.Expressions.Decimal
+﻿using Aptacode.Expressions.Numeric;
+
+namespace Aptacode.Expressions.Decimal
 {
-    public class ConstantDecimal<TContext> : TerminalDecimalExpression<TContext> 
+    public class ConstantDecimal<TContext> : ConstantNumericExpression<decimal, TContext>
     {
-        public ConstantDecimal(decimal value)
-        {
-            Value = value;
-        }
-
-        public decimal Value { get; }
-
-        public override decimal Interpret(TContext context) => Value;
+        public ConstantDecimal(decimal value) : base(value) { }
     }
 }

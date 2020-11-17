@@ -1,14 +1,17 @@
-﻿namespace Aptacode.Expressions.List
+﻿using System;
+
+namespace Aptacode.Expressions.List
 {
-    public class ConstantList<TContext> : TerminalListExpression<TContext> 
+    public class ConstantList<TType, TContext> : TerminalListExpression<TType, TContext>
+        where TType : struct, IConvertible, IEquatable<TType>
     {
-        public ConstantList(int[] value)
+        public ConstantList(TType[] value)
         {
             Value = value;
         }
 
-        public int[] Value { get; }
+        public TType[] Value { get; }
 
-        public override int[] Interpret(TContext context) => Value;
+        public override TType[] Interpret(TContext context) => Value;
     }
 }

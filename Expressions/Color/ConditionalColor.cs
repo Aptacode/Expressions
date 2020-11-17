@@ -2,7 +2,7 @@
 
 namespace Aptacode.Expressions.Color
 {
-    public class ConditionalColor<TContext> : TernaryColorExpression<TContext> 
+    public class ConditionalColor<TContext> : TernaryColorExpression<TContext>
     {
         public ConditionalColor(IBooleanExpression<TContext> condition, IColorExpression<TContext> passExpression,
             IColorExpression<TContext> failExpression) : base(condition, passExpression, failExpression) { }

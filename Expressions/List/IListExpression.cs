@@ -1,7 +1,10 @@
-﻿namespace Aptacode.Expressions.List
+﻿using System;
+
+namespace Aptacode.Expressions.List
 {
-    public interface IListExpression<TContext> : IExpression<int[], TContext>
+    public interface IListExpression<TType, TContext> : IExpression<TType[], TContext>
+        where TType : struct, IConvertible, IEquatable<TType>
     {
-        new int[] Interpret(TContext context);
+        new TType[] Interpret(TContext context);
     }
 }

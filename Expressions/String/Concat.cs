@@ -1,6 +1,6 @@
 ﻿namespace Aptacode.Expressions.String
 {
-    public abstract class Concat<TContext> : BinaryStringExpression<TContext> 
+    public abstract class Concat<TContext> : BinaryStringExpression<TContext>
     {
         protected Concat(IStringExpression<TContext> lhs, IStringExpression<TContext> rhs) : base(lhs, rhs) { }
 
