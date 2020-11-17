@@ -1,10 +1,11 @@
 ﻿using System;
+using Aptacode.Expressions.Integer;
 using Aptacode.Expressions.List;
 using Aptacode.Expressions.Visitor;
 
 namespace Aptacode.Expressions.Numeric
 {
-    public abstract class UnaryListIntegerExpression<TType, TContext> : INumericExpression<int, TContext>
+    public abstract class UnaryListIntegerExpression<TType, TContext> : IIntegerExpression<TContext>
         where TType : struct, IConvertible, IEquatable<TType>
     {
         protected UnaryListIntegerExpression(IListExpression<TType, TContext> expression)

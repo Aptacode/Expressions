@@ -2,7 +2,7 @@
 
 namespace Aptacode.Expressions.Double
 {
-    public class MultiplyDouble<TContext> : Multiply<double, TContext>
+    public class MultiplyDouble<TContext> : Multiply<double, TContext>, IDoubleExpression<TContext>
     {
         public MultiplyDouble(IDoubleExpression<TContext> lhs, IDoubleExpression<TContext> rhs) : base(lhs, rhs) { }
     }

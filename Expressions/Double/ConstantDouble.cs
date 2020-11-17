@@ -2,7 +2,7 @@
 
 namespace Aptacode.Expressions.Double
 {
-    public class ConstantDouble<TContext> : ConstantNumericExpression<double, TContext>
+    public class ConstantDouble<TContext> : ConstantNumericExpression<double, TContext>, IDoubleExpression<TContext>
     {
         public ConstantDouble(double value) : base(value) { }
     }
