@@ -2,17 +2,17 @@
 
 namespace Aptacode.Expressions.String
 {
-    public abstract class BinaryStringExpression<TContext> : IStringExpression<TContext>
+    public abstract class BinaryStringExpression<TContext> : IExpression<string, TContext>
     {
-        protected BinaryStringExpression(IStringExpression<TContext> lhs, IStringExpression<TContext> rhs)
+        protected BinaryStringExpression(IExpression<string, TContext> lhs, IExpression<string, TContext> rhs)
         {
             Lhs = lhs;
             Rhs = rhs;
         }
 
-        public IStringExpression<TContext> Lhs { get; }
+        public IExpression<string, TContext> Lhs { get; }
 
-        public IStringExpression<TContext> Rhs { get; }
+        public IExpression<string, TContext> Rhs { get; }
 
         public abstract string Interpret(TContext context);
 

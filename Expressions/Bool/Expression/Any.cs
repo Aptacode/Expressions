@@ -4,7 +4,7 @@ namespace Aptacode.Expressions.Bool.Expression
 {
     public class Any<TContext> : NaryBoolExpression<TContext>
     {
-        public Any(params IBooleanExpression<TContext>[] expressions) : base(expressions) { }
+        public Any(params IExpression<bool, TContext>[] expressions) : base(expressions) { }
 
         public override bool Interpret(TContext context)
         {

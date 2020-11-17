@@ -2,8 +2,8 @@
 
 namespace Aptacode.Expressions.Decimal
 {
-    public class AddDecimal<TContext> : Add<decimal, TContext>, IDecimalExpression<TContext>
+    public class AddDecimal<TContext> : Add<decimal, TContext>
     {
-        public AddDecimal(IDecimalExpression<TContext> lhs, IDecimalExpression<TContext> rhs) : base(lhs, rhs) { }
+        public AddDecimal(IExpression<decimal, TContext> lhs, IExpression<decimal, TContext> rhs) : base(lhs, rhs) { }
     }
 }

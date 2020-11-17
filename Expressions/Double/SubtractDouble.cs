@@ -2,8 +2,8 @@
 
 namespace Aptacode.Expressions.Double
 {
-    public class SubtractDouble<TContext> : Subtract<double, TContext>, IDoubleExpression<TContext>
+    public class SubtractDouble<TContext> : Subtract<double, TContext>, IExpression<double, TContext>
     {
-        public SubtractDouble(IDoubleExpression<TContext> lhs, IDoubleExpression<TContext> rhs) : base(lhs, rhs) { }
+        public SubtractDouble(IExpression<double, TContext> lhs, IExpression<double, TContext> rhs) : base(lhs, rhs) { }
     }
 }

@@ -2,14 +2,14 @@
 
 namespace Aptacode.Expressions.Bool
 {
-    public abstract class UnaryBoolExpression<TContext> : IBooleanExpression<TContext>
+    public abstract class UnaryBoolExpression<TContext> : IExpression<bool, TContext>
     {
-        protected UnaryBoolExpression(IBooleanExpression<TContext> expression)
+        protected UnaryBoolExpression(IExpression<bool, TContext> expression)
         {
             Expression = expression;
         }
 
-        public IBooleanExpression<TContext> Expression { get; }
+        public IExpression<bool, TContext> Expression { get; }
 
         public abstract bool Interpret(TContext context);
 

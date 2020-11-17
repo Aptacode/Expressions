@@ -2,7 +2,7 @@
 {
     public class Not<TContext> : UnaryBoolExpression<TContext>
     {
-        public Not(IBooleanExpression<TContext> expression) : base(expression) { }
+        public Not(IExpression<bool, TContext> expression) : base(expression) { }
         public override bool Interpret(TContext context) => !Expression.Interpret(context);
     }
 }

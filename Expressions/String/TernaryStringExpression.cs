@@ -3,21 +3,21 @@ using Aptacode.Expressions.Visitor;
 
 namespace Aptacode.Expressions.String
 {
-    public abstract class TernaryStringExpression<TContext> : IStringExpression<TContext>
+    public abstract class TernaryStringExpression<TContext> : IExpression<string, TContext>
     {
-        protected TernaryStringExpression(IBooleanExpression<TContext> condition,
-            IStringExpression<TContext> passExpression, IStringExpression<TContext> failExpression)
+        protected TernaryStringExpression(IExpression<bool, TContext> condition,
+            IExpression<string, TContext> passExpression, IExpression<string, TContext> failExpression)
         {
             Condition = condition;
             PassExpression = passExpression;
             FailExpression = failExpression;
         }
 
-        public IBooleanExpression<TContext> Condition { get; }
+        public IExpression<bool, TContext> Condition { get; }
 
-        public IStringExpression<TContext> PassExpression { get; }
+        public IExpression<string, TContext> PassExpression { get; }
 
-        public IStringExpression<TContext> FailExpression { get; }
+        public IExpression<string, TContext> FailExpression { get; }
 
         public abstract string Interpret(TContext context);
 

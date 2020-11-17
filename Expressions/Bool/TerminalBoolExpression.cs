@@ -2,7 +2,7 @@
 
 namespace Aptacode.Expressions.Bool
 {
-    public abstract class TerminalBoolExpression<TContext> : IBooleanExpression<TContext>
+    public abstract class TerminalBoolExpression<TContext> : IExpression<bool, TContext>
     {
         public abstract bool Interpret(TContext context);
 

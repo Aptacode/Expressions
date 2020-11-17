@@ -5,7 +5,7 @@ using Aptacode.Expressions.Visitor;
 
 namespace Aptacode.Expressions.Numeric
 {
-    public abstract class UnaryListIntegerExpression<TType, TContext> : IIntegerExpression<TContext>
+    public abstract class UnaryListIntegerExpression<TType, TContext> : IExpression<int, TContext>
         where TType : struct, IConvertible, IEquatable<TType>
     {
         protected UnaryListIntegerExpression(IListExpression<TType, TContext> expression)

@@ -2,14 +2,14 @@
 
 namespace Aptacode.Expressions.Bool
 {
-    public abstract class NaryBoolExpression<TContext> : IBooleanExpression<TContext>
+    public abstract class NaryBoolExpression<TContext> : IExpression<bool, TContext>
     {
-        protected NaryBoolExpression(params IBooleanExpression<TContext>[] expressions)
+        protected NaryBoolExpression(params IExpression<bool, TContext>[] expressions)
         {
             Expressions = expressions;
         }
 
-        public IBooleanExpression<TContext>[] Expressions { get; }
+        public IExpression<bool, TContext>[] Expressions { get; }
 
         public abstract bool Interpret(TContext context);
 

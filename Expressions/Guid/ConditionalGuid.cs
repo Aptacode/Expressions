@@ -4,8 +4,8 @@ namespace Aptacode.Expressions.Guid
 {
     public class ConditionalGuid<TContext> : TernaryGuidExpression<TContext>
     {
-        public ConditionalGuid(IBooleanExpression<TContext> condition, IGuidExpression<TContext> passExpression,
-            IGuidExpression<TContext> failExpression) : base(condition, passExpression, failExpression) { }
+        public ConditionalGuid(IExpression<bool, TContext> condition, IExpression<System.Guid, TContext> passExpression,
+            IExpression<System.Guid, TContext> failExpression) : base(condition, passExpression, failExpression) { }
 
         public override System.Guid Interpret(TContext context) => Condition.Interpret(context)
             ? PassExpression.Interpret(context)

@@ -4,7 +4,7 @@ using Aptacode.Expressions.Visitor;
 
 namespace Aptacode.Expressions.Bool.Comparison
 {
-    public abstract class BinaryBoolComparison<TType, TContext> : IBooleanExpression<TContext>
+    public abstract class BinaryBoolComparison<TType, TContext> : IExpression<bool, TContext>
         where TType : struct, IConvertible, IEquatable<TType>
     {
         protected BinaryBoolComparison(IExpression<TType, TContext> lhs, IExpression<TType, TContext> rhs)

@@ -2,8 +2,8 @@
 
 namespace Aptacode.Expressions.Integer
 {
-    public class MultiplyInteger<TContext> : Multiply<int, TContext>, IIntegerExpression<TContext>
+    public class MultiplyInteger<TContext> : Multiply<int, TContext>, IExpression<int, TContext>
     {
-        public MultiplyInteger(IIntegerExpression<TContext> lhs, IIntegerExpression<TContext> rhs) : base(lhs, rhs) { }
+        public MultiplyInteger(IExpression<int, TContext> lhs, IExpression<int, TContext> rhs) : base(lhs, rhs) { }
     }
 }

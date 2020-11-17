@@ -6,7 +6,7 @@ namespace Aptacode.Expressions.Numeric
     public class ConditionalNumeric<TType, TContext> : TernaryNumericExpression<TType, TContext>
         where TType : struct, IConvertible, IEquatable<TType>
     {
-        public ConditionalNumeric(IBooleanExpression<TContext> condition,
+        public ConditionalNumeric(IExpression<bool, TContext> condition,
             IExpression<TType, TContext> passExpression,
             IExpression<TType, TContext> failExpression) : base(condition, passExpression, failExpression) { }
 

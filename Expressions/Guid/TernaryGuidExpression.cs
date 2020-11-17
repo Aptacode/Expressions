@@ -3,21 +3,21 @@ using Aptacode.Expressions.Visitor;
 
 namespace Aptacode.Expressions.Guid
 {
-    public abstract class TernaryGuidExpression<TContext> : IGuidExpression<TContext>
+    public abstract class TernaryGuidExpression<TContext> : IExpression<System.Guid, TContext>
     {
-        protected TernaryGuidExpression(IBooleanExpression<TContext> condition,
-            IGuidExpression<TContext> passExpression, IGuidExpression<TContext> failExpression)
+        protected TernaryGuidExpression(IExpression<bool, TContext> condition,
+            IExpression<System.Guid, TContext> passExpression, IExpression<System.Guid, TContext> failExpression)
         {
             Condition = condition;
             PassExpression = passExpression;
             FailExpression = failExpression;
         }
 
-        public IBooleanExpression<TContext> Condition { get; }
+        public IExpression<bool, TContext> Condition { get; }
 
-        public IGuidExpression<TContext> PassExpression { get; }
+        public IExpression<System.Guid, TContext> PassExpression { get; }
 
-        public IGuidExpression<TContext> FailExpression { get; }
+        public IExpression<System.Guid, TContext> FailExpression { get; }
 
         public abstract System.Guid Interpret(TContext context);
 

@@ -3,21 +3,21 @@ using Aptacode.Expressions.Visitor;
 
 namespace Aptacode.Expressions.Color
 {
-    public abstract class TernaryColorExpression<TContext> : IColorExpression<TContext>
+    public abstract class TernaryColorExpression<TContext> : IExpression<System.Drawing.Color, TContext>
     {
-        protected TernaryColorExpression(IBooleanExpression<TContext> condition,
-            IColorExpression<TContext> passExpression, IColorExpression<TContext> failExpression)
+        protected TernaryColorExpression(IExpression<bool, TContext> condition,
+            IExpression<System.Drawing.Color, TContext> passExpression, IExpression<System.Drawing.Color, TContext> failExpression)
         {
             Condition = condition;
             PassExpression = passExpression;
             FailExpression = failExpression;
         }
 
-        public IBooleanExpression<TContext> Condition { get; }
+        public IExpression<bool, TContext> Condition { get; }
 
-        public IColorExpression<TContext> PassExpression { get; }
+        public IExpression<System.Drawing.Color, TContext> PassExpression { get; }
 
-        public IColorExpression<TContext> FailExpression { get; }
+        public IExpression<System.Drawing.Color, TContext> FailExpression { get; }
 
         public abstract System.Drawing.Color Interpret(TContext context);
 

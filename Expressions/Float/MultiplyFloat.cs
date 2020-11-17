@@ -2,8 +2,8 @@
 
 namespace Aptacode.Expressions.Float
 {
-    public class MultiplyFloat<TContext> : Multiply<float, TContext>, IFloatExpression<TContext>
+    public class MultiplyFloat<TContext> : Multiply<float, TContext>, IExpression<float, TContext>
     {
-        public MultiplyFloat(IFloatExpression<TContext> lhs, IFloatExpression<TContext> rhs) : base(lhs, rhs) { }
+        public MultiplyFloat(IExpression<float, TContext> lhs, IExpression<float, TContext> rhs) : base(lhs, rhs) { }
     }
 }

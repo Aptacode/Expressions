@@ -67,7 +67,7 @@ namespace Aptacode.Expressions.Visitor
 
         #region Bool
 
-        public virtual void Schedule(IBooleanExpression<TContext> expression)
+        public virtual void Schedule(IExpression<bool, TContext> expression)
         {
             switch (expression)
             {
@@ -115,7 +115,7 @@ namespace Aptacode.Expressions.Visitor
 
         #region Color
 
-        public virtual void Schedule(IColorExpression<TContext> expression)
+        public virtual void Schedule(IExpression<System.Drawing.Color, TContext> expression)
         {
             switch (expression)
             {
@@ -150,7 +150,7 @@ namespace Aptacode.Expressions.Visitor
 
         #region Guid
 
-        public virtual void Schedule(IGuidExpression<TContext> expression)
+        public virtual void Schedule(IExpression<System.Guid, TContext> expression)
         {
             switch (expression)
             {
@@ -239,7 +239,7 @@ namespace Aptacode.Expressions.Visitor
 
         #region String
 
-        public virtual void Schedule(IStringExpression<TContext> expression)
+        public virtual void Schedule(IExpression<string, TContext> expression)
         {
             switch (expression)
             {

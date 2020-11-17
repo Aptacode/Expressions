@@ -2,7 +2,7 @@
 
 namespace Aptacode.Expressions.Color
 {
-    public abstract class TerminalColorExpression<TContext> : IColorExpression<TContext>
+    public abstract class TerminalColorExpression<TContext> : IExpression<System.Drawing.Color, TContext>
     {
         public abstract System.Drawing.Color Interpret(TContext context);
 

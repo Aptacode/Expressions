@@ -2,8 +2,8 @@
 
 namespace Aptacode.Expressions.Float
 {
-    public class SubtractFloat<TContext> : Subtract<float, TContext>, IFloatExpression<TContext>
+    public class SubtractFloat<TContext> : Subtract<float, TContext>
     {
-        public SubtractFloat(IFloatExpression<TContext> lhs, IFloatExpression<TContext> rhs) : base(lhs, rhs) { }
+        public SubtractFloat(IExpression<float, TContext> lhs, IExpression<float, TContext> rhs) : base(lhs, rhs) { }
     }
 }

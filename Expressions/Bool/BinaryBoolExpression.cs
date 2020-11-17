@@ -2,17 +2,17 @@
 
 namespace Aptacode.Expressions.Bool
 {
-    public abstract class BinaryBoolExpression<TContext> : IBooleanExpression<TContext>
+    public abstract class BinaryBoolExpression<TContext> : IExpression<bool, TContext>
     {
-        protected BinaryBoolExpression(IBooleanExpression<TContext> lhs, IBooleanExpression<TContext> rhs)
+        protected BinaryBoolExpression(IExpression<bool, TContext> lhs, IExpression<bool, TContext> rhs)
         {
             Lhs = lhs;
             Rhs = rhs;
         }
 
-        public IBooleanExpression<TContext> Lhs { get; }
+        public IExpression<bool, TContext> Lhs { get; }
 
-        public IBooleanExpression<TContext> Rhs { get; }
+        public IExpression<bool, TContext> Rhs { get; }
 
         public abstract bool Interpret(TContext context);
 

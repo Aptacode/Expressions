@@ -2,8 +2,8 @@
 
 namespace Aptacode.Expressions.Integer
 {
-    public class AddInteger<TContext> : Add<int, TContext>, IIntegerExpression<TContext>
+    public class AddInteger<TContext> : Add<int, TContext>, IExpression<int, TContext>
     {
-        public AddInteger(IIntegerExpression<TContext> lhs, IIntegerExpression<TContext> rhs) : base(lhs, rhs) { }
+        public AddInteger(IExpression<int, TContext> lhs, IExpression<int, TContext> rhs) : base(lhs, rhs) { }
     }
 }

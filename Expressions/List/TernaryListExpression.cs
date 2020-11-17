@@ -7,7 +7,7 @@ namespace Aptacode.Expressions.List
     public abstract class TernaryListExpression<TType, TContext> : IListExpression<TType, TContext>
         where TType : struct, IConvertible, IEquatable<TType>
     {
-        protected TernaryListExpression(IBooleanExpression<TContext> condition,
+        protected TernaryListExpression(IExpression<bool, TContext> condition,
             IListExpression<TType, TContext> passExpression, IListExpression<TType, TContext> failExpression)
         {
             Condition = condition;
@@ -15,7 +15,7 @@ namespace Aptacode.Expressions.List
             FailExpression = failExpression;
         }
 
-        public IBooleanExpression<TContext> Condition { get; }
+        public IExpression<bool, TContext> Condition { get; }
 
         public IListExpression<TType, TContext> PassExpression { get; }
 

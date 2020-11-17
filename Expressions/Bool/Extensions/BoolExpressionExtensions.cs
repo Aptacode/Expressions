@@ -5,31 +5,31 @@ namespace Aptacode.Expressions.Bool.Extensions
 {
     public static class BoolExpressionExtensions
     {
-        public static IBooleanExpression<TContext> All<TContext>(this IBooleanExpression<TContext> expression,
-            params IBooleanExpression<TContext>[] expressions)
+        public static IExpression<bool, TContext> All<TContext>(this IExpression<bool, TContext> expression,
+            params IExpression<bool, TContext>[] expressions)
         {
             var allExpressions = expressions.ToList();
             allExpressions.Add(expression);
             return new All<TContext>(allExpressions.ToArray());
         }
 
-        public static IBooleanExpression<TContext> Any<TContext>(this IBooleanExpression<TContext> expression,
-            params IBooleanExpression<TContext>[] expressions)
+        public static IExpression<bool, TContext> Any<TContext>(this IExpression<bool, TContext> expression,
+            params IExpression<bool, TContext>[] expressions)
         {
             var allExpressions = expressions.ToList();
             allExpressions.Add(expression);
             return new Any<TContext>(allExpressions.ToArray());
         }
 
-        public static IBooleanExpression<TContext> Not<TContext>(this IBooleanExpression<TContext> expression)
+        public static IExpression<bool, TContext> Not<TContext>(this IExpression<bool, TContext> expression)
             => new Not<TContext>(expression);
 
-        public static IBooleanExpression<TContext> Or<TContext>(this IBooleanExpression<TContext> lhs,
-            IBooleanExpression<TContext> rhs)
+        public static IExpression<bool, TContext> Or<TContext>(this IExpression<bool, TContext> lhs,
+            IExpression<bool, TContext> rhs)
             => new Or<TContext>(lhs, rhs);
 
-        public static IBooleanExpression<TContext> And<TContext>(this IBooleanExpression<TContext> lhs,
-            IBooleanExpression<TContext> rhs)
+        public static IExpression<bool, TContext> And<TContext>(this IExpression<bool, TContext> lhs,
+            IExpression<bool, TContext> rhs)
             => new And<TContext>(lhs, rhs);
     }
 }

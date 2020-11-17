@@ -2,7 +2,7 @@
 {
     public class And<TContext> : BinaryBoolExpression<TContext>
     {
-        public And(IBooleanExpression<TContext> lhs, IBooleanExpression<TContext> rhs) : base(lhs, rhs) { }
+        public And(IExpression<bool, TContext> lhs, IExpression<bool, TContext> rhs) : base(lhs, rhs) { }
         public override bool Interpret(TContext context) => Lhs.Interpret(context) && Rhs.Interpret(context);
     }
 }

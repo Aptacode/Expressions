@@ -2,17 +2,17 @@
 
 namespace Aptacode.Expressions.Color
 {
-    public abstract class BinaryColorExpression<TContext> : IColorExpression<TContext>
+    public abstract class BinaryColorExpression<TContext> : IExpression<System.Drawing.Color, TContext>
     {
-        protected BinaryColorExpression(IColorExpression<TContext> lhs, IColorExpression<TContext> rhs)
+        protected BinaryColorExpression(IExpression<System.Drawing.Color, TContext> lhs, IExpression<System.Drawing.Color, TContext> rhs)
         {
             Lhs = lhs;
             Rhs = rhs;
         }
 
-        public IColorExpression<TContext> Lhs { get; }
+        public IExpression<System.Drawing.Color, TContext> Lhs { get; }
 
-        public IColorExpression<TContext> Rhs { get; }
+        public IExpression<System.Drawing.Color, TContext> Rhs { get; }
 
         public abstract System.Drawing.Color Interpret(TContext context);
 
