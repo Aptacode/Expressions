@@ -2,5 +2,5 @@
 
 namespace Aptacode.Expressions.Float
 {
-    public interface IFloatExpression<TContext> : INumericExpression<float, TContext> { }
+    public interface IFloatExpression<TContext> : IExpression<float, TContext> { }
 }

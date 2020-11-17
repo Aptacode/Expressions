@@ -5,7 +5,7 @@ namespace Aptacode.Expressions.Numeric
     public class Add<TType, TContext> : BinaryNumericExpression<TType, TContext>
         where TType : struct, IConvertible, IEquatable<TType>
     {
-        public Add(INumericExpression<TType, TContext> lhs, INumericExpression<TType, TContext> rhs) :
+        public Add(IExpression<TType, TContext> lhs, IExpression<TType, TContext> rhs) :
             base(lhs, rhs) { }
 
         public override TType Interpret(TContext context)

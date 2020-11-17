@@ -7,7 +7,7 @@ namespace Aptacode.Expressions.Bool.Comparison
     public class LessThanOrEqualTo<TType, TContext> : BinaryBoolComparison<TType, TContext>
         where TType : struct, IConvertible, IEquatable<TType>
     {
-        public LessThanOrEqualTo(INumericExpression<TType, TContext> lhs, INumericExpression<TType, TContext> rhs) :
+        public LessThanOrEqualTo(IExpression<TType, TContext> lhs, IExpression<TType, TContext> rhs) :
             base(lhs, rhs) { }
 
         public override bool Interpret(TContext context) =>

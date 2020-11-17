@@ -4,11 +4,11 @@ using Aptacode.Expressions.Visitor;
 
 namespace Aptacode.Expressions.Numeric
 {
-    public abstract class TernaryNumericExpression<TType, TContext> : INumericExpression<TType, TContext>
+    public abstract class TernaryNumericExpression<TType, TContext> : IExpression<TType, TContext>
         where TType : struct, IConvertible, IEquatable<TType>
     {
         protected TernaryNumericExpression(IBooleanExpression<TContext> condition,
-            INumericExpression<TType, TContext> passExpression, INumericExpression<TType, TContext> failExpression)
+            IExpression<TType, TContext> passExpression, IExpression<TType, TContext> failExpression)
         {
             Condition = condition;
             PassExpression = passExpression;
@@ -17,9 +17,9 @@ namespace Aptacode.Expressions.Numeric
 
         public IBooleanExpression<TContext> Condition { get; }
 
-        public INumericExpression<TType, TContext> PassExpression { get; }
+        public IExpression<TType, TContext> PassExpression { get; }
 
-        public INumericExpression<TType, TContext> FailExpression { get; }
+        public IExpression<TType, TContext> FailExpression { get; }
 
         public abstract TType Interpret(TContext context);
 

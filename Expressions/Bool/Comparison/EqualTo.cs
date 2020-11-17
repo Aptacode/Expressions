@@ -7,7 +7,7 @@ namespace Aptacode.Expressions.Bool.Comparison
     public class EqualTo<TType, TContext> : BinaryBoolComparison<TType, TContext>
         where TType : struct, IConvertible, IEquatable<TType>
     {
-        public EqualTo(INumericExpression<TType, TContext> lhs, INumericExpression<TType, TContext> rhs) : base(lhs,
+        public EqualTo(IExpression<TType, TContext> lhs, IExpression<TType, TContext> rhs) : base(lhs,
             rhs) { }
 
         public override bool Interpret(TContext context) =>

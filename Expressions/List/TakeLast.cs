@@ -9,13 +9,13 @@ namespace Aptacode.Expressions.List
         where TType : struct, IConvertible, IEquatable<TType>
     {
         public TakeLast(IListExpression<TType, TContext> expression,
-            INumericExpression<int, TContext> countExpression) :
+            IExpression<int, TContext> countExpression) :
             base(expression)
         {
             CountExpression = countExpression;
         }
 
-        public INumericExpression<int, TContext> CountExpression { get; }
+        public IExpression<int, TContext> CountExpression { get; }
 
         public override TType[] Interpret(TContext context)
         {

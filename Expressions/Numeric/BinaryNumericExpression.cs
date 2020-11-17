@@ -3,19 +3,19 @@ using Aptacode.Expressions.Visitor;
 
 namespace Aptacode.Expressions.Numeric
 {
-    public abstract class BinaryNumericExpression<TType, TContext> : INumericExpression<TType, TContext>
+    public abstract class BinaryNumericExpression<TType, TContext> : IExpression<TType, TContext>
         where TType : struct, IConvertible, IEquatable<TType>
     {
-        protected BinaryNumericExpression(INumericExpression<TType, TContext> lhs,
-            INumericExpression<TType, TContext> rhs)
+        protected BinaryNumericExpression(IExpression<TType, TContext> lhs,
+            IExpression<TType, TContext> rhs)
         {
             Lhs = lhs;
             Rhs = rhs;
         }
 
-        public INumericExpression<TType, TContext> Lhs { get; }
+        public IExpression<TType, TContext> Lhs { get; }
 
-        public INumericExpression<TType, TContext> Rhs { get; }
+        public IExpression<TType, TContext> Rhs { get; }
 
         public abstract TType Interpret(TContext context);
 

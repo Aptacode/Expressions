@@ -2,5 +2,5 @@
 
 namespace Aptacode.Expressions.Double
 {
-    public interface IDoubleExpression<TContext> : INumericExpression<double, TContext> { }
+    public interface IDoubleExpression<TContext> : IExpression<double, TContext> { }
 }

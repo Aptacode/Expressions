@@ -7,34 +7,34 @@ namespace Aptacode.Expressions.List.Extensions
 {
     public static class ListExpressionExtensions
     {
-        public static INumericExpression<int, TContext> Count<TType, TContext>(
+        public static Count<TType, TContext> Count<TType, TContext>(
             this IListExpression<TType, TContext> expression) where TType : struct, IConvertible, IEquatable<TType>
             =>
                 new Count<TType, TContext>(expression);
 
-        public static UnaryListItemExpression<TType, TContext> First<TType, TContext>(
+        public static First<TType, TContext> First<TType, TContext>(
             this IListExpression<TType, TContext> expression) where TType : struct, IConvertible, IEquatable<TType>
             =>
                 new First<TType, TContext>(expression);
 
-        public static UnaryListItemExpression<TType, TContext> Last<TType, TContext>(
+        public static Last<TType, TContext> Last<TType, TContext>(
             this IListExpression<TType, TContext> expression) where TType : struct, IConvertible, IEquatable<TType>
             =>
                 new Last<TType, TContext>(expression);
 
-        public static IListExpression<TType, TContext> TakeFirst<TType, TContext>(
+        public static TakeFirst<TType, TContext> TakeFirst<TType, TContext>(
             this IListExpression<TType, TContext> expression,
-            INumericExpression<int, TContext> count) where TType : struct, IConvertible, IEquatable<TType>
+            IExpression<int, TContext> count) where TType : struct, IConvertible, IEquatable<TType>
             =>
                 new TakeFirst<TType, TContext>(expression, count);
 
-        public static IListExpression<TType, TContext> TakeLast<TType, TContext>(
+        public static TakeLast<TType, TContext> TakeLast<TType, TContext>(
             this IListExpression<TType, TContext> expression,
-            INumericExpression<int, TContext> count) where TType : struct, IConvertible, IEquatable<TType>
+            IExpression<int, TContext> count) where TType : struct, IConvertible, IEquatable<TType>
             =>
                 new TakeLast<TType, TContext>(expression, count);
 
-        public static IListExpression<TType, TContext> Concat<TType, TContext>(
+        public static IListExpression<TType, TContext> ConcatList<TType, TContext>(
             this IListExpression<TType, TContext> expression,
             params IListExpression<TType, TContext>[] expressions) where TType : struct, IConvertible, IEquatable<TType>
 

@@ -13,7 +13,7 @@ namespace Aptacode.Expressions.Visitor
     {
         #region Integer
 
-        public virtual void Schedule<TType>(INumericExpression<TType, TContext> expression)
+        public virtual void Schedule<TType>(IExpression<TType, TContext> expression)
             where TType : struct, IConvertible, IEquatable<TType>
         {
             switch (expression)

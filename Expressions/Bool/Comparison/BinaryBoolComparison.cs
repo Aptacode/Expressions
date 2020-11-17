@@ -7,15 +7,15 @@ namespace Aptacode.Expressions.Bool.Comparison
     public abstract class BinaryBoolComparison<TType, TContext> : IBooleanExpression<TContext>
         where TType : struct, IConvertible, IEquatable<TType>
     {
-        protected BinaryBoolComparison(INumericExpression<TType, TContext> lhs, INumericExpression<TType, TContext> rhs)
+        protected BinaryBoolComparison(IExpression<TType, TContext> lhs, IExpression<TType, TContext> rhs)
         {
             Lhs = lhs;
             Rhs = rhs;
         }
 
-        public INumericExpression<TType, TContext> Lhs { get; }
+        public IExpression<TType, TContext> Lhs { get; }
 
-        public INumericExpression<TType, TContext> Rhs { get; }
+        public IExpression<TType, TContext> Rhs { get; }
 
         public abstract bool Interpret(TContext context);
 

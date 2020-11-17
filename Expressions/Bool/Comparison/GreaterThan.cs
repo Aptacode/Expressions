@@ -7,7 +7,7 @@ namespace Aptacode.Expressions.Bool.Comparison
     public class GreaterThan<TType, TContext> : BinaryBoolComparison<TType, TContext>
         where TType : struct, IConvertible, IEquatable<TType>
     {
-        public GreaterThan(INumericExpression<TType, TContext> lhs, INumericExpression<TType, TContext> rhs) : base(lhs,
+        public GreaterThan(IExpression<TType, TContext> lhs, IExpression<TType, TContext> rhs) : base(lhs,
             rhs) { }
 
         public override bool Interpret(TContext context) =>

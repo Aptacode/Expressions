@@ -2,5 +2,5 @@
 
 namespace Aptacode.Expressions.Integer
 {
-    public interface IIntegerExpression<TContext> : INumericExpression<int, TContext> { }
+    public interface IIntegerExpression<TContext> : IExpression<int, TContext> { }
 }

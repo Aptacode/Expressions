@@ -19,21 +19,21 @@ namespace Aptacode.Expressions
     {
         #region Numeric
 
-        public Add<TType, TContext> Add<TType>(INumericExpression<TType, TContext> lhs,
-            INumericExpression<TType, TContext> rhs) where TType : struct, IConvertible, IEquatable<TType> =>
+        public Add<TType, TContext> Add<TType>(IExpression<TType, TContext> lhs,
+            IExpression<TType, TContext> rhs) where TType : struct, IConvertible, IEquatable<TType> =>
             new Add<TType, TContext>(lhs, rhs);
 
-        public Multiply<TType, TContext> Multiply<TType>(INumericExpression<TType, TContext> lhs,
-            INumericExpression<TType, TContext> rhs) where TType : struct, IConvertible, IEquatable<TType> =>
+        public Multiply<TType, TContext> Multiply<TType>(IExpression<TType, TContext> lhs,
+            IExpression<TType, TContext> rhs) where TType : struct, IConvertible, IEquatable<TType> =>
             new Multiply<TType, TContext>(lhs, rhs);
 
-        public Subtract<TType, TContext> Subtract<TType>(INumericExpression<TType, TContext> lhs,
-            INumericExpression<TType, TContext> rhs) where TType : struct, IConvertible, IEquatable<TType> =>
+        public Subtract<TType, TContext> Subtract<TType>(IExpression<TType, TContext> lhs,
+            IExpression<TType, TContext> rhs) where TType : struct, IConvertible, IEquatable<TType> =>
             new Subtract<TType, TContext>(lhs, rhs);
 
         public ConditionalNumeric<TType, TContext> Conditional<TType>(IBooleanExpression<TContext> condition,
-            INumericExpression<TType, TContext> passExpression,
-            INumericExpression<TType, TContext> failExpression) where TType : struct, IConvertible, IEquatable<TType> =>
+            IExpression<TType, TContext> passExpression,
+            IExpression<TType, TContext> failExpression) where TType : struct, IConvertible, IEquatable<TType> =>
             new ConditionalNumeric<TType, TContext>(condition, passExpression, failExpression);
 
         #endregion
@@ -129,25 +129,25 @@ namespace Aptacode.Expressions
 
         public ConstantBool<TContext> Bool(bool value) => new ConstantBool<TContext>(value);
 
-        public EqualTo<TType, TContext> EqualTo<TType>(INumericExpression<TType, TContext> lhs,
-            INumericExpression<TType, TContext> rhs) where TType : struct, IConvertible, IEquatable<TType> =>
+        public EqualTo<TType, TContext> EqualTo<TType>(IExpression<TType, TContext> lhs,
+            IExpression<TType, TContext> rhs) where TType : struct, IConvertible, IEquatable<TType> =>
             new EqualTo<TType, TContext>(lhs, rhs);
 
-        public GreaterThan<TType, TContext> GreaterThan<TType>(INumericExpression<TType, TContext> lhs,
-            INumericExpression<TType, TContext> rhs) where TType : struct, IConvertible, IEquatable<TType> =>
+        public GreaterThan<TType, TContext> GreaterThan<TType>(IExpression<TType, TContext> lhs,
+            IExpression<TType, TContext> rhs) where TType : struct, IConvertible, IEquatable<TType> =>
             new GreaterThan<TType, TContext>(lhs, rhs);
 
         public GreaterThanOrEqualTo<TType, TContext> GreaterThanOrEqualTo<TType>(
-            INumericExpression<TType, TContext> lhs,
-            INumericExpression<TType, TContext> rhs) where TType : struct, IConvertible, IEquatable<TType> =>
+            IExpression<TType, TContext> lhs,
+            IExpression<TType, TContext> rhs) where TType : struct, IConvertible, IEquatable<TType> =>
             new GreaterThanOrEqualTo<TType, TContext>(lhs, rhs);
 
-        public LessThan<TType, TContext> LessThan<TType>(INumericExpression<TType, TContext> lhs,
-            INumericExpression<TType, TContext> rhs) where TType : struct, IConvertible, IEquatable<TType> =>
+        public LessThan<TType, TContext> LessThan<TType>(IExpression<TType, TContext> lhs,
+            IExpression<TType, TContext> rhs) where TType : struct, IConvertible, IEquatable<TType> =>
             new LessThan<TType, TContext>(lhs, rhs);
 
-        public LessThanOrEqualTo<TType, TContext> LessThanOrEqualTo<TType>(INumericExpression<TType, TContext> lhs,
-            INumericExpression<TType, TContext> rhs) where TType : struct, IConvertible, IEquatable<TType> =>
+        public LessThanOrEqualTo<TType, TContext> LessThanOrEqualTo<TType>(IExpression<TType, TContext> lhs,
+            IExpression<TType, TContext> rhs) where TType : struct, IConvertible, IEquatable<TType> =>
             new LessThanOrEqualTo<TType, TContext>(lhs, rhs);
 
         public And<TContext> And(IBooleanExpression<TContext> lhs, IBooleanExpression<TContext> rhs) =>
@@ -215,11 +215,11 @@ namespace Aptacode.Expressions
             where TType : struct, IConvertible, IEquatable<TType> => new Last<TType, TContext>(list);
 
         public TakeFirst<TType, TContext> TakeFirst<TType>(IListExpression<TType, TContext> list,
-            INumericExpression<int, TContext> count) where TType : struct, IConvertible, IEquatable<TType> =>
+            IExpression<int, TContext> count) where TType : struct, IConvertible, IEquatable<TType> =>
             new TakeFirst<TType, TContext>(list, count);
 
         public TakeLast<TType, TContext> TakeLast<TType>(IListExpression<TType, TContext> list,
-            INumericExpression<int, TContext> count) where TType : struct, IConvertible, IEquatable<TType> =>
+            IExpression<int, TContext> count) where TType : struct, IConvertible, IEquatable<TType> =>
             new TakeLast<TType, TContext>(list, count);
 
         #endregion

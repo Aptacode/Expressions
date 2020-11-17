@@ -2,5 +2,5 @@
 
 namespace Aptacode.Expressions.Decimal
 {
-    public interface IDecimalExpression<TContext> : INumericExpression<decimal, TContext> { }
+    public interface IDecimalExpression<TContext> : IExpression<decimal, TContext> { }
 }

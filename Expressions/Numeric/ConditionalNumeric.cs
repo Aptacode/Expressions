@@ -7,8 +7,8 @@ namespace Aptacode.Expressions.Numeric
         where TType : struct, IConvertible, IEquatable<TType>
     {
         public ConditionalNumeric(IBooleanExpression<TContext> condition,
-            INumericExpression<TType, TContext> passExpression,
-            INumericExpression<TType, TContext> failExpression) : base(condition, passExpression, failExpression) { }
+            IExpression<TType, TContext> passExpression,
+            IExpression<TType, TContext> failExpression) : base(condition, passExpression, failExpression) { }
 
         public override TType Interpret(TContext context) => Condition.Interpret(context)
             ? PassExpression.Interpret(context)
