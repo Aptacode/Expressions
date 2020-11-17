@@ -1,13 +1,10 @@
-﻿using System;
-using Aptacode.Expressions.Visitor;
+﻿using Aptacode.Expressions.Visitor;
 
-namespace Aptacode.Expressions.Numeric
+namespace Aptacode.Expressions.GenericExpressions
 {
-    public abstract class BinaryNumericExpression<TType, TContext> : IExpression<TType, TContext>
-        where TType : struct, IConvertible, IEquatable<TType>
+    public abstract class BinaryExpression<TType, TContext> : IExpression<TType, TContext>
     {
-        protected BinaryNumericExpression(IExpression<TType, TContext> lhs,
-            IExpression<TType, TContext> rhs)
+        protected BinaryExpression(IExpression<TType, TContext> lhs, IExpression<TType, TContext> rhs)
         {
             Lhs = lhs;
             Rhs = rhs;

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Linq;
-using Aptacode.Expressions.Numeric;
+﻿using System.Linq;
 using Aptacode.Expressions.Utilities;
 
 namespace Aptacode.Expressions.List
 {
     public class TakeLast<TType, TContext> : UnaryListExpression<TType, TContext>
-        where TType : struct, IConvertible, IEquatable<TType>
+
     {
         public TakeLast(IListExpression<TType, TContext> expression,
             IExpression<int, TContext> countExpression) :

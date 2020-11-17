@@ -1,10 +1,9 @@
-﻿using System;
-using Aptacode.Expressions.Visitor;
+﻿using Aptacode.Expressions.Visitor;
 
 namespace Aptacode.Expressions.List
 {
     public abstract class BinaryListExpression<TType, TContext> : IListExpression<TType, TContext>
-        where TType : struct, IConvertible, IEquatable<TType>
+
     {
         protected BinaryListExpression(IListExpression<TType, TContext> lhs, IListExpression<TType, TContext> rhs)
         {

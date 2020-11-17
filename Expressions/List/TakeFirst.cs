@@ -1,11 +1,9 @@
-﻿using System;
-using System.Linq;
-using Aptacode.Expressions.Numeric;
+﻿using System.Linq;
 
 namespace Aptacode.Expressions.List
 {
     public class TakeFirst<TType, TContext> : UnaryListExpression<TType, TContext>
-        where TType : struct, IConvertible, IEquatable<TType>
+
     {
         public TakeFirst(IListExpression<TType, TContext> expression,
             IExpression<int, TContext> countExpression) :

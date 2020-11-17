@@ -1,8 +1,8 @@
-﻿using Aptacode.Expressions.Numeric;
+﻿using Aptacode.Expressions.GenericExpressions;
 
 namespace Aptacode.Expressions.Decimal
 {
-    public class ConstantDecimal<TContext> : ConstantNumericExpression<decimal, TContext>, IExpression<decimal, TContext>
+    public class ConstantDecimal<TContext> : ConstantExpression<decimal, TContext>
     {
         public ConstantDecimal(decimal value) : base(value) { }
     }

@@ -1,14 +1,9 @@
-﻿namespace Aptacode.Expressions.Bool
+﻿using Aptacode.Expressions.GenericExpressions;
+
+namespace Aptacode.Expressions.Bool
 {
-    public class ConstantBool<TContext> : TerminalBoolExpression<TContext>
+    public class ConstantBool<TContext> : ConstantExpression<bool, TContext>
     {
-        public ConstantBool(bool value)
-        {
-            Value = value;
-        }
-
-        public bool Value { get; }
-
-        public override bool Interpret(TContext context) => Value;
+        public ConstantBool(bool value) : base(value) { }
     }
 }

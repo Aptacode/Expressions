@@ -1,14 +1,9 @@
-﻿namespace Aptacode.Expressions.Color
+﻿using Aptacode.Expressions.GenericExpressions;
+
+namespace Aptacode.Expressions.Color
 {
-    public class ConstantColor<TContext> : TerminalColorExpression<TContext>
+    public class ConstantColor<TContext> : ConstantExpression<System.Drawing.Color, TContext>
     {
-        public ConstantColor(System.Drawing.Color value)
-        {
-            Value = value;
-        }
-
-        public System.Drawing.Color Value { get; }
-
-        public override System.Drawing.Color Interpret(TContext context) => Value;
+        public ConstantColor(System.Drawing.Color value) : base(value) { }
     }
 }

@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Aptacode.Expressions.GenericExpressions;
 
 namespace Aptacode.Expressions.Numeric
 {
-    public class Multiply<TType, TContext> : BinaryNumericExpression<TType, TContext>
-        where TType : struct, IConvertible, IEquatable<TType>
+    public class Multiply<TType, TContext> : BinaryExpression<TType, TContext>
+
     {
         public Multiply(IExpression<TType, TContext> lhs, IExpression<TType, TContext> rhs) : base(lhs,
             rhs) { }

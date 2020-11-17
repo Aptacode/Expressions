@@ -1,9 +1,7 @@
-﻿using System;
-
-namespace Aptacode.Expressions.List
+﻿namespace Aptacode.Expressions.List
 {
     public class ConstantList<TType, TContext> : TerminalListExpression<TType, TContext>
-        where TType : struct, IConvertible, IEquatable<TType>
+
     {
         public ConstantList(TType[] value)
         {

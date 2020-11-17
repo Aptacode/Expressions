@@ -2,8 +2,8 @@
 using Aptacode.Expressions.Bool;
 using Aptacode.Expressions.Bool.Comparison;
 using Aptacode.Expressions.Bool.Expression;
+using Aptacode.Expressions.GenericExpressions;
 using Aptacode.Expressions.Integer;
-using Aptacode.Expressions.Numeric;
 using Expressions.Tests.Boolean.Comparison;
 using Moq;
 using Xunit;
@@ -110,7 +110,7 @@ namespace Expressions.Tests
         {
             //Arrange
             var intConditional =
-                new ConditionalNumeric<int, IContext>(_expressions.Bool(true), _expressions.Int(1),
+                new ConditionalExpression<int, IContext>(_expressions.Bool(true), _expressions.Int(1),
                     _expressions.Int(0));
             //Act
             var sut = _expressions.Conditional(_expressions.Bool(true), _expressions.Int(1), _expressions.Int(0));

@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Aptacode.Expressions.GenericExpressions;
 
 namespace Aptacode.Expressions.Numeric
 {
-    public class Subtract<TType, TContext> : BinaryNumericExpression<TType, TContext>
-        where TType : struct, IConvertible, IEquatable<TType>
+    public class Subtract<TType, TContext> : BinaryExpression<TType, TContext>
+
     {
         public Subtract(IExpression<TType, TContext> lhs, IExpression<TType, TContext> rhs) : base(lhs,
             rhs) { }

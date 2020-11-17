@@ -1,10 +1,7 @@
-﻿using System;
-using Aptacode.Expressions.List;
-
-namespace Aptacode.Expressions.Numeric.List
+﻿namespace Aptacode.Expressions.List
 {
     public class Count<TType, TContext> : UnaryListIntegerExpression<TType, TContext>
-        where TType : struct, IConvertible, IEquatable<TType>
+
     {
         public Count(IListExpression<TType, TContext> expression) : base(expression) { }
 

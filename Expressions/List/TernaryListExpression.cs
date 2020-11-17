@@ -1,11 +1,9 @@
-﻿using System;
-using Aptacode.Expressions.Bool;
-using Aptacode.Expressions.Visitor;
+﻿using Aptacode.Expressions.Visitor;
 
 namespace Aptacode.Expressions.List
 {
     public abstract class TernaryListExpression<TType, TContext> : IListExpression<TType, TContext>
-        where TType : struct, IConvertible, IEquatable<TType>
+
     {
         protected TernaryListExpression(IExpression<bool, TContext> condition,
             IListExpression<TType, TContext> passExpression, IListExpression<TType, TContext> failExpression)

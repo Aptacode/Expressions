@@ -1,4 +1,5 @@
 ﻿using Aptacode.Expressions.Bool;
+using Aptacode.Expressions.GenericExpressions;
 using Aptacode.Expressions.Integer;
 using Aptacode.Expressions.Numeric;
 using Expressions.Tests.Boolean.Comparison;
@@ -32,7 +33,7 @@ namespace Expressions.Tests.Integer
         public void Conditional_EvaluatesToFailExpression_OnFalseCondition()
         {
             //Arrange
-            var conditional = new ConditionalNumeric<int, IContext>(new ConstantBool<IContext>(false),
+            var conditional = new ConditionalExpression<int, IContext>(new ConstantBool<IContext>(false),
                 new ConstantInteger<IContext>(1), new ConstantInteger<IContext>(0));
             //Act
             var sut = conditional.Interpret(_context);
@@ -44,7 +45,7 @@ namespace Expressions.Tests.Integer
         public void Conditional_EvaluatesToPassExpression_OnTrueCondition()
         {
             //Arrange
-            var conditional = new ConditionalNumeric<int, IContext>(new ConstantBool<IContext>(true),
+            var conditional = new ConditionalExpression<int, IContext>(new ConstantBool<IContext>(true),
                 new ConstantInteger<IContext>(1), new ConstantInteger<IContext>(0));
             //Act
             var sut = conditional.Interpret(_context);

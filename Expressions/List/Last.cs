@@ -1,11 +1,9 @@
-﻿using System;
-using System.Linq;
-using Aptacode.Expressions.List;
+﻿using System.Linq;
 
-namespace Aptacode.Expressions.Numeric.List
+namespace Aptacode.Expressions.List
 {
     public class Last<TType, TContext> : UnaryListItemExpression<TType, TContext>
-        where TType : struct, IConvertible, IEquatable<TType>
+
     {
         public Last(IListExpression<TType, TContext> expression) : base(expression) { }
 

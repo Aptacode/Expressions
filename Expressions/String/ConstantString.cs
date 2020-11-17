@@ -1,14 +1,9 @@
-﻿namespace Aptacode.Expressions.String
+﻿using Aptacode.Expressions.GenericExpressions;
+
+namespace Aptacode.Expressions.String
 {
-    public class ConstantString<TContext> : TerminalStringExpression<TContext>
+    public class ConstantString<TContext> : ConstantExpression<string, TContext>
     {
-        public ConstantString(string value)
-        {
-            Value = value;
-        }
-
-        public string Value { get; }
-
-        public override string Interpret(TContext context) => Value;
+        public ConstantString(string value) : base(value) { }
     }
 }

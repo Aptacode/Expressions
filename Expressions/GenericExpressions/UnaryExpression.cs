@@ -1,16 +1,15 @@
 ﻿using Aptacode.Expressions.Visitor;
 
-namespace Aptacode.Expressions.List
+namespace Aptacode.Expressions.GenericExpressions
 {
-    public abstract class UnaryListItemExpression<TType, TContext> : IExpression<TType, TContext>
-
+    public abstract class UnaryExpression<TType, TContext> : IExpression<TType, TContext>
     {
-        protected UnaryListItemExpression(IListExpression<TType, TContext> expression)
+        protected UnaryExpression(IExpression<TType, TContext> expression)
         {
             Expression = expression;
         }
 
-        public IListExpression<TType, TContext> Expression { get; }
+        public IExpression<TType, TContext> Expression { get; }
 
         public abstract TType Interpret(TContext context);
 
