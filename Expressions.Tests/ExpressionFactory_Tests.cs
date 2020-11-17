@@ -265,6 +265,6 @@ namespace Expressions.Tests
             var sut = _expressions.XOr(True, True);
             //Assert
             Assert.Equal(TrueXOrTrueEx.Interpret(_context), sut.Interpret(_context));
-        }
+        }        
     }
 }

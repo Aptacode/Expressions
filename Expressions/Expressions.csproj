@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net45;netcoreapp3.1</TargetFrameworks>
@@ -13,9 +13,9 @@
     <RepositoryUrl>https://github.com/Aptacode/Expressions</RepositoryUrl>
     <RepositoryType />
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0.22</Version>
-    <AssemblyVersion>1.0.0.22</AssemblyVersion>
-    <FileVersion>1.0.0.22</FileVersion>
+    <Version>1.0.0.23</Version>
+    <AssemblyVersion>1.0.0.23</AssemblyVersion>
+    <FileVersion>1.0.0.23</FileVersion>
     <Nullable>enable</Nullable>
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>

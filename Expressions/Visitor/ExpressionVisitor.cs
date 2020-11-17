@@ -1,5 +1,8 @@
 ﻿using Aptacode.Expressions.Bool;
 using Aptacode.Expressions.Color;
+using Aptacode.Expressions.Decimal;
+using Aptacode.Expressions.Double;
+using Aptacode.Expressions.Float;
 using Aptacode.Expressions.Guid;
 using Aptacode.Expressions.Integer;
 using Aptacode.Expressions.List;
@@ -50,6 +53,126 @@ namespace Aptacode.Expressions.Visitor
         }
 
         public virtual void Visit(ListIntegerExpression<TContext> expression)
+        {
+            expression.Expression.Visit(this);
+        }
+
+        #endregion
+
+        #region Float
+
+        public virtual void Schedule(IFloatExpression<TContext> expression)
+        {
+            switch (expression)
+            {
+                case BinaryFloatExpression<TContext> binaryExpression:
+                    Visit(binaryExpression);
+                    break;
+                case TernaryFloatExpression<TContext> ternaryExpression:
+                    Visit(ternaryExpression);
+                    break;
+                case TerminalFloatExpression<TContext> terminalExpression:
+                    Visit(terminalExpression);
+                    break;
+            }
+        }
+
+        public virtual void Visit(BinaryFloatExpression<TContext> expression)
+        {
+            expression.Lhs.Visit(this);
+            expression.Rhs.Visit(this);
+        }
+
+        public virtual void Visit(TernaryFloatExpression<TContext> expression)
+        {
+            expression.Condition.Visit(this);
+            expression.FailExpression.Visit(this);
+            expression.PassExpression.Visit(this);
+        }
+
+        public virtual void Visit(TerminalFloatExpression<TContext> expression) { }
+
+        public virtual void Visit(UnaryFloatExpression<TContext> expression)
+        {
+            expression.Expression.Visit(this);
+        }
+
+        #endregion
+
+        #region Double
+
+        public virtual void Schedule(IDoubleExpression<TContext> expression)
+        {
+            switch (expression)
+            {
+                case BinaryDoubleExpression<TContext> binaryExpression:
+                    Visit(binaryExpression);
+                    break;
+                case TernaryDoubleExpression<TContext> ternaryExpression:
+                    Visit(ternaryExpression);
+                    break;
+                case TerminalDoubleExpression<TContext> terminalExpression:
+                    Visit(terminalExpression);
+                    break;
+            }
+        }
+
+        public virtual void Visit(BinaryDoubleExpression<TContext> expression)
+        {
+            expression.Lhs.Visit(this);
+            expression.Rhs.Visit(this);
+        }
+
+        public virtual void Visit(TernaryDoubleExpression<TContext> expression)
+        {
+            expression.Condition.Visit(this);
+            expression.FailExpression.Visit(this);
+            expression.PassExpression.Visit(this);
+        }
+
+        public virtual void Visit(TerminalDoubleExpression<TContext> expression) { }
+
+        public virtual void Visit(UnaryDoubleExpression<TContext> expression)
+        {
+            expression.Expression.Visit(this);
+        }
+
+        #endregion
+        
+        #region Double
+
+        public virtual void Schedule(IDecimalExpression<TContext> expression)
+        {
+            switch (expression)
+            {
+                case BinaryDecimalExpression<TContext> binaryExpression:
+                    Visit(binaryExpression);
+                    break;
+                case TernaryDecimalExpression<TContext> ternaryExpression:
+                    Visit(ternaryExpression);
+                    break;
+                case TerminalDecimalExpression<TContext> terminalExpression:
+                    Visit(terminalExpression);
+                    break;
+            }
+        }
+
+        public virtual void Visit(BinaryDecimalExpression<TContext> expression)
+        {
+            expression.Lhs.Visit(this);
+            expression.Rhs.Visit(this);
+        }
+
+        public virtual void Visit(TernaryDecimalExpression<TContext> expression)
+        {
+            expression.Condition.Visit(this);
+            expression.FailExpression.Visit(this);
+            expression.PassExpression.Visit(this);
+        }
+
+        public virtual void Visit(TerminalDecimalExpression<TContext> expression) { }
+
+        public virtual void Visit(UnaryDecimalExpression<TContext> expression)
         {
             expression.Expression.Visit(this);
         }
