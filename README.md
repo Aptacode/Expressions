@@ -33,14 +33,20 @@ var ConstantExpression = new ConstantExpression<TType, TContext>(TType value);
 Here are a few examples of the various type specific constant expressions:
 
 ```csharp
-var ConstFloatEx =  new ConstantFloat<TContext>(3.14); // An expression representing the float value 3.14
-var ConstColorEx = new ConstantColor<TContext>(System.Drawing.Color.Red); // An expression representing the color red
-var ConstGuidEx = new ConstantGuid <TContext>(Guid.NewGuid()); // An expression representing a constant guid
+var ConstantFloatEx =  new ConstantFloat<TContext>(3.14); // An expression representing the float value 3.14
+var ConstantColorEx = new ConstantColor<TContext>(System.Drawing.Color.Red); // An expression representing the color red
+var ConstantGuidEx = new ConstantGuid <TContext>(Guid.NewGuid()); // An expression representing a constant guid
+```
+
+There are also generic `ConstantListExpressions` that can be used to represent expressions of lists of any generic type:
+
+```csharp
+var ConstantListExpression = new ConstantList<TType, TContext>(TType[] list); //An expression representing a list of some generic type
 ```
 
 ### Arithmetic Operators
 
-Arithmetic operations acting expressions can be done on any type with the `GenericArithmeticOperators`:
+Arithmetic operations can act on expressions of any type with the `GenericArithmeticOperators`:
 
 ```csharp
 var AddExpression = new Add<TType, TContext>(IExpression<TType, TContext> a, IExpression<TType, TContext> b); //An expression representing addition on the expressions a & b: a + b
@@ -53,7 +59,7 @@ Again there are also type specific variations of these operators:
 ```csharp
 var AddFloatExpression = new AddFloat<TContext>(new ConstantFloat<TContext>(2.72), new ConstantFloat<TContext>(1.41)); //An expression representing addition of two floats: 2.72 + 1.41
 var SubtractDecimalExpression = new SubtractDecimal<TContext>(new ConstantDecimal<TContext>(2.6), new ConstantDecimal<TContext>(1.9)); //An expression respresenting subtraction of the right float from the left:  2.6 - 1.3
-var MultiplyDouble Expression = new MultiplyDouble<TContext>(new ConstantDouble<TContext>(1.2), new ConstantDouble<TContext>(3.4)); //An expression representing the multiplication of two doubles: 1.2 * 3.4
+var MultiplyDoubleExpression = new MultiplyDouble<TContext>(new ConstantDouble<TContext>(1.2), new ConstantDouble<TContext>(3.4)); //An expression representing the multiplication of two doubles: 1.2 * 3.4
 ```
 
 There is also the special case of string concatenation that can be considered as the addition operator acting on string expressions:
@@ -62,24 +68,58 @@ There is also the special case of string concatenation that can be considered as
 var ConcatStringExpression = new ConcatString<TContext>(new ConstantString<TContext>(foo), new ConstantString<TContext>(bar)) //An expression representing the concatenation (addition) of two string expressions: 'foo' + 'bar'
 ```
 
-### Boolean Logical Expressions
+### Boolean Logical Operators
 
-Some examples of expressions for boolean logic operations, these take and return boolean expressions.
-
-```csharp
-var TrueExpression = new ConstantBool<TContext>(true); //An expression representing the bool value true
-var OrExpression = new Or<TContext>(new ConstantBool<TContext>(true), new ConstantBool<TContext>(false)); //An expression for the boolean logical operator OR
-var NotExpression = new Not<TContext>(new ConstantBool<TContext>(true)); //An expression for the boolean logical operator NOT
-```
-
-### Boolean Comparison Expressions
-
-Some examples of expressions for boolean comparison operations, these take integer expressions and return boolean expressions.
+Boolean logic operations that operate boolean expressions in the usual manner:
 
 ```csharp
-var LessThanExpression = new LessThan<TContext>(new ConstantInteger<TContext>(1), new ConstantInteger<TContext>(2)); //An expression representing the comparison 1 < 2
-var GreaterThanOrEqualToExpression = new GreaterThanOrEqualTo<TContext>(new ConstantInteger<TContext>(1), new ConstantInteger<TContext>(2)) // An expression representing the comparison 1 >= 2
+var OrExpression = new Or<TContext>(new ConstantBool<TContext>(true), new ConstantBool<TContext>(false)); //An expression representing the boolean expression 'true OR false'
+var NotExpression = new Not<TContext>(new ConstantBool<TContext>(true)); //An expression representing the boolean expression 'NOT true'
+var AndExpression = new And<TContext>(new ConstantBool<TContext>(true), new ConstantBool<TContext>(false)); //An expression representing the boolean expression 'true AND false'
+var XOrExpression = new XOr<TContext>(new ConstantBool<TContext>(true), new ConstantBool<TContext>(false)); //An expression representing the boolean expression 'true XOR false'
 ```
+
+There are also the `All` and `Any` operations that are equivalent to the boolean logic operations NAND and NOR, respectively:
+
+```csharp
+var AnyExpression = new Any<TContext>(new ConstantBool<TContext>(true), new ConstantBool<TContext>(true), new ConstantBool<TContext>(false); //An expression respresenting the boolean expression 'true OR true OR false'
+var AllExpression = new All<TContext>(new ConstantBool<TContext>(true), new ConstantBool<TContext>(true), new ConstantBool<TContext>(false); //An expression respresenting the boolean expression 'true AND true AND false'
+```
+
+### Boolean Relational Operators
+
+Expressions with boolean relational operators can be made on any given type, though care must be taken to ensure the [operators are defined on the type](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/comparison-operators#operator-overloadability):
+
+```csharp
+var GreaterThanExpression = new GreaterThan<TContext>(IExpression<TType, TContext> a, IExpression<TType, TContext> b); // An expression representing the comparison 'a > b'
+var LessThanExpression = new LessThan<TContext>(IExpression<TType, TContext> a, IExpression<TType, TContext> b); //An expression representing the comparison a < b
+var GreaterThanOrEqualToExpression = new GreaterThanOrEqualTo<TContext>(IExpression<TType, TContext> a, IExpression<TType, TContext> b); // An expression representing the comparison a >= b
+var LessThanOrEqualToExpression = new LessThanOrEqualTo<TContext>(IExpression<TType, TContext> a, IExpression<TType, TContext> b); // An expression representing the comparison a <= b
+```
+
+### Boolean Equality Operators
+
+Similarly, expressions with boolean relational operators can be made on any given type:
+
+```csharp
+var EqualToExpression = new EqualTo<TType, TContext>(IExpression<TType, TContext> a, IExpression<TType, TContext> b); //An expression represent the comparison 'a == b'
+var NotEqualToExpression = new NotEqualTo<TType, TContext>(IExpression<TType, TContext> a, IExpression<TType, TContext> b); //An expression represent the comparison 'a != b'
+```
+
+### List Operators
+
+Expressions of lists have some of the usual list operations defined on them:
+
+```csharp
+var ConcatListExpression = new ConcatList<TType, TContext>(IListExpression<TType, TContext> list1, IListExpression<TType, TContext> list2); //An expression representing the concatenation of two list expressions 'list1 + list2'
+var FirstExpression = new First<TType, TContext>(IListExpression<TType, TContext> list); //An expression representing the first item in the list
+var LastExpression = new Last<TType, TContext>(IListExpression<TType, TContext> list); //An expression representing the last item in the list
+var TakeFirstExpression = new TakeFirst<TType, TContext>(IListExpression<TType, TContext> list, IExpression<int, TContext> n); //An expression representing the first n items in the list
+var TakeLastExpression = new TakeLast<TType, TContext>(IListExpression<TType, TContext> list, IExpression<int, TContext> m); //An expression representing the last m items in the list
+var CountExpression = new Count<TType, TContext>(IListExpression<TType, TContext> list); //An integer expression representing the number of items in the list
+```
+
+
 
 ## ExpressionFactory and Fluent API
 
@@ -89,7 +129,7 @@ Building complex expressions manually can be a bit messy syntactically and so th
 public readonly ExpressionFactory<TContext> _ex = new ExpressionFactory<TContext>();
 var one = _ex.Int(1); //Creates a new ConstantInteger expression with value 1
 var true = new _ex.Bool(ture); //Creates a new ConstantBool expression with value true
-var SevenIsGreaterThanFive = new _ex.GreaterThan(_ex.Int(7), _ex.Int(5)); //This is much tidier than the basic implementation
+var SevenIsGreaterThanFive = new _ex.GreaterThan<int>(_ex.Int(7), _ex.Int(5)); //This is much tidier than the basic implementation
 ```
 
 ## License
