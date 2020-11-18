@@ -27,6 +27,19 @@ namespace Expressions.Tests.Boolean.Comparison
         }
 
         [Fact]
+        public void NotEqualTo()
+        {
+            //Arrange
+            var isEqual =
+                new NotEqualTo<int, IContext>(new ConstantInteger<IContext>(2), new ConstantInteger<IContext>(1));
+            //Act 
+            var sut = isEqual.Interpret(_context);
+            //Assert
+            Assert.True(sut);
+        }
+
+
+        [Fact]
         public void GreaterThan()
         {
             //Arrange
