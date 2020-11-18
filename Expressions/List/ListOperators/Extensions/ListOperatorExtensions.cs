@@ -2,13 +2,8 @@
 
 namespace Aptacode.Expressions.List.Extensions
 {
-    public static class ListExpressionExtensions
+    public static class ListOperatorExtensions
     {
-        public static Count<TType, TContext> Count<TType, TContext>(
-            this IListExpression<TType, TContext> expression)
-            =>
-                new Count<TType, TContext>(expression);
-
         public static First<TType, TContext> First<TType, TContext>(
             this IListExpression<TType, TContext> expression)
             =>

@@ -3,7 +3,7 @@ using Aptacode.Expressions.Bool.Expression;
 
 namespace Aptacode.Expressions.Bool.Extensions
 {
-    public static class BoolExpressionExtensions
+    public static class LogicalOperatorExtensions
     {
         public static IExpression<bool, TContext> All<TContext>(this IExpression<bool, TContext> expression,
             params IExpression<bool, TContext>[] expressions)
@@ -31,5 +31,9 @@ namespace Aptacode.Expressions.Bool.Extensions
         public static IExpression<bool, TContext> And<TContext>(this IExpression<bool, TContext> lhs,
             IExpression<bool, TContext> rhs)
             => new And<TContext>(lhs, rhs);
+
+        public static IExpression<bool, TContext> XOr<TContext>(this IExpression<bool, TContext> lhs,
+            IExpression<bool, TContext> rhs)
+            => new XOr<TContext>(lhs, rhs);
     }
 }
