@@ -17,7 +17,6 @@ namespace Aptacode.Expressions
 {
     public class ExpressionFactory<TContext>
     {
-
         #region Constant Expressions
 
         public ConstantInteger<TContext> Int(int value) => new ConstantInteger<TContext>(value);
@@ -27,6 +26,7 @@ namespace Aptacode.Expressions
         public ConstantColor<TContext> Color(System.Drawing.Color value) => new ConstantColor<TContext>(value);
         public ConstantString<TContext> String(string value) => new ConstantString<TContext>(value);
         public ConstantGuid<TContext> Color(System.Guid value) => new ConstantGuid<TContext>(value);
+        public ConstantList<TType, TContext> List<TType>(TType[] value) => new ConstantList<TType, TContext>(value);
 
         #endregion
 
@@ -154,10 +154,17 @@ namespace Aptacode.Expressions
 
         #endregion
 
+        #region String
+
+        public ConcatString<TContext> Concat(IExpression<string, TContext> lhs,
+            IExpression<string, TContext> rhs) =>
+            new ConcatString<TContext>(lhs, rhs);
+
+        #endregion
+
         #endregion
 
         #region Logical Operators
-
 
         public And<TContext> And(IExpression<bool, TContext> lhs, IExpression<bool, TContext> rhs) =>
             new And<TContext>(lhs, rhs);
@@ -205,19 +212,7 @@ namespace Aptacode.Expressions
 
         #endregion
 
-
-        #region String Expressions
-
-
-
-
-        #endregion
-
-
-        #region List Expressions
-
-        public ConstantList<TType, TContext> List<TType>(TType[] value)
-            => new ConstantList<TType, TContext>(value);
+        #region List Operators
 
         public ConcatList<TType, TContext> Concat<TType>(IListExpression<TType, TContext> lhs,
             IListExpression<TType, TContext> rhs) =>
