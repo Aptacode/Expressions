@@ -1,6 +1,6 @@
 # Expressions
 
-As the name suggests, Expressions is a C# library used for writing and evaluating [expressions](https://en.wikipedia.org/wiki/Expression_(computer_science)).
+Whilst originally designed to be used to represent and determine connection weights in [StateNet](https://github.com/Aptacode/StateNet), Expressions is a C# library used for writing and evaluating [expressions](https://en.wikipedia.org/wiki/Expression_(computer_science)) in a given context.
 
 ## Overview
 
@@ -14,24 +14,52 @@ As well as more complex nested expressions:
 
 ```csharp
 var Expression = new And<TContext>( //An expression following the usual boolean logic of the 'and' operator
-                     new GreaterThan<TContext>( //An expression for the comparison operator >, this will evaluate to true as 4 > 1
+                     new GreaterThan<int, TContext>( //An expression for the comparison operator >, this will evaluate to true as 4 > 1
                         new ConstantInteger<TContext>(4), new ConstantInteger<TContext>(1)),
-                     new EqualTo<TContext>(new ConstantInteger<TContext>(1), new ConstantInteger<TContext>(1))); //An expression for the equality operator.
+                     new EqualTo<int, TContext>(new ConstantInteger<TContext>(1), new ConstantInteger<TContext>(1))); //An expression for the equality operator.
 ```
-To evaluate these expressions into the correct context, the Expressions library utilises the Interpreter design pattern; Every expression type has an `.Interpret(context)` method. When called on a given context, any non-terminal expressions will recursively call `.Interpret(context)` (passing through the same context) on the expressions within them until a terminal expression is reached. Terminal expressions can then be evaluated to their respective values and value types in the given context. These in turn are passed on the containing non-terminal expressions until the expression is completely evaluated.
+To evaluate these expressions into the correct context, the Expressions library utilises the Interpreter design pattern; Every expression type has an `.Interpret(context)` method. When called on a given context, any non-terminal expressions will recursively call `.Interpret(context)` (passing through the same context) on the expressions within them until a terminal expression is reached. Terminal expressions can then be evaluated to their respective values and value types in the given context. These in turn are passed on to the containing non-terminal expressions until the expression is completely evaluated.
 
 ## Usage and Examples
 
-Whilst originally designed to be used to represent and determine connection weights in [StateNet](https://github.com/Aptacode/StateNet), the Expressions library can be used as a general purpose library for writing expressions.
+### Constant Expressions
 
-### Integer Expressions
-
-Some examples of integer expression operations, these take integer expressions as arguments.
+Constant expressions of any type can be created using the generic `ConstantExpression`:
 
 ```csharp
-var AddExpression = new Add<TContext>(new ConstantInteger<TContext>(1), new ConstantInteger<TContext>(1)); //An expression adding two integers: 1 + 1
-var SubtractExpression = new Subtract<TContext>(new ConstantInteger<TContext>(2), new ConstantInteger<TContext>(1)); //An expression subtracting the right integer from the left:  2 -  1
-var MultiplyExpression = new Multiply<TContext>(new ConstantInteger<TContext>(2), new ConstantInteger<TContext>(2)); //An expression multiplying two integers: 2 * 2
+var ConstantExpression = new ConstantExpression<TType, TContext>(TType value);
+```
+
+Here are a few examples of the various type specific constant expressions:
+
+```csharp
+var ConstFloatEx =  new ConstantFloat<TContext>(3.14); // An expression representing the float value 3.14
+var ConstColorEx = new ConstantColor<TContext>(System.Drawing.Color.Red); // An expression representing the color red
+var ConstGuidEx = new ConstantGuid <TContext>(Guid.NewGuid()); // An expression representing a constant guid
+```
+
+### Arithmetic Operators
+
+Arithmetic operations acting expressions can be done on any type with the `GenericArithmeticOperators`:
+
+```csharp
+var AddExpression = new Add<TType, TContext>(IExpression<TType, TContext> a, IExpression<TType, TContext> b); //An expression representing addition on the expressions a & b: a + b
+var SubtractExpression = new Subtract<TType, TContext>(IExpression<TType, TContext> a, IExpression<TType, TContext> b); //An expression representing subtraction on the expressions a & b: a - b
+var MultiplyExpression = new Multiply<TType, TContext>(IExpression<TType, TContext> a, IExpression<TType, TContext> b); //An expression representing multipl on the expressions a & b: a * b
+```
+
+Again there are also type specific variations of these operators:
+
+```csharp
+var AddFloatExpression = new AddFloat<TContext>(new ConstantFloat<TContext>(2.72), new ConstantFloat<TContext>(1.41)); //An expression representing addition of two floats: 2.72 + 1.41
+var SubtractDecimalExpression = new SubtractDecimal<TContext>(new ConstantDecimal<TContext>(2.6), new ConstantDecimal<TContext>(1.9)); //An expression respresenting subtraction of the right float from the left:  2.6 - 1.3
+var MultiplyDouble Expression = new MultiplyDouble<TContext>(new ConstantDouble<TContext>(1.2), new ConstantDouble<TContext>(3.4)); //An expression representing the multiplication of two doubles: 1.2 * 3.4
+```
+
+There is also the special case of string concatenation that can be considered as the addition operator acting on string expressions:
+
+```csharp
+var ConcatStringExpression = new ConcatString<TContext>(new ConstantString<TContext>(foo), new ConstantString<TContext>(bar)) //An expression representing the concatenation (addition) of two string expressions: 'foo' + 'bar'
 ```
 
 ### Boolean Logical Expressions
