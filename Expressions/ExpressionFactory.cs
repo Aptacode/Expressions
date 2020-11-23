@@ -71,7 +71,12 @@ namespace Aptacode.Expressions
             IExpression<System.Guid, TContext> passExpression,
             IExpression<System.Guid, TContext> failExpression) =>
             new ConditionalExpression<System.Guid, TContext>(condition, passExpression, failExpression);
-       
+
+        public ConditionalListExpression<TType, TContext> ConditionalList<TType>(IExpression<bool, TContext> condition,
+            IListExpression<TType, TContext> passExpression, 
+            IListExpression<TType, TContext> failExpression) =>
+            new ConditionalListExpression<TType, TContext>(condition, passExpression, failExpression);
+        
         #endregion
 
         #region Arithmetic Operators
