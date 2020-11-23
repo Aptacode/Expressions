@@ -109,7 +109,7 @@ namespace Aptacode.Expressions.Visitor
                 case BinaryListExpression<TType, TContext> binaryListExpression:
                     Visit(binaryListExpression);
                     break;
-                case TernaryListExpression<TType, TContext> ternaryListExpression:
+                case ConditionalListExpression<TType, TContext> ternaryListExpression:
                     Visit(ternaryListExpression);
                     break;
                 case TerminalListExpression<TType, TContext> terminalListExpression:
@@ -131,7 +131,7 @@ namespace Aptacode.Expressions.Visitor
             expression.Rhs.Visit(this);
         }
 
-        public virtual void Visit<TType>(TernaryListExpression<TType, TContext> expression)
+        public virtual void Visit<T1, T2>(TernaryListExpression<T1, T2, TContext> expression)
 
         {
             expression.Condition.Visit(this);

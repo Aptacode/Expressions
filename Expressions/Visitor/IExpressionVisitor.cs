@@ -13,7 +13,7 @@ namespace Aptacode.Expressions.Visitor
 
         void Visit<TType>(BinaryListExpression<TType, T> expression);
 
-        void Visit<TType>(TernaryListExpression<TType, T> expression);
+        void Visit<T1, T2>(TernaryListExpression<T1, T2, T> expression);
 
         void Visit<TType>(TerminalListExpression<TType, T> expression);
 
