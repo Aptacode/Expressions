@@ -19,6 +19,7 @@ namespace Aptacode.Expressions
     {
         #region Constant Expressions
 
+        public ConstantExpression<TType, TContext> Expression<TType>(TType value) => new ConstantExpression<TType, TContext>(value);
         public ConstantInteger<TContext> Int(int value) => new ConstantInteger<TContext>(value);
         public ConstantFloat<TContext> Float(float value) => new ConstantFloat<TContext>(value);
         public ConstantDouble<TContext> Double(double value) => new ConstantDouble<TContext>(value);

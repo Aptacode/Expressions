@@ -281,7 +281,6 @@ namespace Expressions.Tests
                                                 _expressions.Add(_expressions.First(_expressions.TakeLast(fibListExpression, _expressions.Int(2))), _expressions.Last(_expressions.TakeLast(fibListExpression, _expressions.Int(2))))),
                                             fibListExpression).Interpret(_context));
             }
-         
 
             var sut = fibListExpression.Interpret(_context);
 
