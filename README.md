@@ -59,16 +59,10 @@ In the above example operators on our expressions such as `_expressions.Add()` a
 var addEx = _expressions.Add(_expressions.Int(2), _expressions.Int(2);
 ```
 
-Using the roman alphabet we are more used to reading from left to right and so the above expression can still be a little tricky to read, especially when the arguments are also complicated expressions. To improve this we also have a Fluent API for our operators. With this the above expression becomes:
+Using the roman alphabet we are more used to reading from left to right and so the above expression can still be a little tricky to read, especially when the arguments are also complicated expressions. To improve this we also have a more fluent API for our operators. With this the above expression becomes:
 
 ```csharp
-var addEx = _expressions.Int(2).Add<int>(_expressions.Int(2));
-```
-
-Or - as we're currently using integer expressions - we can use more the more explicit, type specific `AddInteger`:
-
-```csharp
-var addEx = _expressions.Int(2).AddInteger(_expressions.Int(2));
+var addEx = _expressions.Int(2).Add(_expressions.Int(2));
 ```
 
 ## Usage and Examples TOREDO
@@ -78,21 +72,28 @@ var addEx = _expressions.Int(2).AddInteger(_expressions.Int(2));
 Constant expressions of any type can be created using the generic `ConstantExpression`:
 
 ```csharp
-var ConstantExpression = new ConstantExpression<TType, TContext>(TType value);
+var ConstantExpression = new ConstantExpression<TType, TContext>(TType a); //An expression 'a' of some generic type 
 ```
-
-Here are a few examples of the various type specific constant expressions:
+And also using the `ExpressionFactory`:
 
 ```csharp
-var ConstantFloatEx =  new ConstantFloat<TContext>(3.14); // An expression representing the float value 3.14
-var ConstantColorEx = new ConstantColor<TContext>(System.Drawing.Color.Red); // An expression representing the color red
-var ConstantGuidEx = new ConstantGuid <TContext>(Guid.NewGuid()); // An expression representing a constant guid
+public readonly ExpressionFactory<TContext> _expressions = new ExpressionFactory<TContext>();
+
+var ConstantExpression = _expressions.Expression<TType>(TType a);
 ```
 
-There are also generic `ConstantListExpressions` that can be used to represent expressions of lists of any generic type:
+We can also create various type specific constant expressions:
 
 ```csharp
-var ConstantListExpression = new ConstantList<TType, TContext>(TType[] list); //An expression representing a list of some generic type
+var ConstantFloatEx =  _expressions.Float(3.14); // An expression representing the float value 3.14
+var ConstantColorEx = _expressions.Color(System.Drawing.Color.Red); // An expression representing the color red
+var ConstantGuidEx = _expressions.Guid(Guid.NewGuid()); // An expression representing a constant guid
+```
+
+We can also make constant lists that can be used to represent expressions of lists of any generic type:
+
+```csharp
+var ConstantListExpression = _expressions.List<TType>(TType[] list); //An expression representing a list of some generic type
 ```
 
 ### Arithmetic Operators
@@ -101,6 +102,12 @@ Arithmetic operations can act on expressions of any type with the `GenericArithm
 
 ```csharp
 var AddExpression = new Add<TType, TContext>(IExpression<TType, TContext> a, IExpression<TType, TContext> b); //An expression representing addition on the expressions a & b: a + b
+```
+
+With the fluent API we also have:
+
+
+```csharp
 var SubtractExpression = new Subtract<TType, TContext>(IExpression<TType, TContext> a, IExpression<TType, TContext> b); //An expression representing subtraction on the expressions a & b: a - b
 var MultiplyExpression = new Multiply<TType, TContext>(IExpression<TType, TContext> a, IExpression<TType, TContext> b); //An expression representing multipl on the expressions a & b: a * b
 ```
