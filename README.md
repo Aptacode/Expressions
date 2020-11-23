@@ -7,7 +7,7 @@ Whilst originally designed to be used to represent and determine connection weig
 Expressions can be used to write simple expressions:
 
 ```csharp
-var Expression = new ConstantInteger<TContext>(1) // an expression representing the int value 1
+var Expression = new ConstantInteger<TContext>(1) //An expression representing the int value 1
 ```
 
 As well as more complex nested expressions:
@@ -20,7 +20,58 @@ var Expression = new And<TContext>( //An expression following the usual boolean 
 ```
 To evaluate these expressions into the correct context, the Expressions library utilises the Interpreter design pattern; Every expression type has an `.Interpret(context)` method. When called on a given context, any non-terminal expressions will recursively call `.Interpret(context)` (passing through the same context) on the expressions within them until a terminal expression is reached. Terminal expressions can then be evaluated to their respective values and value types in the given context. These in turn are passed on to the containing non-terminal expressions until the expression is completely evaluated.
 
-## Usage and Examples
+
+## ExpressionFactory
+
+Building complex expressions manually can be a bit messy syntactically and so there is also an `ExpressionFactory` class.
+
+```csharp
+public readonly ExpressionFactory<TContext> _ex = new ExpressionFactory<TContext>();
+var one = _ex.Int(1); //Creates a new ConstantInteger expression with value 1
+var true = new _ex.Bool(true); //Creates a new ConstantBool expression with value true
+var SevenIsGreaterThanFive = new _ex.GreaterThan<int>(_ex.Int(7), _ex.Int(5)); //This is much tidier than the basic implementation
+```
+
+A more complicated example highlights the improvement in conciseness:
+
+```csharp
+public readonly ExpressionFactory<TContext> _expressions = new ExpressionFactory<TContext>();
+var fibListExpression = _expressions.List(new int[] { 1, 1, 2, 3, 5, 8 });
+
+for(int i = 0; i < 20; i++)
+{
+    fibListExpression = _expressions.List(_expressions.ConditionalList(_expressions.LessThan(_expressions.Last(fibListExpression), _expressions.Int(100)),
+                                _expressions.Append(fibListExpression,
+                                    _expressions.Add(_expressions.First(_expressions.TakeLast(fibListExpression, _expressions.Int(2))), 
+                                    _expressions.Last(_expressions.TakeLast(fibListExpression, _expressions.Int(2))))),
+                                fibListExpression).Interpret(_context)); //An expression that when intepreted will add the next number in the fibonacci sequence to the list as long as that number is less than 100 and return the list as an expression or will just return the list as an expression if the next number is greater than 100.
+}
+
+
+var fibLessThan100 = fibListExpression.Interpret(_context); //Interpreting the expression above will return a list of containing the numbers in the Fibonacci sequence less than 100.
+```
+
+## Fluent API
+
+In the above example operators on our expressions such as `_expressions.Add()` are to the left of pair of expressions `(lhs, rhs)` that is acted on by an operator i.e
+
+```csharp
+var addEx = _expressions.Add(_expressions.Int(2), _expressions.Int(2);
+```
+
+Using the roman alphabet we are more used to reading from left to right and so the above expression can still be a little tricky to read, especially when the arguments are also complicated expressions. To improve this we also have a Fluent API for our operators. With this the above expression becomes:
+
+```csharp
+var addEx = _expressions.Int(2).Add<int>(_expressions.Int(2));
+```
+
+Or - as we're currently using integer expressions - we can use more the more explicit, type specific `AddInteger`:
+
+```csharp
+var addEx = _expressions.Int(2).AddInteger(_expressions.Int(2));
+```
+
+## Usage and Examples TOREDO
 
 ### Constant Expressions
 
@@ -121,16 +172,6 @@ var CountExpression = new Count<TType, TContext>(IListExpression<TType, TContext
 
 
 
-## ExpressionFactory and Fluent API
-
-Building complex expressions manually can be a bit messy syntactically and so there is also an `ExpressionFactory` class.
-
-```csharp
-public readonly ExpressionFactory<TContext> _ex = new ExpressionFactory<TContext>();
-var one = _ex.Int(1); //Creates a new ConstantInteger expression with value 1
-var true = new _ex.Bool(ture); //Creates a new ConstantBool expression with value true
-var SevenIsGreaterThanFive = new _ex.GreaterThan<int>(_ex.Int(7), _ex.Int(5)); //This is much tidier than the basic implementation
-```
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
