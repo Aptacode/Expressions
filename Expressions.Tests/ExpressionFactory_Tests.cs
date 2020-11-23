@@ -268,5 +268,26 @@ namespace Expressions.Tests
             //Assert
             Assert.Equal(TrueXOrTrueEx.Interpret(_context), sut.Interpret(_context));
         }
+
+        [Fact]
+        public void ListTest()
+        {
+            var fibListExpression = _expressions.List(new int[] { 1, 1, 2, 3, 5, 8 });
+            
+            for(int i = 0; i < 20; i++)
+            {
+                fibListExpression = _expressions.List(_expressions.ConditionalList(_expressions.LessThan(_expressions.Last(fibListExpression), _expressions.Int(100)),
+                                            _expressions.Append(fibListExpression,
+                                                _expressions.Add(_expressions.First(_expressions.TakeLast(fibListExpression, _expressions.Int(2))), _expressions.Last(_expressions.TakeLast(fibListExpression, _expressions.Int(2))))),
+                                            fibListExpression).Interpret(_context));
+            }
+         
+
+            var sut = fibListExpression.Interpret(_context);
+
+            Assert.Equal(13, sut[6]);
+            Assert.Equal(21, sut[7]);
+            Assert.Equal(34, sut[8]);
+        }
     }
 }

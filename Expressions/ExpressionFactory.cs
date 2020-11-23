@@ -240,6 +240,10 @@ namespace Aptacode.Expressions
             IExpression<int, TContext> count) =>
             new TakeLast<TType, TContext>(list, count);
 
+        public Append<TType, TContext> Append<TType>(IListExpression<TType, TContext> list,
+            IExpression<TType, TContext> element) =>
+            new Append<TType, TContext>(list, element);
+
         #endregion
     }
 }
