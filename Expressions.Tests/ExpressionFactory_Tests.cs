@@ -2,10 +2,19 @@
 using Aptacode.Expressions.Bool;
 using Aptacode.Expressions.Bool.Comparison;
 using Aptacode.Expressions.Bool.Expression;
+using Aptacode.Expressions.Color;
+using Aptacode.Expressions.Decimal;
+using Aptacode.Expressions.Double;
+using Aptacode.Expressions.Float;
 using Aptacode.Expressions.GenericExpressions;
+using Aptacode.Expressions.Guid;
 using Aptacode.Expressions.Integer;
+using Aptacode.Expressions.Numeric.Extensions;
+using Aptacode.Expressions.String;
 using Expressions.Tests.Boolean.Comparison;
 using Moq;
+using System;
+using System.Drawing;
 using Xunit;
 
 namespace Expressions.Tests
@@ -20,6 +29,97 @@ namespace Expressions.Tests
 
         private readonly IContext _context;
         private readonly ExpressionFactory<IContext> _expressions;
+
+        [Fact]
+        public void ExpressionFactoryBool_SuccessfullyCreates_ConstantBoolExpression_Test() //Not sure if this is the best way to make this assertion. Could also use the Intepret like below.
+        {
+            //Arrange
+            var constantBool = new ConstantBool<IContext>(true);
+            //Act
+            var sut = _expressions.Bool(true);
+            //Assert
+            Assert.Equal(constantBool.GetType(), sut.GetType());
+        }
+
+        [Fact]
+        public void ExpressionFactoryInt_SuccessfullyCreates_ConstantIntegerExpression_Test()
+        {
+            //Arrange
+            var constantInt = new ConstantInteger<IContext>(1);
+            //Act
+            var sut = _expressions.Int(1);
+            //Assert
+            Assert.True(new EqualTo<int, IContext>(constantInt, sut).Interpret(_context));
+        }
+        
+        [Fact]
+        public void ExpressionFactoryFloat_SuccessfullyCreates_ConstantFloatExpression_Test()
+        {
+            //Arrange
+            var floatPi = new ConstantFloat<IContext>(3.1415f);
+            //Act
+            var sut = _expressions.Float(3.1415f);
+            //Assert
+            Assert.True(new EqualTo<float, IContext>(floatPi, sut).Interpret(_context));
+        }
+        
+        [Fact]
+        public void ExpressionFactoryDouble_SuccessfullyCreates_ConstantDoubleExpression_Test()
+        {
+            //Arrange
+            var constantDouble = new ConstantDouble<IContext>(0.99);
+            //Act
+            var sut = _expressions.Double(0.99);
+            //Assert
+            Assert.True(new EqualTo<double, IContext>(constantDouble, sut).Interpret(_context));
+        }
+        
+        [Fact]
+        public void ExpressionFactoryDecimal_SuccessfullyCreates_ConstantDecimalExpression_Test()
+        {
+            //Arrange
+            var constantDecimal = new ConstantDecimal<IContext>(1.23m);
+            //Act
+            var sut = _expressions.Decimal(1.23m);
+            //Assert
+            Assert.True(new EqualTo<decimal, IContext>(constantDecimal, sut).Interpret(_context));
+        }
+        
+        [Fact]
+        public void ExpressionFactoryGuid_SuccessfullyCreates_ConstantGuidExpression_Test()
+        {
+            //Arrange
+            var constantGuid = new ConstantGuid<IContext>(Guid.Parse("9f3a43e8-43db-4115-87ef-20398ead7ae5"));
+            //Act
+            var sut = _expressions.Guid(Guid.Parse("9f3a43e8-43db-4115-87ef-20398ead7ae5"));
+            //Assert
+            Assert.True(new EqualTo<Guid, IContext>(constantGuid, sut).Interpret(_context));
+        }
+        
+        //[Fact]
+        //public void ExpressionFactoryColor_SuccessfullyCreates_ConstantColorExpression_Test()
+        //{
+        //    //Arrange
+        //    var constantColor = new ConstantColor<IContext>(Color.Red);
+        //    //Act
+        //    var sut = _expressions.Color(Color.Red);
+        //    //Assert
+        //    Assert.True(new EqualTo<Color, IContext>(constantColor, sut).Interpret(_context));
+        //}
+        
+        [Fact]
+        public void ExpressionFactoryString_SuccessfullyCreates_ConstantStringExpression_Test()
+        {
+            //Arrange
+            var constantString = new ConstantString<IContext>("foo");
+            //Act
+            var sut = _expressions.String("foo");
+            //Assert
+            Assert.True(new EqualTo<string, IContext>(constantString, sut).Interpret(_context));
+        }
+
+
+
 
         [Fact]
         public void And_SuccessfullyCreates_AndExpression_Test()
@@ -93,17 +193,7 @@ namespace Expressions.Tests
             Assert.Equal(0, sut.Interpret(_context));
         }
 
-        [Fact]
-        public void
-            ExpressionFactoryBool_SuccessfullyCreates_ConstantBoolExpression_Test() //Not sure if this is the best way to make this assertion. Could also use the Intepret like below.
-        {
-            //Arrange
-            var constantBool = new ConstantBool<IContext>(true);
-            //Act
-            var sut = _expressions.Bool(true);
-            //Assert
-            Assert.Equal(constantBool.GetType(), sut.GetType());
-        }
+
 
         [Fact]
         public void ExpressionFactoryConditional_SuccessfullyCreates_ConditionalIntegerExpression_Test()
@@ -118,16 +208,7 @@ namespace Expressions.Tests
             Assert.True(_expressions.EqualTo(intConditional, sut).Interpret(_context));
         }
 
-        [Fact]
-        public void ExpressionFactoryInt_SuccessfullyCreates_ConstantIntegerExpression_Test()
-        {
-            //Arrange
-            var constantInt = new ConstantInteger<IContext>(1);
-            //Act
-            var sut = _expressions.Int(1);
-            //Assert
-            Assert.True(new EqualTo<int, IContext>(constantInt, sut).Interpret(_context));
-        }
+
 
         [Fact]
         public void GreaterThan_ReturnsFalse_When_LHS_IsNot_GreaterThan_RHS_Test()
@@ -272,7 +353,7 @@ namespace Expressions.Tests
         [Fact]
         public void ListTest()
         {
-            var fibListExpression = _expressions.List(new int[] { 1, 1, 2, 3, 5, 8 });
+            var fibListExpression = _expressions.List(new int[] { 1, 1 });
             
             for(int i = 0; i < 20; i++)
             {
@@ -283,7 +364,7 @@ namespace Expressions.Tests
             }
 
             var sut = fibListExpression.Interpret(_context);
-
+            
             Assert.Equal(13, sut[6]);
             Assert.Equal(21, sut[7]);
             Assert.Equal(34, sut[8]);

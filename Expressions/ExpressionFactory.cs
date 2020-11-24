@@ -23,10 +23,11 @@ namespace Aptacode.Expressions
         public ConstantInteger<TContext> Int(int value) => new ConstantInteger<TContext>(value);
         public ConstantFloat<TContext> Float(float value) => new ConstantFloat<TContext>(value);
         public ConstantDouble<TContext> Double(double value) => new ConstantDouble<TContext>(value);
+        public ConstantDecimal<TContext> Decimal(decimal value) => new ConstantDecimal<TContext>(value);
         public ConstantBool<TContext> Bool(bool value) => new ConstantBool<TContext>(value);
         public ConstantColor<TContext> Color(System.Drawing.Color value) => new ConstantColor<TContext>(value);
         public ConstantString<TContext> String(string value) => new ConstantString<TContext>(value);
-        public ConstantGuid<TContext> Color(System.Guid value) => new ConstantGuid<TContext>(value);
+        public ConstantGuid<TContext> Guid(System.Guid value) => new ConstantGuid<TContext>(value);
         public ConstantList<TType, TContext> List<TType>(TType[] value) => new ConstantList<TType, TContext>(value);
 
         #endregion
