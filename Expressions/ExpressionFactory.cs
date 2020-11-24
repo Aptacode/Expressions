@@ -19,6 +19,7 @@ namespace Aptacode.Expressions
     {
         #region Constant Expressions
 
+        public ConstantExpression<TType, TContext> Expression<TType>(TType value) => new ConstantExpression<TType, TContext>(value);
         public ConstantInteger<TContext> Int(int value) => new ConstantInteger<TContext>(value);
         public ConstantFloat<TContext> Float(float value) => new ConstantFloat<TContext>(value);
         public ConstantDouble<TContext> Double(double value) => new ConstantDouble<TContext>(value);
@@ -71,6 +72,11 @@ namespace Aptacode.Expressions
             IExpression<System.Guid, TContext> passExpression,
             IExpression<System.Guid, TContext> failExpression) =>
             new ConditionalExpression<System.Guid, TContext>(condition, passExpression, failExpression);
+
+        public ConditionalListExpression<TType, TContext> ConditionalList<TType>(IExpression<bool, TContext> condition,
+            IListExpression<TType, TContext> passExpression, 
+            IListExpression<TType, TContext> failExpression) =>
+            new ConditionalListExpression<TType, TContext>(condition, passExpression, failExpression);
         
         #endregion
 
@@ -234,6 +240,10 @@ namespace Aptacode.Expressions
         public TakeLast<TType, TContext> TakeLast<TType>(IListExpression<TType, TContext> list,
             IExpression<int, TContext> count) =>
             new TakeLast<TType, TContext>(list, count);
+
+        public Append<TType, TContext> Append<TType>(IListExpression<TType, TContext> list,
+            IExpression<TType, TContext> element) =>
+            new Append<TType, TContext>(list, element);
 
         #endregion
     }
