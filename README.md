@@ -65,7 +65,7 @@ Using the roman alphabet we are more used to reading from left to right and so t
 var addEx = _expressions.Int(2).Add(_expressions.Int(2));
 ```
 
-## Usage and Examples TOREDO
+## Usage and Examples
 
 ### Constant Expressions
 
@@ -85,7 +85,7 @@ var ConstantExpression = _expressions.Expression<TType>(TType a);
 We can also create various type specific constant expressions:
 
 ```csharp
-var ConstantFloatEx =  _expressions.Float(3.14); // An expression representing the float value 3.14
+var ConstantFloatEx =  _expressions.Float(3.14f); // An expression representing the float value 3.14
 var ConstantColorEx = _expressions.Color(System.Drawing.Color.Red); // An expression representing the color red
 var ConstantGuidEx = _expressions.Guid(Guid.NewGuid()); // An expression representing a constant guid
 ```
@@ -98,87 +98,98 @@ var ConstantListExpression = _expressions.List<TType>(TType[] list); //An expres
 
 ### Arithmetic Operators
 
-Arithmetic operations can act on expressions of any type with the `GenericArithmeticOperators`:
+Arithmetic operations can act on expressions of any type with the `GenericArithmeticOperators`, though care must be exercised to ensure [the operators are implemented on the given type properly](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading):
 
 ```csharp
 var AddExpression = new Add<TType, TContext>(IExpression<TType, TContext> a, IExpression<TType, TContext> b); //An expression representing addition on the expressions a & b: a + b
 ```
 
-With the fluent API we also have:
-
+With the fluent API and `ExpressionFactory` we also have:
 
 ```csharp
-var SubtractExpression = new Subtract<TType, TContext>(IExpression<TType, TContext> a, IExpression<TType, TContext> b); //An expression representing subtraction on the expressions a & b: a - b
-var MultiplyExpression = new Multiply<TType, TContext>(IExpression<TType, TContext> a, IExpression<TType, TContext> b); //An expression representing multipl on the expressions a & b: a * b
+public readonly ExpressionFactory<TContext> _expressions = new ExpressionFactory<TContext>();
+
+var SubtractExpression = _ex.Expression<TType>(a).Subtract(_ex.Expression<TType>(b)); //An expression representing subtraction on the expressions a & b: a - b
+var MultiplyExpression = _ex.Expression<TType>(a).Multiply(_ex.Expression<TType>(b));; //An expression representing multiplication on the expressions a & b: a * b
 ```
 
-Again there are also type specific variations of these operators:
+Above we can see that the type can be inferred by the operator but if we want to be more explicit again there are also type specific variations of these operators:
 
 ```csharp
-var AddFloatExpression = new AddFloat<TContext>(new ConstantFloat<TContext>(2.72), new ConstantFloat<TContext>(1.41)); //An expression representing addition of two floats: 2.72 + 1.41
-var SubtractDecimalExpression = new SubtractDecimal<TContext>(new ConstantDecimal<TContext>(2.6), new ConstantDecimal<TContext>(1.9)); //An expression respresenting subtraction of the right float from the left:  2.6 - 1.3
-var MultiplyDoubleExpression = new MultiplyDouble<TContext>(new ConstantDouble<TContext>(1.2), new ConstantDouble<TContext>(3.4)); //An expression representing the multiplication of two doubles: 1.2 * 3.4
+var AddFloatExpression =  _expressions.Float(2.72f).AddFloat(_expressions.Float(1.41f)); //An expression representing addition of two floats: 2.72 + 1.41
+var SubtractDecimalExpression = _expressions.Decimal(2.6m).SubtractDecimal(_expressions.Decimal(1.9m)); //An expression respresenting subtraction of the right float from the left:  2.6 - 1.3
+var MultiplyDoubleExpression =_expressions.Double(1.2).MultiplyDouble(_expressions.Double(3.4)); //An expression representing the multiplication of two doubles: 1.2 * 3.4
 ```
 
 There is also the special case of string concatenation that can be considered as the addition operator acting on string expressions:
 
 ```csharp
-var ConcatStringExpression = new ConcatString<TContext>(new ConstantString<TContext>(foo), new ConstantString<TContext>(bar)) //An expression representing the concatenation (addition) of two string expressions: 'foo' + 'bar'
+var ConcatStringExpression = _expressions.String(foo).ConcatString(_expressions.String(bar)); //An expression representing the concatenation (addition) of two string expressions: 'foo' + 'bar'
+```
+
+### Boolean Relational Operators and Equality Operators
+
+Similarly to the arithmetic operators, expressions with boolean relational operators can be made on any given type, though - again - care must be taken to ensure the [operators are properly implemented on the type](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/comparison-operators#operator-overloadability):
+
+```csharp
+var GreaterThanExpression = new GreaterThan<TContext>(IExpression<TType, TContext> a, IExpression<TType, TContext> b); // An expression representing the comparison 'a > b'
+```
+
+Using the the fluent API and `ExpressionFactory`:
+
+```csharp
+public readonly ExpressionFactory<TContext> _expressions = new ExpressionFactory<TContext>();
+
+
+var LessThanExpression = _expressions.Expression<TType>(a).LessThan(_expressions.Expression<TType>(b); //An expression representing the comparison a < b
+var GreaterThanOrEqualToExpression = _expressions.Expression<TType>(a).GreaterThan(_expressions.Expression<TType>(b); // An expression representing the comparison a >= b
+var LessThanOrEqualToExpression = _expressions.Expression<TType>(a).LessThanOrEqualTo(_expressions.Expression<TType>(b); // An expression representing the comparison a <= b
+```
+
+Similarly, expressions with boolean equality operators can be made on any given type:
+
+```csharp
+var EqualToExpression = _expressions.Expression<TType>(a).EqualTo(_expressions.Expression<TType>(b); //An expression represent the comparison 'a == b'
+var NotEqualToExpression = _expressions.Expression<TType>(a).NotEqualTo(_expressions.Expression<TType>(b); //An expression represent the comparison 'a != b'
 ```
 
 ### Boolean Logical Operators
 
-Boolean logic operations that operate boolean expressions in the usual manner:
+For boolean expressions we have the usual boolean logical operators. Using the fluent API and `ExpressionFactory`:
 
 ```csharp
-var OrExpression = new Or<TContext>(new ConstantBool<TContext>(true), new ConstantBool<TContext>(false)); //An expression representing the boolean expression 'true OR false'
-var NotExpression = new Not<TContext>(new ConstantBool<TContext>(true)); //An expression representing the boolean expression 'NOT true'
-var AndExpression = new And<TContext>(new ConstantBool<TContext>(true), new ConstantBool<TContext>(false)); //An expression representing the boolean expression 'true AND false'
-var XOrExpression = new XOr<TContext>(new ConstantBool<TContext>(true), new ConstantBool<TContext>(false)); //An expression representing the boolean expression 'true XOR false'
+public readonly ExpressionFactory<TContext> _expressions = new ExpressionFactory<TContext>();
+
+var OrExpression = _expressions.Bool(true).Or(_expressions.Bool(false)); //An expression representing the boolean expression 'true OR false'
+var NotExpression = _expressions.Bool(true).Not(); //An expression representing the boolean expression 'NOT true'
+var AndExpression = _expressions.Bool(true).And(_expressions.Bool(false)); //An expression representing the boolean expression 'true AND false'
+var XOrExpression = _expressions.Bool(true).XOr(_expressions.Bool(false)); //An expression representing the boolean expression 'true XOR false'
 ```
 
 There are also the `All` and `Any` operations that are equivalent to the boolean logic operations NAND and NOR, respectively:
 
 ```csharp
-var AnyExpression = new Any<TContext>(new ConstantBool<TContext>(true), new ConstantBool<TContext>(true), new ConstantBool<TContext>(false); //An expression respresenting the boolean expression 'true OR true OR false'
-var AllExpression = new All<TContext>(new ConstantBool<TContext>(true), new ConstantBool<TContext>(true), new ConstantBool<TContext>(false); //An expression respresenting the boolean expression 'true AND true AND false'
+var AllExpression = _expressions.Bool(true).All(_expressions.Bool(true), _expressions.Bool(false)); //An expression respresenting the boolean expression 'true AND true AND false'
+var AnyExpression = _expressions.Bool(true).Any(_expressions.Bool(true), _expressions.Bool(false)); //An expression respresenting the boolean expression 'true OR true OR false'
 ```
 
-### Boolean Relational Operators
-
-Expressions with boolean relational operators can be made on any given type, though care must be taken to ensure the [operators are defined on the type](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/comparison-operators#operator-overloadability):
-
-```csharp
-var GreaterThanExpression = new GreaterThan<TContext>(IExpression<TType, TContext> a, IExpression<TType, TContext> b); // An expression representing the comparison 'a > b'
-var LessThanExpression = new LessThan<TContext>(IExpression<TType, TContext> a, IExpression<TType, TContext> b); //An expression representing the comparison a < b
-var GreaterThanOrEqualToExpression = new GreaterThanOrEqualTo<TContext>(IExpression<TType, TContext> a, IExpression<TType, TContext> b); // An expression representing the comparison a >= b
-var LessThanOrEqualToExpression = new LessThanOrEqualTo<TContext>(IExpression<TType, TContext> a, IExpression<TType, TContext> b); // An expression representing the comparison a <= b
-```
-
-### Boolean Equality Operators
-
-Similarly, expressions with boolean relational operators can be made on any given type:
-
-```csharp
-var EqualToExpression = new EqualTo<TType, TContext>(IExpression<TType, TContext> a, IExpression<TType, TContext> b); //An expression represent the comparison 'a == b'
-var NotEqualToExpression = new NotEqualTo<TType, TContext>(IExpression<TType, TContext> a, IExpression<TType, TContext> b); //An expression represent the comparison 'a != b'
-```
 
 ### List Operators
 
-Expressions of lists have some of the usual list operations defined on them:
+For list expressions we also have some of the usual list operations. Using the fluent API and `ExpressionFactory`:
 
 ```csharp
-var ConcatListExpression = new ConcatList<TType, TContext>(IListExpression<TType, TContext> list1, IListExpression<TType, TContext> list2); //An expression representing the concatenation of two list expressions 'list1 + list2'
-var FirstExpression = new First<TType, TContext>(IListExpression<TType, TContext> list); //An expression representing the first item in the list
-var LastExpression = new Last<TType, TContext>(IListExpression<TType, TContext> list); //An expression representing the last item in the list
-var TakeFirstExpression = new TakeFirst<TType, TContext>(IListExpression<TType, TContext> list, IExpression<int, TContext> n); //An expression representing the first n items in the list
-var TakeLastExpression = new TakeLast<TType, TContext>(IListExpression<TType, TContext> list, IExpression<int, TContext> m); //An expression representing the last m items in the list
-var CountExpression = new Count<TType, TContext>(IListExpression<TType, TContext> list); //An integer expression representing the number of items in the list
+public readonly ExpressionFactory<TContext> _expressions = new ExpressionFactory<TContext>();
+
+var list1 = new TType[] { a, b };
+var list2 = new TType[] { c, d }
+var ConcatListExpression = _expressions.List(list1).ConcatList(list2); //A list expression representing the concatenation of two list expressions 'list1 + list2'
+var FirstExpression = _expressions.List(list1).First(); //An expression representing the first item in the list
+var LastExpression = _expressions.List(list1).Last(); //An expression representing the last item in the list
+var TakeFirstExpression = _expressions.List(list1).TakeFirst(_expressions.Int(n)); //A list expression of the first n items in 'list1'
+var TakeLastExpression = _expressions.List(list1).TakeLast(_expressions.Int(m)); //A list expression of the last m items in 'list1'
+var CountExpression = _expressions.List(list1).Count(); //An integer expression representing the number of items in the list
 ```
-
-
-
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
