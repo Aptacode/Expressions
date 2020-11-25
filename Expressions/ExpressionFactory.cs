@@ -17,7 +17,72 @@ namespace Aptacode.Expressions
 {
     public class ExpressionFactory<TContext>
     {
-        #region Numeric
+        #region Constant Expressions
+
+        public ConstantExpression<TType, TContext> Expression<TType>(TType value) => new ConstantExpression<TType, TContext>(value);
+        public ConstantInteger<TContext> Int(int value) => new ConstantInteger<TContext>(value);
+        public ConstantFloat<TContext> Float(float value) => new ConstantFloat<TContext>(value);
+        public ConstantDouble<TContext> Double(double value) => new ConstantDouble<TContext>(value);
+        public ConstantBool<TContext> Bool(bool value) => new ConstantBool<TContext>(value);
+        public ConstantColor<TContext> Color(System.Drawing.Color value) => new ConstantColor<TContext>(value);
+        public ConstantString<TContext> String(string value) => new ConstantString<TContext>(value);
+        public ConstantGuid<TContext> Color(System.Guid value) => new ConstantGuid<TContext>(value);
+        public ConstantList<TType, TContext> List<TType>(TType[] value) => new ConstantList<TType, TContext>(value);
+
+        #endregion
+
+        #region Conditional Expressions
+
+        public ConditionalExpression<TType, TContext> Conditional<TType>(IExpression<bool, TContext> condition,
+            IExpression<TType, TContext> passExpression,
+            IExpression<TType, TContext> failExpression) =>
+            new ConditionalExpression<TType, TContext>(condition, passExpression, failExpression);
+
+        public IExpression<int, TContext> Conditional(IExpression<bool, TContext> condition,
+            IExpression<int, TContext> passExpression,
+            IExpression<int, TContext> failExpression) =>
+            new ConditionalExpression<int, TContext>(condition, passExpression, failExpression);
+
+        public ConditionalExpression<float, TContext> Conditional(IExpression<bool, TContext> condition,
+            IExpression<float, TContext> passExpression,
+            IExpression<float, TContext> failExpression) =>
+            new ConditionalExpression<float, TContext>(condition, passExpression, failExpression);
+
+        public ConditionalExpression<double, TContext> ConditionalDouble(IExpression<bool, TContext> condition,
+            IExpression<double, TContext> passExpression,
+            IExpression<double, TContext> failExpression) =>
+            new ConditionalExpression<double, TContext>(condition, passExpression, failExpression);
+
+        public ConditionalExpression<decimal, TContext> Conditional(IExpression<bool, TContext> condition,
+            IExpression<decimal, TContext> passExpression,
+            IExpression<decimal, TContext> failExpression) =>
+            new ConditionalExpression<decimal, TContext>(condition, passExpression, failExpression);
+
+        public ConditionalExpression<System.Drawing.Color, TContext> Conditional(IExpression<bool, TContext> condition,
+            IExpression<System.Drawing.Color, TContext> passExpression,
+            IExpression<System.Drawing.Color, TContext> failExpression) =>
+            new ConditionalExpression<System.Drawing.Color, TContext>(condition, passExpression, failExpression);
+
+        public ConditionalExpression<string, TContext> Conditional(IExpression<bool, TContext> condition,
+            IExpression<string, TContext> passExpression,
+            IExpression<string, TContext> failExpression) =>
+            new ConditionalExpression<string, TContext>(condition, passExpression, failExpression);
+
+        public ConditionalExpression<System.Guid, TContext> Conditional(IExpression<bool, TContext> condition,
+            IExpression<System.Guid, TContext> passExpression,
+            IExpression<System.Guid, TContext> failExpression) =>
+            new ConditionalExpression<System.Guid, TContext>(condition, passExpression, failExpression);
+
+        public ConditionalListExpression<TType, TContext> ConditionalList<TType>(IExpression<bool, TContext> condition,
+            IListExpression<TType, TContext> passExpression, 
+            IListExpression<TType, TContext> failExpression) =>
+            new ConditionalListExpression<TType, TContext>(condition, passExpression, failExpression);
+        
+        #endregion
+
+        #region Arithmetic Operators
+
+        #region Generic
 
         public Add<TType, TContext> Add<TType>(IExpression<TType, TContext> lhs,
             IExpression<TType, TContext> rhs) =>
@@ -31,16 +96,9 @@ namespace Aptacode.Expressions
             IExpression<TType, TContext> rhs) =>
             new Subtract<TType, TContext>(lhs, rhs);
 
-        public ConditionalExpression<TType, TContext> Conditional<TType>(IExpression<bool, TContext> condition,
-            IExpression<TType, TContext> passExpression,
-            IExpression<TType, TContext> failExpression) =>
-            new ConditionalExpression<TType, TContext>(condition, passExpression, failExpression);
-
         #endregion
 
-        #region Integer Expressions
-
-        public ConstantInteger<TContext> Int(int value) => new ConstantInteger<TContext>(value);
+        #region Integer
 
         public AddInteger<TContext> AddInteger(IExpression<int, TContext> lhs, IExpression<int, TContext> rhs) =>
             new AddInteger<TContext>(lhs, rhs);
@@ -53,16 +111,9 @@ namespace Aptacode.Expressions
             IExpression<int, TContext> rhs) =>
             new SubtractInteger<TContext>(lhs, rhs);
 
-        public IExpression<int, TContext> Conditional(IExpression<bool, TContext> condition,
-            IExpression<int, TContext> passExpression,
-            IExpression<int, TContext> failExpression) =>
-            new ConditionalExpression<int, TContext>(condition, passExpression, failExpression);
-
         #endregion
 
-        #region Float Expressions
-
-        public ConstantFloat<TContext> Float(float value) => new ConstantFloat<TContext>(value);
+        #region Float
 
         public AddFloat<TContext> AddFloat(IExpression<float, TContext> lhs, IExpression<float, TContext> rhs) =>
             new AddFloat<TContext>(lhs, rhs);
@@ -75,17 +126,9 @@ namespace Aptacode.Expressions
             SubtractFloat(IExpression<float, TContext> lhs, IExpression<float, TContext> rhs) =>
             new SubtractFloat<TContext>(lhs, rhs);
 
-        public ConditionalExpression<float, TContext> Conditional(IExpression<bool, TContext> condition,
-            IExpression<float, TContext> passExpression,
-            IExpression<float, TContext> failExpression) =>
-            new ConditionalExpression<float, TContext>(condition, passExpression, failExpression);
-
         #endregion
 
-
-        #region Double Expressions
-
-        public ConstantDouble<TContext> Double(double value) => new ConstantDouble<TContext>(value);
+        #region Double
 
         public AddDouble<TContext> AddDouble(IExpression<double, TContext> lhs, IExpression<double, TContext> rhs) =>
             new AddDouble<TContext>(lhs, rhs);
@@ -98,19 +141,12 @@ namespace Aptacode.Expressions
             SubtractDouble(IExpression<double, TContext> lhs, IExpression<double, TContext> rhs) =>
             new SubtractDouble<TContext>(lhs, rhs);
 
-        public ConditionalExpression<double, TContext> ConditionalDouble(IExpression<bool, TContext> condition,
-            IExpression<double, TContext> passExpression,
-            IExpression<double, TContext> failExpression) =>
-            new ConditionalExpression<double, TContext>(condition, passExpression, failExpression);
-
         #endregion
 
-        #region Decimal Expressions
+        #region Decimal
 
-        public ConstantDecimal<TContext> Decimal(decimal value) => new ConstantDecimal<TContext>(value);
-
-        public AddDecimal<TContext>
-            AddDecimal(IExpression<decimal, TContext> lhs, IExpression<decimal, TContext> rhs) =>
+        public AddDecimal<TContext> AddDecimal(IExpression<decimal, TContext> lhs, 
+            IExpression<decimal, TContext> rhs) =>
             new AddDecimal<TContext>(lhs, rhs);
 
         public MultiplyDecimal<TContext> MultiplyFloat(IExpression<decimal, TContext> lhs,
@@ -121,20 +157,35 @@ namespace Aptacode.Expressions
             IExpression<decimal, TContext> rhs) =>
             new SubtractDecimal<TContext>(lhs, rhs);
 
-        public ConditionalExpression<decimal, TContext> Conditional(IExpression<bool, TContext> condition,
-            IExpression<decimal, TContext> passExpression,
-            IExpression<decimal, TContext> failExpression) =>
-            new ConditionalExpression<decimal, TContext>(condition, passExpression, failExpression);
 
         #endregion
 
-        #region Boolean Expressions
+        #region String
 
-        public ConstantBool<TContext> Bool(bool value) => new ConstantBool<TContext>(value);
+        public ConcatString<TContext> Concat(IExpression<string, TContext> lhs,
+            IExpression<string, TContext> rhs) =>
+            new ConcatString<TContext>(lhs, rhs);
 
-        public EqualTo<TType, TContext> EqualTo<TType>(IExpression<TType, TContext> lhs,
-            IExpression<TType, TContext> rhs) =>
-            new EqualTo<TType, TContext>(lhs, rhs);
+        #endregion
+
+        #endregion
+
+        #region Logical Operators
+
+        public And<TContext> And(IExpression<bool, TContext> lhs, IExpression<bool, TContext> rhs) =>
+            new And<TContext>(lhs, rhs);
+
+        public Or<TContext> Or(IExpression<bool, TContext> lhs, IExpression<bool, TContext> rhs) =>
+            new Or<TContext>(lhs, rhs);
+
+        public Not<TContext> Not(IExpression<bool, TContext> lhs) => new Not<TContext>(lhs);
+
+        public XOr<TContext> XOr(IExpression<bool, TContext> lhs, IExpression<bool, TContext> rhs) =>
+            new XOr<TContext>(lhs, rhs);
+
+        #endregion
+
+        #region Relational Operators
 
         public GreaterThan<TType, TContext> GreaterThan<TType>(IExpression<TType, TContext> lhs,
             IExpression<TType, TContext> rhs) =>
@@ -153,56 +204,21 @@ namespace Aptacode.Expressions
             IExpression<TType, TContext> rhs) =>
             new LessThanOrEqualTo<TType, TContext>(lhs, rhs);
 
-        public And<TContext> And(IExpression<bool, TContext> lhs, IExpression<bool, TContext> rhs) =>
-            new And<TContext>(lhs, rhs);
+        #endregion
 
-        public Or<TContext> Or(IExpression<bool, TContext> lhs, IExpression<bool, TContext> rhs) =>
-            new Or<TContext>(lhs, rhs);
+        #region Equality Operators
 
-        public Not<TContext> Not(IExpression<bool, TContext> lhs) => new Not<TContext>(lhs);
+        public EqualTo<TType, TContext> EqualTo<TType>(IExpression<TType, TContext> lhs,
+            IExpression<TType, TContext> rhs) =>
+            new EqualTo<TType, TContext>(lhs, rhs);
 
-        public XOr<TContext> XOr(IExpression<bool, TContext> lhs, IExpression<bool, TContext> rhs) =>
-            new XOr<TContext>(lhs, rhs);
+        public NotEqualTo<TType, TContext> NotEqualTo<TType>(IExpression<TType, TContext> lhs,
+            IExpression<TType, TContext> rhs) =>
+            new NotEqualTo<TType, TContext>(lhs, rhs);
 
         #endregion
 
-        #region Color Expressions
-
-        public ConstantColor<TContext> Color(System.Drawing.Color value) => new ConstantColor<TContext>(value);
-
-        public ConditionalExpression<System.Drawing.Color, TContext> Conditional(IExpression<bool, TContext> condition,
-            IExpression<System.Drawing.Color, TContext> passExpression,
-            IExpression<System.Drawing.Color, TContext> failExpression) =>
-            new ConditionalExpression<System.Drawing.Color, TContext>(condition, passExpression, failExpression);
-
-        #endregion
-
-        #region String Expressions
-
-        public ConstantString<TContext> String(string value) => new ConstantString<TContext>(value);
-
-        public ConditionalExpression<string, TContext> Conditional(IExpression<bool, TContext> condition,
-            IExpression<string, TContext> passExpression,
-            IExpression<string, TContext> failExpression) =>
-            new ConditionalExpression<string, TContext>(condition, passExpression, failExpression);
-
-        #endregion
-
-        #region Guid Expressions
-
-        public ConstantGuid<TContext> Color(System.Guid value) => new ConstantGuid<TContext>(value);
-
-        public ConditionalExpression<System.Guid, TContext> Conditional(IExpression<bool, TContext> condition,
-            IExpression<System.Guid, TContext> passExpression,
-            IExpression<System.Guid, TContext> failExpression) =>
-            new ConditionalExpression<System.Guid, TContext>(condition, passExpression, failExpression);
-
-        #endregion
-
-        #region List Expressions
-
-        public ConstantList<TType, TContext> List<TType>(TType[] value)
-            => new ConstantList<TType, TContext>(value);
+        #region List Operators
 
         public ConcatList<TType, TContext> Concat<TType>(IListExpression<TType, TContext> lhs,
             IListExpression<TType, TContext> rhs) =>
@@ -224,6 +240,10 @@ namespace Aptacode.Expressions
         public TakeLast<TType, TContext> TakeLast<TType>(IListExpression<TType, TContext> list,
             IExpression<int, TContext> count) =>
             new TakeLast<TType, TContext>(list, count);
+
+        public Append<TType, TContext> Append<TType>(IListExpression<TType, TContext> list,
+            IExpression<TType, TContext> element) =>
+            new Append<TType, TContext>(list, element);
 
         #endregion
     }

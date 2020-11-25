@@ -2,24 +2,24 @@
 
 namespace Aptacode.Expressions.List
 {
-    public abstract class TernaryListExpression<TType, TContext> : IListExpression<TType, TContext>
+    public abstract class TernaryListExpression<T1, T2, TContext> : IListExpression<T2, TContext>
 
     {
-        protected TernaryListExpression(IExpression<bool, TContext> condition,
-            IListExpression<TType, TContext> passExpression, IListExpression<TType, TContext> failExpression)
+        protected TernaryListExpression(IExpression<T1, TContext> condition,
+            IListExpression<T2, TContext> passExpression, IListExpression<T2, TContext> failExpression)
         {
             Condition = condition;
             PassExpression = passExpression;
             FailExpression = failExpression;
         }
 
-        public IExpression<bool, TContext> Condition { get; }
+        public IExpression<T1, TContext> Condition { get; }
 
-        public IListExpression<TType, TContext> PassExpression { get; }
+        public IListExpression<T2, TContext> PassExpression { get; }
 
-        public IListExpression<TType, TContext> FailExpression { get; }
+        public IListExpression<T2, TContext> FailExpression { get; }
 
-        public abstract TType[] Interpret(TContext context);
+        public abstract T2[] Interpret(TContext context);
 
         public void Visit(IExpressionVisitor<TContext> visitor)
         {
