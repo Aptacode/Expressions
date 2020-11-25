@@ -1,7 +1,7 @@
 ﻿using Aptacode.Expressions.Bool;
+using Aptacode.Expressions.GenericArithmeticOperators;
 using Aptacode.Expressions.GenericExpressions;
 using Aptacode.Expressions.Integer;
-using Aptacode.Expressions.Numeric;
 using Expressions.Tests.Boolean.Comparison;
 using Moq;
 using Xunit;

@@ -1,6 +1,6 @@
 ﻿using Aptacode.Expressions.Visitor;
 
-namespace Aptacode.Expressions.Bool.Comparison
+namespace Aptacode.Expressions.Bool
 {
     public abstract class BinaryBoolComparison<TType, TContext> : IExpression<bool, TContext>
     {

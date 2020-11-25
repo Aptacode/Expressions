@@ -1,4 +1,5 @@
-﻿using Aptacode.Expressions.Bool.Comparison;
+﻿using Aptacode.Expressions.Bool.EqualityOperators;
+using Aptacode.Expressions.Bool.RelationalOperators;
 using Aptacode.Expressions.Integer;
 using Moq;
 using Xunit;

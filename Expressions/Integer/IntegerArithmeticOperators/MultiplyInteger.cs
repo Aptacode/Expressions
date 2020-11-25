@@ -1,6 +1,6 @@
-﻿using Aptacode.Expressions.Numeric;
+﻿using Aptacode.Expressions.GenericArithmeticOperators;
 
-namespace Aptacode.Expressions.Integer
+namespace Aptacode.Expressions.Integer.IntegerArithmeticOperators
 {
     public class MultiplyInteger<TContext> : Multiply<int, TContext>
     {

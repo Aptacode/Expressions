@@ -1,17 +1,25 @@
 ﻿using System.Drawing;
 using Aptacode.Expressions.Bool;
-using Aptacode.Expressions.Bool.Comparison;
-using Aptacode.Expressions.Bool.Expression;
+using Aptacode.Expressions.Bool.EqualityOperators;
+using Aptacode.Expressions.Bool.LogicalOperators;
+using Aptacode.Expressions.Bool.RelationalOperators;
 using Aptacode.Expressions.Color;
 using Aptacode.Expressions.Decimal;
+using Aptacode.Expressions.Decimal.DecimalArithmeticOperators;
 using Aptacode.Expressions.Double;
+using Aptacode.Expressions.Double.DoubleArithmeticOperators;
 using Aptacode.Expressions.Float;
+using Aptacode.Expressions.Float.FloatArithmeticOperators;
+using Aptacode.Expressions.GenericArithmeticOperators;
 using Aptacode.Expressions.GenericExpressions;
 using Aptacode.Expressions.Guid;
 using Aptacode.Expressions.Integer;
+using Aptacode.Expressions.Integer.IntegerArithmeticOperators;
 using Aptacode.Expressions.List;
-using Aptacode.Expressions.Numeric;
+using Aptacode.Expressions.List.IntegerListOperators;
+using Aptacode.Expressions.List.ListOperators;
 using Aptacode.Expressions.String;
+using Aptacode.Expressions.String.StringOperators;
 
 namespace Aptacode.Expressions
 {

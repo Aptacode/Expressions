@@ -1,5 +1,5 @@
 ﻿using Aptacode.Expressions.Bool;
-using Aptacode.Expressions.Bool.Expression;
+using Aptacode.Expressions.Bool.LogicalOperators;
 using Expressions.Tests.Boolean.Comparison;
 using Moq;
 using Xunit;

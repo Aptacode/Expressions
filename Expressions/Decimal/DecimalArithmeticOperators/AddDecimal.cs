@@ -1,6 +1,6 @@
-﻿using Aptacode.Expressions.Numeric;
+﻿using Aptacode.Expressions.GenericArithmeticOperators;
 
-namespace Aptacode.Expressions.Decimal
+namespace Aptacode.Expressions.Decimal.DecimalArithmeticOperators
 {
     public class AddDecimal<TContext> : Add<decimal, TContext>
     {

@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Aptacode.Expressions.Utilities;
 
-namespace Aptacode.Expressions.List
+namespace Aptacode.Expressions.List.ListOperators
 {
     public class TakeLast<TType, TContext> : UnaryListExpression<TType, TContext>
 

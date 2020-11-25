@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Aptacode.Expressions.Bool.Comparison
+namespace Aptacode.Expressions.Bool.EqualityOperators
 {
     public class NotEqualTo<TType, TContext> : BinaryBoolComparison<TType, TContext>
 

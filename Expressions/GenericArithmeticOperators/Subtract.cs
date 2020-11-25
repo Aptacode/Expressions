@@ -1,6 +1,6 @@
 ﻿using Aptacode.Expressions.GenericExpressions;
 
-namespace Aptacode.Expressions.Numeric
+namespace Aptacode.Expressions.GenericArithmeticOperators
 {
     public class Subtract<TType, TContext> : BinaryExpression<TType, TContext>
 

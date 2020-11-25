@@ -1,6 +1,6 @@
 ﻿using Aptacode.Expressions.GenericExpressions;
 
-namespace Aptacode.Expressions.Numeric
+namespace Aptacode.Expressions.GenericArithmeticOperators
 {
     public class Multiply<TType, TContext> : BinaryExpression<TType, TContext>
 

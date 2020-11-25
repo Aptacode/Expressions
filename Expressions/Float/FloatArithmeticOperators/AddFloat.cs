@@ -1,6 +1,6 @@
-﻿using Aptacode.Expressions.Numeric;
+﻿using Aptacode.Expressions.GenericArithmeticOperators;
 
-namespace Aptacode.Expressions.Float
+namespace Aptacode.Expressions.Float.FloatArithmeticOperators
 {
     public class AddFloat<TContext> : Add<float, TContext>
     {

@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using Aptacode.Expressions.Bool.Comparison;
-
-namespace Aptacode.Expressions.Numeric.Extensions
+﻿namespace Aptacode.Expressions.Bool.RelationalOperators.Extensions
 {
     public static class RelationalOperatorExtensions
     {

@@ -1,6 +1,6 @@
-﻿using Aptacode.Expressions.Numeric;
+﻿using Aptacode.Expressions.GenericArithmeticOperators;
 
-namespace Aptacode.Expressions.String
+namespace Aptacode.Expressions.String.StringOperators
 {
     public class ConcatString<TContext> : Add<string, TContext>
     {
