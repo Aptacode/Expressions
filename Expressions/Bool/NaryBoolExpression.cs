@@ -9,7 +9,7 @@ namespace Aptacode.Expressions.Bool
             Expressions = expressions;
         }
 
-        public IExpression<bool, TContext>[] Expressions { get; }
+        public readonly IExpression<bool, TContext>[] Expressions;
 
         public abstract bool Interpret(TContext context);
 

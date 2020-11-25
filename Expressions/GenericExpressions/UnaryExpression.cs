@@ -9,7 +9,7 @@ namespace Aptacode.Expressions.GenericExpressions
             Expression = expression;
         }
 
-        public IExpression<TType, TContext> Expression { get; }
+        public readonly IExpression<TType, TContext> Expression;
 
         public abstract TType Interpret(TContext context);
 

@@ -2,7 +2,7 @@
 
 namespace Aptacode.Expressions
 {
-    public interface IExpression<TType, TContext>
+    public interface IExpression<out TType, TContext>
     {
         TType Interpret(TContext context);
         void Visit(IExpressionVisitor<TContext> visitor);
