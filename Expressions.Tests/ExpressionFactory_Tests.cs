@@ -97,29 +97,6 @@ namespace Expressions.Tests
             Assert.True(new EqualTo<Guid, IContext>(constantGuid, sut).Interpret(_context));
         }
 
-        //[Fact]
-        //public void ExpressionFactoryColor_SuccessfullyCreates_ConstantColorExpression_Test()
-        //{
-        //    //Arrange
-        //    var constantColor = new ConstantColor<IContext>(Color.Red);
-        //    //Act
-        //    var sut = _expressions.Color(Color.Red);
-        //    //Assert
-        //    Assert.True(new EqualTo<Color, IContext>(constantColor, sut).Interpret(_context));
-        //}
-
-        
-
-        [Fact]
-        public void ExpressionFactorySList_SuccessfullyCreates_ConstantListExpression_Test()
-        {
-            //Arrange
-            var constantList = new ConstantList<int, IContext>( new int[] { 1, 1 });
-            //Act
-            var sut = _expressions.List( new int[] { 1, 1 });
-            //Assert
-            Assert.True(new EqualTo<int[], IContext>(constantList, sut).Interpret(_context));
-        }
         
         [Fact]
         public void ExpressionFactoryString_SuccessfullyCreates_ConstantStringExpression_Test()
@@ -131,9 +108,6 @@ namespace Expressions.Tests
             //Assert
             Assert.True(new EqualTo<string, IContext>(constantString, sut).Interpret(_context));
         }
-
-
-
 
         [Fact]
         public void And_SuccessfullyCreates_AndExpression_Test()
