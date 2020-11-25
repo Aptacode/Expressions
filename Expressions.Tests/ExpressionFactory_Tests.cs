@@ -1,9 +1,5 @@
 ﻿using Aptacode.Expressions;
 using Aptacode.Expressions.Bool;
-using Aptacode.Expressions.Bool.Comparison;
-using Aptacode.Expressions.Bool.Expression;
-using Aptacode.Expressions.Bool.Extensions;
-using Aptacode.Expressions.Color;
 using Aptacode.Expressions.List;
 using Aptacode.Expressions.Decimal;
 using Aptacode.Expressions.Double;
@@ -18,6 +14,8 @@ using Moq;
 using System;
 using System.Drawing;
 using Xunit;
+using Aptacode.Expressions.Bool.EqualityOperators;
+using Aptacode.Expressions.Bool.LogicalOperators;
 
 namespace Expressions.Tests
 {

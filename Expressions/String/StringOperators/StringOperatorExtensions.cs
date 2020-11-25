@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using Aptacode.Expressions.GenericArithmeticOperators;
+using System.Linq;
 
 namespace Aptacode.Expressions.Numeric.Extensions
 {

@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Aptacode.Expressions.Bool.Comparison;
+using Aptacode.Expressions.GenericArithmeticOperators;
 
 namespace Aptacode.Expressions.Numeric.Extensions
 {
