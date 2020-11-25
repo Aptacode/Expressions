@@ -11,7 +11,7 @@ namespace Aptacode.Expressions.Numeric.Extensions
 
         {
             return expressions.Aggregate(expression,
-                (current, integerExpression) => new Add<TType, TContext>(current, integerExpression));
+                (current, aggregateExpression) => new Add<TType, TContext>(current, aggregateExpression));
         }
 
         public static IExpression<TType, TContext> Subtract<TType, TContext>(
@@ -20,7 +20,7 @@ namespace Aptacode.Expressions.Numeric.Extensions
 
         {
             return expressions.Aggregate(expression,
-                (current, integerExpression) => new Subtract<TType, TContext>(current, integerExpression));
+                (current, aggregateExpression) => new Subtract<TType, TContext>(current, aggregateExpression));
         }
 
         public static IExpression<TType, TContext> Multiply<TType, TContext>(
@@ -29,7 +29,7 @@ namespace Aptacode.Expressions.Numeric.Extensions
 
         {
             return expressions.Aggregate(expression,
-                (current, integerExpression) => new Multiply<TType, TContext>(current, integerExpression));
+                (current, aggregateExpression) => new Multiply<TType, TContext>(current, aggregateExpression));
         }
     }
 }

@@ -2,7 +2,9 @@
 using Aptacode.Expressions.Bool;
 using Aptacode.Expressions.Bool.Comparison;
 using Aptacode.Expressions.Bool.Expression;
+using Aptacode.Expressions.Bool.Extensions;
 using Aptacode.Expressions.Color;
+using Aptacode.Expressions.List;
 using Aptacode.Expressions.Decimal;
 using Aptacode.Expressions.Double;
 using Aptacode.Expressions.Float;
@@ -96,7 +98,7 @@ namespace Expressions.Tests
             //Assert
             Assert.True(new EqualTo<Guid, IContext>(constantGuid, sut).Interpret(_context));
         }
-        
+
         //[Fact]
         //public void ExpressionFactoryColor_SuccessfullyCreates_ConstantColorExpression_Test()
         //{
@@ -107,6 +109,19 @@ namespace Expressions.Tests
         //    //Assert
         //    Assert.True(new EqualTo<Color, IContext>(constantColor, sut).Interpret(_context));
         //}
+
+        
+
+        [Fact]
+        public void ExpressionFactorySList_SuccessfullyCreates_ConstantListExpression_Test()
+        {
+            //Arrange
+            var constantList = new ConstantList<int, IContext>( new int[] { 1, 1 });
+            //Act
+            var sut = _expressions.List( new int[] { 1, 1 });
+            //Assert
+            Assert.True(new EqualTo<int[], IContext>(constantList, sut).Interpret(_context));
+        }
         
         [Fact]
         public void ExpressionFactoryString_SuccessfullyCreates_ConstantStringExpression_Test()
