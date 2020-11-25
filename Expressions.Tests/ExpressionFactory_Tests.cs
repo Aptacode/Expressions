@@ -30,15 +30,16 @@ namespace Expressions.Tests
         private readonly IContext _context;
         private readonly ExpressionFactory<IContext> _expressions;
 
+
         [Fact]
-        public void ExpressionFactoryBool_SuccessfullyCreates_ConstantBoolExpression_Test() //Not sure if this is the best way to make this assertion. Could also use the Intepret like below.
+        public void ExpressionFactoryBool_SuccessfullyCreates_ConstantBoolExpression_Test()
         {
             //Arrange
             var constantBool = new ConstantBool<IContext>(true);
             //Act
             var sut = _expressions.Bool(true);
             //Assert
-            Assert.Equal(constantBool.GetType(), sut.GetType());
+            Assert.True(new EqualTo<bool, IContext>(constantBool, sut).Interpret(_context));
         }
 
         [Fact]
