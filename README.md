@@ -182,7 +182,7 @@ For list expressions we also have some of the usual list operations. Using the f
 public readonly ExpressionFactory<TContext> _expressions = new ExpressionFactory<TContext>();
 
 var list1 = new TType[] { a, b };
-var list2 = new TType[] { c, d }
+var list2 = new TType[] { c, d };
 var ConcatListExpression = _expressions.List(list1).ConcatList(list2); //A list expression representing the concatenation of two list expressions 'list1 + list2'
 var FirstExpression = _expressions.List(list1).First(); //An expression representing the first item in the list
 var LastExpression = _expressions.List(list1).Last(); //An expression representing the last item in the list
