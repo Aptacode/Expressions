@@ -141,16 +141,16 @@ Using the the fluent API and `ExpressionFactory`:
 public readonly ExpressionFactory<TContext> _expressions = new ExpressionFactory<TContext>();
 
 
-var LessThanExpression = _expressions.Expression<TType>(a).LessThan(_expressions.Expression<TType>(b); //An expression representing the comparison a < b
-var GreaterThanOrEqualToExpression = _expressions.Expression<TType>(a).GreaterThan(_expressions.Expression<TType>(b); // An expression representing the comparison a >= b
-var LessThanOrEqualToExpression = _expressions.Expression<TType>(a).LessThanOrEqualTo(_expressions.Expression<TType>(b); // An expression representing the comparison a <= b
+var LessThanExpression = _expressions.Expression<TType>(a).LessThan(_expressions.Expression<TType>(b)); //An expression representing the comparison a < b
+var GreaterThanOrEqualToExpression = _expressions.Expression<TType>(a).GreaterThan(_expressions.Expression<TType>(b)); // An expression representing the comparison a >= b
+var LessThanOrEqualToExpression = _expressions.Expression<TType>(a).LessThanOrEqualTo(_expressions.Expression<TType>(b)); // An expression representing the comparison a <= b
 ```
 
 Similarly, expressions with boolean equality operators can be made on any given type:
 
 ```csharp
-var EqualToExpression = _expressions.Expression<TType>(a).EqualTo(_expressions.Expression<TType>(b); //An expression represent the comparison 'a == b'
-var NotEqualToExpression = _expressions.Expression<TType>(a).NotEqualTo(_expressions.Expression<TType>(b); //An expression represent the comparison 'a != b'
+var EqualToExpression = _expressions.Expression<TType>(a).EqualTo(_expressions.Expression<TType>(b)); //An expression represent the comparison 'a == b'
+var NotEqualToExpression = _expressions.Expression<TType>(a).NotEqualTo(_expressions.Expression<TType>(b)); //An expression represent the comparison 'a != b'
 ```
 
 ### Boolean Logical Operators
