@@ -10,7 +10,7 @@ namespace Aptacode.Expressions.List.ListOperators
         public override TType Interpret(TContext context)
         {
             var list = Expression.Interpret(context);
-            return list.Length == 0 ? default : list.Last();
+            return list.Length != 0 ? list.Last() : default;
         }
     }
 }

@@ -11,6 +11,5 @@
             this IExpression<TType, TContext> lhs,
             IExpression<TType, TContext> rhs) =>
             new NotEqualTo<TType, TContext>(lhs, rhs);
-
     }
 }

@@ -82,7 +82,7 @@ namespace Aptacode.Expressions
             new ConditionalExpression<System.Guid, TContext>(condition, passExpression, failExpression);
 
         public ConditionalListExpression<TType, TContext> ConditionalList<TType>(IExpression<bool, TContext> condition,
-            IListExpression<TType, TContext> passExpression, 
+            IListExpression<TType, TContext> passExpression,
             IListExpression<TType, TContext> failExpression) =>
             new ConditionalListExpression<TType, TContext>(condition, passExpression, failExpression);
         
@@ -164,7 +164,6 @@ namespace Aptacode.Expressions
         public SubtractDecimal<TContext> SubtractDecimal(IExpression<decimal, TContext> lhs,
             IExpression<decimal, TContext> rhs) =>
             new SubtractDecimal<TContext>(lhs, rhs);
-
 
         #endregion
 

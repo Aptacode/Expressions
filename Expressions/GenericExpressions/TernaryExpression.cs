@@ -12,11 +12,11 @@ namespace Aptacode.Expressions.GenericExpressions
             FailExpression = failExpression;
         }
 
-        public IExpression<T1, TContext> Condition { get; }
+        public readonly IExpression<T1, TContext> Condition;
 
-        public IExpression<T2, TContext> PassExpression { get; }
+        public readonly IExpression<T2, TContext> PassExpression;
 
-        public IExpression<T2, TContext> FailExpression { get; }
+        public readonly IExpression<T2, TContext> FailExpression;
 
         public abstract T2 Interpret(TContext context);
 

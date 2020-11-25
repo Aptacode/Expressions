@@ -10,9 +10,9 @@ namespace Aptacode.Expressions.Bool
             Rhs = rhs;
         }
 
-        public IExpression<TType, TContext> Lhs { get; }
+        public readonly IExpression<TType, TContext> Lhs;
 
-        public IExpression<TType, TContext> Rhs { get; }
+        public readonly IExpression<TType, TContext> Rhs;
 
         public abstract bool Interpret(TContext context);
 
