@@ -1,7 +1,6 @@
 ﻿using System.Linq;
-using Aptacode.Expressions.Bool.Expression;
 
-namespace Aptacode.Expressions.Bool.Extensions
+namespace Aptacode.Expressions.Bool.LogicalOperators.Extensions
 {
     public static class LogicalOperatorExtensions
     {

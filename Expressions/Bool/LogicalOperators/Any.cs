@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Aptacode.Expressions.Bool.Expression
+namespace Aptacode.Expressions.Bool.LogicalOperators
 {
     public class Any<TContext> : NaryBoolExpression<TContext>
     {

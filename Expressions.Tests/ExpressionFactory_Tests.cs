@@ -1,7 +1,7 @@
 ﻿using Aptacode.Expressions;
 using Aptacode.Expressions.Bool;
-using Aptacode.Expressions.Bool.Comparison;
-using Aptacode.Expressions.Bool.Expression;
+using Aptacode.Expressions.Bool.EqualityOperators;
+using Aptacode.Expressions.Bool.LogicalOperators;
 using Aptacode.Expressions.GenericExpressions;
 using Aptacode.Expressions.Integer;
 using Expressions.Tests.Boolean.Comparison;

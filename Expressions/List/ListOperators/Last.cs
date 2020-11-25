@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Aptacode.Expressions.List
+namespace Aptacode.Expressions.List.ListOperators
 {
     public class Last<TType, TContext> : UnaryListItemExpression<TType, TContext>
 

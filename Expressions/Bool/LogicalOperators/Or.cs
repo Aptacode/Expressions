@@ -1,6 +1,6 @@
 ﻿using Aptacode.Expressions.GenericExpressions;
 
-namespace Aptacode.Expressions.Bool.Expression
+namespace Aptacode.Expressions.Bool.LogicalOperators
 {
     public class Or<TContext> : BinaryExpression<bool, TContext>
     {

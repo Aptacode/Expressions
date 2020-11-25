@@ -1,6 +1,6 @@
-﻿using Aptacode.Expressions.Numeric;
+﻿using Aptacode.Expressions.GenericArithmeticOperators;
 
-namespace Aptacode.Expressions.Double
+namespace Aptacode.Expressions.Double.DoubleArithmeticOperators
 {
     public class MultiplyDouble<TContext> : Multiply<double, TContext>
     {

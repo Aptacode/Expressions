@@ -1,7 +1,6 @@
 ﻿using System.Linq;
-using Aptacode.Expressions.Bool.Comparison;
 
-namespace Aptacode.Expressions.Numeric.Extensions
+namespace Aptacode.Expressions.GenericArithmeticOperators.Extensions
 {
     public static class GenericArithmeticOperatorExtensions
     {

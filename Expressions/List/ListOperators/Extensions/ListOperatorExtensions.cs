@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Aptacode.Expressions.List.Extensions
+namespace Aptacode.Expressions.List.ListOperators.Extensions
 {
     public static class ListOperatorExtensions
     {

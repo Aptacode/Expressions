@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Aptacode.Expressions.List
+namespace Aptacode.Expressions.List.ListOperators
 {
     public class TakeFirst<TType, TContext> : UnaryListExpression<TType, TContext>
 
@@ -19,12 +19,7 @@ namespace Aptacode.Expressions.List
             var list = Expression.Interpret(context);
             var count = CountExpression.Interpret(context);
 
-            if (list.Length <= count)
-            {
-                return list;
-            }
-
-            return Expression.Interpret(context).Take(CountExpression.Interpret(context)).ToArray();
+            return list.Length <= count ? list : Expression.Interpret(context).Take(CountExpression.Interpret(context)).ToArray();
         }
     }
 }

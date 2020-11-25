@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Aptacode.Expressions.Bool.Comparison
+namespace Aptacode.Expressions.Bool.RelationalOperators
 {
     public class GreaterThan<TType, TContext> : BinaryBoolComparison<TType, TContext>
 

@@ -1,4 +1,4 @@
-﻿namespace Aptacode.Expressions.List
+﻿namespace Aptacode.Expressions.List.IntegerListOperators
 {
     public class Count<TType, TContext> : UnaryListIntegerExpression<TType, TContext>
 
