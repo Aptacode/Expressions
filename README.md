@@ -53,7 +53,7 @@ var fibLessThan100 = fibListExpression.Interpret(_context); //Interpreting the e
 
 ## Fluent API
 
-In the above example operators on our expressions such as `_expressions.Add()` are to the left of pair of expressions `(lhs, rhs)` that is acted on by an operator i.e
+In the above example operators on our expressions such as `_expressions.Add()` are to the left of a pair of expressions `(lhs, rhs)` that is acted on by an operator i.e
 
 ```csharp
 var addEx = _expressions.Add(_expressions.Int(2), _expressions.Int(2);
