@@ -2,6 +2,11 @@
 
 namespace Aptacode.Expressions.List.ListOperators
 {
+    /// <summary>
+    /// The class for operation of concatenating two list expressions.
+    /// </summary>
+    /// <typeparam name="TType"></typeparam>
+    /// <typeparam name="TContext"></typeparam>
     public class ConcatList<TType, TContext> : BinaryListExpression<TType, TContext>
 
     {

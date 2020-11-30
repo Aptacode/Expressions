@@ -1,5 +1,10 @@
 ﻿namespace Aptacode.Expressions.List
 {
+    /// <summary>
+    /// The class for a constant list expression containing expressions of any type.
+    /// </summary>
+    /// <typeparam name="TType"></typeparam>
+    /// <typeparam name="TContext"></typeparam>
     public class ConstantList<TType, TContext> : TerminalListExpression<TType, TContext>
 
     {
