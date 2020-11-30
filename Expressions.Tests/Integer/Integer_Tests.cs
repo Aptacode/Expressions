@@ -2,7 +2,7 @@
 using Aptacode.Expressions.GenericArithmeticOperators;
 using Aptacode.Expressions.GenericExpressions;
 using Aptacode.Expressions.Integer;
-using Expressions.Tests.Boolean.Comparison;
+using Expressions.Tests.Boolean;
 using Moq;
 using Xunit;
 
@@ -27,30 +27,6 @@ namespace Expressions.Tests.Integer
             var sut = addExpression.Interpret(_context);
             //Assert
             Assert.Equal(2, sut);
-        }
-
-        [Fact]
-        public void Conditional_EvaluatesToFailExpression_OnFalseCondition()
-        {
-            //Arrange
-            var conditional = new ConditionalExpression<int, IContext>(new ConstantBool<IContext>(false),
-                new ConstantInteger<IContext>(1), new ConstantInteger<IContext>(0));
-            //Act
-            var sut = conditional.Interpret(_context);
-            //Assert
-            Assert.Equal(0, sut);
-        }
-
-        [Fact]
-        public void Conditional_EvaluatesToPassExpression_OnTrueCondition()
-        {
-            //Arrange
-            var conditional = new ConditionalExpression<int, IContext>(new ConstantBool<IContext>(true),
-                new ConstantInteger<IContext>(1), new ConstantInteger<IContext>(0));
-            //Act
-            var sut = conditional.Interpret(_context);
-            //Assert
-            Assert.Equal(1, sut);
         }
 
         [Fact]
