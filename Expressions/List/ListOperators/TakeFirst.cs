@@ -2,6 +2,11 @@
 
 namespace Aptacode.Expressions.List.ListOperators
 {
+    /// <summary>
+    /// The class for the operation of getting the first n expressions in a list expression.
+    /// </summary>
+    /// <typeparam name="TType"></typeparam>
+    /// <typeparam name="TContext"></typeparam>
     public class TakeFirst<TType, TContext> : UnaryListExpression<TType, TContext>
 
     {

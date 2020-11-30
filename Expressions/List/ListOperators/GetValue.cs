@@ -2,6 +2,11 @@
 
 namespace Aptacode.Expressions.List.ListOperators
 {
+    /// <summary>
+    /// The class for the operation of getting an expression at a given index in a list expression.
+    /// </summary>
+    /// <typeparam name="TType"></typeparam>
+    /// <typeparam name="TContext"></typeparam>
     public class GetValue<TType, TContext> : UnaryListItemExpression<TType, TContext>
 
     {
