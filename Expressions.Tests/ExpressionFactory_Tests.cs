@@ -9,13 +9,16 @@ using Aptacode.Expressions.Guid;
 using Aptacode.Expressions.Integer;
 using Aptacode.Expressions.Numeric.Extensions;
 using Aptacode.Expressions.String;
-using Expressions.Tests.Boolean.Comparison;
+using Expressions.Tests.Boolean;
+using Expressions.Tests;
 using Moq;
 using System;
 using System.Drawing;
 using Xunit;
 using Aptacode.Expressions.Bool.EqualityOperators;
 using Aptacode.Expressions.Bool.LogicalOperators;
+using Aptacode.Expressions.Color;
+using Aptacode.Expressions.GenericArithmeticOperators;
 
 namespace Expressions.Tests
 {
@@ -25,11 +28,24 @@ namespace Expressions.Tests
         {
             _context = new Mock<IContext>().Object;
             _expressions = new Mock<ExpressionFactory<IContext>>().Object;
+            _type = new Mock<IType>().Object;
         }
 
+        private readonly IType _type;
         private readonly IContext _context;
         private readonly ExpressionFactory<IContext> _expressions;
 
+        #region Constant Expressions
+        [Fact]
+        public void ExpressionFactoryExpression_SuccessfullyCreates_ConstantExpression_Test()
+        {
+            //Arrange
+            var constantExpression = new ConstantExpression<IType, IContext>(_type);
+            //Act
+            var sut = _expressions.Expression(_type);
+            //Assert
+            Assert.True(sut.Interpret(_context) == constantExpression.Interpret(_context));
+        }
 
         [Fact]
         public void ExpressionFactoryBool_SuccessfullyCreates_ConstantBoolExpression_Test()
@@ -39,7 +55,7 @@ namespace Expressions.Tests
             //Act
             var sut = _expressions.Bool(true);
             //Assert
-            Assert.True(new EqualTo<bool, IContext>(constantBool, sut).Interpret(_context));
+            Assert.True(sut.Interpret(_context) == constantBool.Interpret(_context));
         }
 
         [Fact]
@@ -50,18 +66,18 @@ namespace Expressions.Tests
             //Act
             var sut = _expressions.Int(1);
             //Assert
-            Assert.True(new EqualTo<int, IContext>(constantInt, sut).Interpret(_context));
+            Assert.True(sut.Interpret(_context) == constantInt.Interpret(_context));
         }
         
         [Fact]
         public void ExpressionFactoryFloat_SuccessfullyCreates_ConstantFloatExpression_Test()
         {
             //Arrange
-            var floatPi = new ConstantFloat<IContext>(3.1415f);
+            var constantFloat = new ConstantFloat<IContext>(3.1415f);
             //Act
             var sut = _expressions.Float(3.1415f);
             //Assert
-            Assert.True(new EqualTo<float, IContext>(floatPi, sut).Interpret(_context));
+            Assert.True(sut.Interpret(_context) == constantFloat.Interpret(_context));
         }
         
         [Fact]
@@ -72,7 +88,7 @@ namespace Expressions.Tests
             //Act
             var sut = _expressions.Double(0.99);
             //Assert
-            Assert.True(new EqualTo<double, IContext>(constantDouble, sut).Interpret(_context));
+            Assert.True(sut.Interpret(_context) == constantDouble.Interpret(_context));
         }
         
         [Fact]
@@ -83,7 +99,7 @@ namespace Expressions.Tests
             //Act
             var sut = _expressions.Decimal(1.23m);
             //Assert
-            Assert.True(new EqualTo<decimal, IContext>(constantDecimal, sut).Interpret(_context));
+            Assert.True(sut.Interpret(_context) == constantDecimal.Interpret(_context));
         }
         
         [Fact]
@@ -94,7 +110,7 @@ namespace Expressions.Tests
             //Act
             var sut = _expressions.Guid(Guid.Parse("9f3a43e8-43db-4115-87ef-20398ead7ae5"));
             //Assert
-            Assert.True(new EqualTo<Guid, IContext>(constantGuid, sut).Interpret(_context));
+            Assert.True(sut.Interpret(_context) == constantGuid.Interpret(_context));
         }
 
         
@@ -106,9 +122,21 @@ namespace Expressions.Tests
             //Act
             var sut = _expressions.String("foo");
             //Assert
-            Assert.True(new EqualTo<string, IContext>(constantString, sut).Interpret(_context));
+            Assert.True(sut.Interpret(_context) == constantString.Interpret(_context));
         }
-
+        
+        [Fact]
+        public void ExpressionFactoryColor_SuccessfullyCreates_ConstantColorExpression_Test()
+        {
+            //Arrange
+            var constantColor = new ConstantColor<IContext>(Color.Red);
+            //Act
+            var sut = _expressions.Color(Color.Red);
+            //Assert
+            Assert.True(sut.Interpret(_context) == constantColor.Interpret(_context));
+        }
+        #endregion
+        #region Boolean Logical Operator Expressions
         [Fact]
         public void And_SuccessfullyCreates_AndExpression_Test()
         {
@@ -121,6 +149,44 @@ namespace Expressions.Tests
             Assert.Equal(TrueAndTrueEx.Interpret(_context), sut.Interpret(_context));
         }
 
+        [Fact]
+        public void Not_SuccessfullyCreates_NotExpression_Test()
+        {
+            //Arrange
+            var True = _expressions.Bool(true);
+            var NotTrueEx = new Not<IContext>(True);
+            //Act
+            var sut = _expressions.Not(True);
+            //Assert
+            Assert.Equal(NotTrueEx.Interpret(_context), sut.Interpret(_context));
+        }
+
+        [Fact]
+        public void Or_SuccessfullyCreates_OrExpression_Test()
+        {
+            //Arrange
+            var True = _expressions.Bool(true);
+            var TrueOrTrueEx = new Or<IContext>(True, True);
+            //Act
+            var sut = _expressions.Or(True, True);
+            //Assert
+            Assert.Equal(TrueOrTrueEx.Interpret(_context), sut.Interpret(_context));
+        }
+
+        [Fact]
+        public void XOr_SuccessfullyCreates_XOrExpression_Test()
+        {
+            //Arrange
+            var True = _expressions.Bool(true);
+            var TrueXOrTrueEx = new XOr<IContext>(True, True);
+            //Act
+            var sut = _expressions.XOr(True, True);
+            //Assert
+            Assert.Equal(TrueXOrTrueEx.Interpret(_context), sut.Interpret(_context));
+        }
+
+        #endregion
+        #region Boolean Equality Operator Expressions
         [Fact]
         public void EqualTo_ReturnsFalse_WhenExpressionsAreNotEqual_Test()
         {
@@ -144,60 +210,32 @@ namespace Expressions.Tests
             //Assert
             Assert.True(sut.Interpret(_context));
         }
-
+        
         [Fact]
-        public void ExpressionFactory_Add_SuccessfullyAdds_Two_IntegerExpressions_Test()
+        public void NotEqualTo_ReturnsTrue_WhenExpressionsAreNotEqual_Test()
         {
             //Arrange
-            var int1 = _expressions.Int(1);
-            var int2 = _expressions.Int(1);
+            var ex1 = _expressions.Int(0);
+            var ex2 = _expressions.Int(1);
             //Act
-            var sut = _expressions.Add(int1, int2);
+            var sut = _expressions.NotEqualTo(ex1, ex2);
             //Assert
-            Assert.Equal(2, sut.Interpret(_context));
+            Assert.True(sut.Interpret(_context));
         }
-
+        
         [Fact]
-        public void ExpressionFactory_Multiply_SuccessfullyMultiplies_Two_IntegerExpressions_Test()
+        public void NotEqualTo_ReturnsFlase_WhenExpressionsAreEqual_Test()
         {
             //Arrange
-            var int1 = _expressions.Int(2);
-            var int2 = _expressions.Int(2);
+            var ex1 = _expressions.Int(0);
+            var ex2 = _expressions.Int(0);
             //Act
-            var sut = _expressions.Multiply(int1, int2);
+            var sut = _expressions.NotEqualTo(ex1, ex2);
             //Assert
-            Assert.Equal(4, sut.Interpret(_context));
+            Assert.False(sut.Interpret(_context));
         }
-
-        [Fact]
-        public void ExpressionFactory_Subtract_SuccessfullySubtracts_Two_IntegerExpressions_Test()
-        {
-            //Arrange
-            var int1 = _expressions.Int(1);
-            var int2 = _expressions.Int(1);
-            //Act
-            var sut = _expressions.Subtract(int1, int2);
-            //Assert
-            Assert.Equal(0, sut.Interpret(_context));
-        }
-
-
-
-        [Fact]
-        public void ExpressionFactoryConditional_SuccessfullyCreates_ConditionalIntegerExpression_Test()
-        {
-            //Arrange
-            var intConditional =
-                new ConditionalExpression<int, IContext>(_expressions.Bool(true), _expressions.Int(1),
-                    _expressions.Int(0));
-            //Act
-            var sut = _expressions.Conditional(_expressions.Bool(true), _expressions.Int(1), _expressions.Int(0));
-            //Assert
-            Assert.True(_expressions.EqualTo(intConditional, sut).Interpret(_context));
-        }
-
-
-
+        #endregion
+        #region Boolean Relational Operator Expressions
         [Fact]
         public void GreaterThan_ReturnsFalse_When_LHS_IsNot_GreaterThan_RHS_Test()
         {
@@ -301,42 +339,73 @@ namespace Expressions.Tests
             Assert.True(sut1.Interpret(_context));
             Assert.True(sut2.Interpret(_context));
         }
-
+        #endregion
+        #region Conditional Expressions
         [Fact]
-        public void Not_SuccessfullyCreates_NotExpression_Test()
+
+        public void ExpressionFactoryConditional_SuccessfullyCreates_ConditionalExpression_Test()
         {
             //Arrange
-            var True = _expressions.Bool(true);
-            var NotTrueEx = new Not<IContext>(True);
+            var Conditional =
+                new ConditionalExpression<IType, IContext>(_expressions.Bool(true), _expressions.Expression(_type),
+                    _expressions.Expression(_type));
             //Act
-            var sut = _expressions.Not(True);
+            var sut = _expressions.Conditional(_expressions.Bool(true), _expressions.Expression(_type), _expressions.Expression(_type));
             //Assert
-            Assert.Equal(NotTrueEx.Interpret(_context), sut.Interpret(_context));
+            Assert.True(_expressions.EqualTo(Conditional, sut).Interpret(_context));
         }
 
         [Fact]
-        public void Or_SuccessfullyCreates_OrExpression_Test()
+        public void ExpressionFactoryConditional_SuccessfullyCreates_ConditionalIntegerExpression_Test()
         {
             //Arrange
-            var True = _expressions.Bool(true);
-            var TrueOrTrueEx = new Or<IContext>(True, True);
+            var intConditional =
+                new ConditionalExpression<int, IContext>(_expressions.Bool(true), _expressions.Int(1),
+                    _expressions.Int(0));
             //Act
-            var sut = _expressions.Or(True, True);
+            var sut = _expressions.Conditional(_expressions.Bool(true), _expressions.Int(1), _expressions.Int(0));
             //Assert
-            Assert.Equal(TrueOrTrueEx.Interpret(_context), sut.Interpret(_context));
+            Assert.True(_expressions.EqualTo(intConditional, sut).Interpret(_context));
+        }
+        #endregion
+        #region Arithmetic Operator Expressions
+        [Fact]
+        public void ExpressionFactory_Add_SuccessfullyAdds_Two_IntegerExpressions_Test()
+        {
+            //Arrange
+            var int1 = _expressions.Int(1);
+            var int2 = _expressions.Int(1);
+            //Act
+            var sut = _expressions.Add(int1, int2);
+            //Assert
+            Assert.Equal(2, sut.Interpret(_context));
         }
 
         [Fact]
-        public void XOr_SuccessfullyCreates_XOrExpression_Test()
+        public void ExpressionFactory_Multiply_SuccessfullyMultiplies_Two_IntegerExpressions_Test()
         {
             //Arrange
-            var True = _expressions.Bool(true);
-            var TrueXOrTrueEx = new XOr<IContext>(True, True);
+            var int1 = _expressions.Int(2);
+            var int2 = _expressions.Int(2);
             //Act
-            var sut = _expressions.XOr(True, True);
+            var sut = _expressions.Multiply(int1, int2);
             //Assert
-            Assert.Equal(TrueXOrTrueEx.Interpret(_context), sut.Interpret(_context));
+            Assert.Equal(4, sut.Interpret(_context));
         }
+
+        [Fact]
+        public void ExpressionFactory_Subtract_SuccessfullySubtracts_Two_IntegerExpressions_Test()
+        {
+            //Arrange
+            var int1 = _expressions.Int(1);
+            var int2 = _expressions.Int(1);
+            //Act
+            var sut = _expressions.Subtract(int1, int2);
+            //Assert
+            Assert.Equal(0, sut.Interpret(_context));
+        }
+        #endregion
+
 
         [Fact]
         public void ListTest()

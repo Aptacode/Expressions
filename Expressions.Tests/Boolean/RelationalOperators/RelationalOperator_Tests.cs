@@ -6,39 +6,14 @@ using Xunit;
 
 namespace Expressions.Tests.Boolean.Comparison
 {
-    public class Comparison_Tests
+    public class RelationalOperators_Tests
     {
-        public Comparison_Tests()
+        public RelationalOperators_Tests()
         {
             _context = new Mock<IContext>().Object;
         }
 
         private readonly IContext _context;
-
-        [Fact]
-        public void EqualTo()
-        {
-            //Arrange
-            var isEqual =
-                new EqualTo<int, IContext>(new ConstantInteger<IContext>(1), new ConstantInteger<IContext>(1));
-            //Act 
-            var sut = isEqual.Interpret(_context);
-            //Assert
-            Assert.True(sut);
-        }
-
-        [Fact]
-        public void NotEqualTo()
-        {
-            //Arrange
-            var isEqual =
-                new NotEqualTo<int, IContext>(new ConstantInteger<IContext>(2), new ConstantInteger<IContext>(1));
-            //Act 
-            var sut = isEqual.Interpret(_context);
-            //Assert
-            Assert.True(sut);
-        }
-
 
         [Fact]
         public void GreaterThan()
