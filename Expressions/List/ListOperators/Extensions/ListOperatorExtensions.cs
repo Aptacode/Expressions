@@ -34,5 +34,11 @@ namespace Aptacode.Expressions.List.ListOperators.Extensions
             return expressions.Aggregate(expression,
                 (current, listExpression) => new ConcatList<TType, TContext>(current, listExpression));
         }
+
+        public static GetValue<TType, TContext> GetValue<TType, TContext>(
+            this IListExpression<TType, TContext> expression,
+            IExpression<int, TContext> index)
+            =>
+                new GetValue<TType, TContext>(expression, index);
     }
 }

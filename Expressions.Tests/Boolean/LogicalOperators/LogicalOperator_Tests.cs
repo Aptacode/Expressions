@@ -6,9 +6,9 @@ using Xunit;
 
 namespace Expressions.Tests.Boolean.Expression
 {
-    public class Expression_Tests
+    public class LogicalOperator_Tests
     {
-        public Expression_Tests()
+        public LogicalOperator_Tests()
         {
             _context = new Mock<IContext>().Object;
         }

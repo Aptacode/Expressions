@@ -23,6 +23,10 @@ using Aptacode.Expressions.String.StringOperators;
 
 namespace Aptacode.Expressions
 {
+    /// <summary>
+    /// A class to write expressions more concisely by using factory methods.
+    /// </summary>
+    /// <typeparam name="TContext"></typeparam>
     public class ExpressionFactory<TContext>
     {
         #region Constant Expressions
