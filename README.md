@@ -1,5 +1,7 @@
 <p align="center">
-  <img width="512" height="256" src="https://raw.githubusercontent.com/Aptacode/Expressions/Development/Resources/Banner.png">
+   <div style="width:640;height:320">
+       <img style="width: inherit" src="https://raw.githubusercontent.com/Aptacode/Expressions/Development/Resources/Banner.png">
+</div>
 </p>
 
 Whilst originally designed to be used to represent and determine connection weights in [StateNet](https://github.com/Aptacode/StateNet), Expressions is a C# library used for writing and evaluating [expressions](https://en.wikipedia.org/wiki/Expression_(computer_science)) in a given context.
