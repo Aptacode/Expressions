@@ -1,7 +1,7 @@
-﻿using Aptacode.Expressions.GenericArithmeticOperators;
-using System.Linq;
+﻿using System.Linq;
+using Aptacode.Expressions.GenericArithmeticOperators;
 
-namespace Aptacode.Expressions.Numeric.Extensions
+namespace Aptacode.Expressions.String.StringOperators
 {
     public static class StringOperatorExtensions
     {

@@ -1,8 +1,5 @@
 ﻿using Aptacode.Expressions.Bool;
-using Aptacode.Expressions.GenericArithmeticOperators;
 using Aptacode.Expressions.GenericExpressions;
-using Aptacode.Expressions.Integer;
-using Expressions.Tests.Boolean;
 using Moq;
 using Xunit;
 
@@ -10,16 +7,16 @@ namespace Expressions.Tests.GenericExpressions
 {
     public class GenericExpression_Tests
     {
+        private readonly IContext _context;
+        private readonly IType _typeObject1;
+        private readonly IType _typeObject2;
+
         public GenericExpression_Tests()
         {
             _context = new Mock<IContext>().Object;
             _typeObject1 = new Mock<IType>().Object;
             _typeObject2 = new Mock<IType>().Object;
         }
-
-        private readonly IContext _context;
-        private readonly IType _typeObject1;
-        private readonly IType _typeObject2;
 
         [Fact]
         public void ConstantExpression_OfGenericType_Evaluatesto_AnExpression_WithValue_OfGivenType_Test()

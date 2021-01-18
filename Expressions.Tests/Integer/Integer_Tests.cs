@@ -1,8 +1,5 @@
-﻿using Aptacode.Expressions.Bool;
-using Aptacode.Expressions.GenericArithmeticOperators;
-using Aptacode.Expressions.GenericExpressions;
+﻿using Aptacode.Expressions.GenericArithmeticOperators;
 using Aptacode.Expressions.Integer;
-using Expressions.Tests.Boolean;
 using Moq;
 using Xunit;
 
@@ -10,12 +7,12 @@ namespace Expressions.Tests.Integer
 {
     public class Integer_Tests
     {
+        private readonly IContext _context;
+
         public Integer_Tests()
         {
             _context = new Mock<IContext>().Object;
         }
-
-        private readonly IContext _context;
 
         [Fact]
         public void Add_SuccessfullyAdds_Two_ConstantIntegers_Test()

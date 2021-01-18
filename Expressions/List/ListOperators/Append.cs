@@ -3,7 +3,7 @@
 namespace Aptacode.Expressions.List.ListOperators
 {
     /// <summary>
-    /// The class for the operation of appending an expression to a list expression.
+    ///     The class for the operation of appending an expression to a list expression.
     /// </summary>
     /// <typeparam name="TType"></typeparam>
     /// <typeparam name="TContext"></typeparam>
@@ -19,6 +19,9 @@ namespace Aptacode.Expressions.List.ListOperators
 
         public IExpression<TType, TContext> ElementExpression { get; }
 
-        public override TType[] Interpret(TContext context) => Expression.Interpret(context).Concat(Enumerable.Repeat(ElementExpression.Interpret(context), 1)).ToArray();
+        public override TType[] Interpret(TContext context)
+        {
+            return Expression.Interpret(context).Concat(Enumerable.Repeat(ElementExpression.Interpret(context), 1)).ToArray();
+        }
     }
 }

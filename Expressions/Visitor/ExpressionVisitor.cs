@@ -43,7 +43,9 @@ namespace Aptacode.Expressions.Visitor
             expression.PassExpression.Visit(this);
         }
 
-        public virtual void Visit<TType>(TerminalExpression<TType, TContext> expression) { }
+        public virtual void Visit<TType>(TerminalExpression<TType, TContext> expression)
+        {
+        }
 
         public void Visit<T1, T2>(TernaryExpression<T1, T2, TContext> expression)
         {
@@ -138,7 +140,9 @@ namespace Aptacode.Expressions.Visitor
             expression.PassExpression.Visit(this);
         }
 
-        public virtual void Visit<TType>(TerminalListExpression<TType, TContext> expression) { }
+        public virtual void Visit<TType>(TerminalListExpression<TType, TContext> expression)
+        {
+        }
 
         public void Visit<TType>(UnaryListItemExpression<TType, TContext> expression)
 

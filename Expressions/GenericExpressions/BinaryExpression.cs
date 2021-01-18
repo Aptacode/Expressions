@@ -4,15 +4,15 @@ namespace Aptacode.Expressions.GenericExpressions
 {
     public abstract class BinaryExpression<TType, TContext> : IExpression<TType, TContext>
     {
+        public readonly IExpression<TType, TContext> Lhs;
+
+        public readonly IExpression<TType, TContext> Rhs;
+
         protected BinaryExpression(IExpression<TType, TContext> lhs, IExpression<TType, TContext> rhs)
         {
             Lhs = lhs;
             Rhs = rhs;
         }
-
-        public readonly IExpression<TType, TContext> Lhs;
-
-        public readonly IExpression<TType, TContext> Rhs;
 
         public abstract TType Interpret(TContext context);
 

@@ -1,29 +1,28 @@
-﻿using Aptacode.Expressions;
+﻿using System;
+using System.Drawing;
+using Aptacode.Expressions;
 using Aptacode.Expressions.Bool;
-using Aptacode.Expressions.List;
+using Aptacode.Expressions.Bool.LogicalOperators;
+using Aptacode.Expressions.Color;
 using Aptacode.Expressions.Decimal;
 using Aptacode.Expressions.Double;
 using Aptacode.Expressions.Float;
 using Aptacode.Expressions.GenericExpressions;
 using Aptacode.Expressions.Guid;
 using Aptacode.Expressions.Integer;
-using Aptacode.Expressions.Numeric.Extensions;
 using Aptacode.Expressions.String;
-using Expressions.Tests.Boolean;
-using Expressions.Tests;
 using Moq;
-using System;
-using System.Drawing;
 using Xunit;
-using Aptacode.Expressions.Bool.EqualityOperators;
-using Aptacode.Expressions.Bool.LogicalOperators;
-using Aptacode.Expressions.Color;
-using Aptacode.Expressions.GenericArithmeticOperators;
 
 namespace Expressions.Tests
 {
     public class ExpressionFactory_Tests
     {
+        private readonly IContext _context;
+        private readonly ExpressionFactory<IContext> _expressions;
+
+        private readonly IType _type;
+
         public ExpressionFactory_Tests()
         {
             _context = new Mock<IContext>().Object;
@@ -31,11 +30,29 @@ namespace Expressions.Tests
             _type = new Mock<IType>().Object;
         }
 
-        private readonly IType _type;
-        private readonly IContext _context;
-        private readonly ExpressionFactory<IContext> _expressions;
+
+        [Fact]
+        public void ListTest()
+        {
+            var fibListExpression = _expressions.List(new[] {1, 1});
+
+            for (var i = 0; i < 20; i++)
+            {
+                fibListExpression = _expressions.List(_expressions.ConditionalList(_expressions.LessThan(_expressions.Last(fibListExpression), _expressions.Int(100)),
+                    _expressions.Append(fibListExpression,
+                        _expressions.Add(_expressions.First(_expressions.TakeLast(fibListExpression, _expressions.Int(2))), _expressions.Last(_expressions.TakeLast(fibListExpression, _expressions.Int(2))))),
+                    fibListExpression).Interpret(_context));
+            }
+
+            var sut = fibListExpression.Interpret(_context);
+
+            Assert.Equal(13, sut[6]);
+            Assert.Equal(21, sut[7]);
+            Assert.Equal(34, sut[8]);
+        }
 
         #region Constant Expressions
+
         [Fact]
         public void ExpressionFactoryExpression_SuccessfullyCreates_ConstantExpression_Test()
         {
@@ -68,7 +85,7 @@ namespace Expressions.Tests
             //Assert
             Assert.True(sut.Interpret(_context) == constantInt.Interpret(_context));
         }
-        
+
         [Fact]
         public void ExpressionFactoryFloat_SuccessfullyCreates_ConstantFloatExpression_Test()
         {
@@ -79,7 +96,7 @@ namespace Expressions.Tests
             //Assert
             Assert.True(sut.Interpret(_context) == constantFloat.Interpret(_context));
         }
-        
+
         [Fact]
         public void ExpressionFactoryDouble_SuccessfullyCreates_ConstantDoubleExpression_Test()
         {
@@ -90,7 +107,7 @@ namespace Expressions.Tests
             //Assert
             Assert.True(sut.Interpret(_context) == constantDouble.Interpret(_context));
         }
-        
+
         [Fact]
         public void ExpressionFactoryDecimal_SuccessfullyCreates_ConstantDecimalExpression_Test()
         {
@@ -101,7 +118,7 @@ namespace Expressions.Tests
             //Assert
             Assert.True(sut.Interpret(_context) == constantDecimal.Interpret(_context));
         }
-        
+
         [Fact]
         public void ExpressionFactoryGuid_SuccessfullyCreates_ConstantGuidExpression_Test()
         {
@@ -113,7 +130,7 @@ namespace Expressions.Tests
             Assert.True(sut.Interpret(_context) == constantGuid.Interpret(_context));
         }
 
-        
+
         [Fact]
         public void ExpressionFactoryString_SuccessfullyCreates_ConstantStringExpression_Test()
         {
@@ -124,7 +141,7 @@ namespace Expressions.Tests
             //Assert
             Assert.True(sut.Interpret(_context) == constantString.Interpret(_context));
         }
-        
+
         [Fact]
         public void ExpressionFactoryColor_SuccessfullyCreates_ConstantColorExpression_Test()
         {
@@ -135,8 +152,11 @@ namespace Expressions.Tests
             //Assert
             Assert.True(sut.Interpret(_context) == constantColor.Interpret(_context));
         }
+
         #endregion
+
         #region Boolean Logical Operator Expressions
+
         [Fact]
         public void And_SuccessfullyCreates_AndExpression_Test()
         {
@@ -186,7 +206,9 @@ namespace Expressions.Tests
         }
 
         #endregion
+
         #region Boolean Equality Operator Expressions
+
         [Fact]
         public void EqualTo_ReturnsFalse_WhenExpressionsAreNotEqual_Test()
         {
@@ -210,7 +232,7 @@ namespace Expressions.Tests
             //Assert
             Assert.True(sut.Interpret(_context));
         }
-        
+
         [Fact]
         public void NotEqualTo_ReturnsTrue_WhenExpressionsAreNotEqual_Test()
         {
@@ -222,7 +244,7 @@ namespace Expressions.Tests
             //Assert
             Assert.True(sut.Interpret(_context));
         }
-        
+
         [Fact]
         public void NotEqualTo_ReturnsFlase_WhenExpressionsAreEqual_Test()
         {
@@ -234,8 +256,11 @@ namespace Expressions.Tests
             //Assert
             Assert.False(sut.Interpret(_context));
         }
+
         #endregion
+
         #region Boolean Relational Operator Expressions
+
         [Fact]
         public void GreaterThan_ReturnsFalse_When_LHS_IsNot_GreaterThan_RHS_Test()
         {
@@ -339,10 +364,12 @@ namespace Expressions.Tests
             Assert.True(sut1.Interpret(_context));
             Assert.True(sut2.Interpret(_context));
         }
-        #endregion
-        #region Conditional Expressions
-        [Fact]
 
+        #endregion
+
+        #region Conditional Expressions
+
+        [Fact]
         public void ExpressionFactoryConditional_SuccessfullyCreates_ConditionalExpression_Test()
         {
             //Arrange
@@ -367,8 +394,11 @@ namespace Expressions.Tests
             //Assert
             Assert.True(_expressions.EqualTo(intConditional, sut).Interpret(_context));
         }
+
         #endregion
+
         #region Arithmetic Operator Expressions
+
         [Fact]
         public void ExpressionFactory_Add_SuccessfullyAdds_Two_IntegerExpressions_Test()
         {
@@ -404,27 +434,7 @@ namespace Expressions.Tests
             //Assert
             Assert.Equal(0, sut.Interpret(_context));
         }
+
         #endregion
-
-
-        [Fact]
-        public void ListTest()
-        {
-            var fibListExpression = _expressions.List(new int[] { 1, 1 });
-            
-            for(int i = 0; i < 20; i++)
-            {
-                fibListExpression = _expressions.List(_expressions.ConditionalList(_expressions.LessThan(_expressions.Last(fibListExpression), _expressions.Int(100)),
-                                            _expressions.Append(fibListExpression,
-                                                _expressions.Add(_expressions.First(_expressions.TakeLast(fibListExpression, _expressions.Int(2))), _expressions.Last(_expressions.TakeLast(fibListExpression, _expressions.Int(2))))),
-                                            fibListExpression).Interpret(_context));
-            }
-
-            var sut = fibListExpression.Interpret(_context);
-            
-            Assert.Equal(13, sut[6]);
-            Assert.Equal(21, sut[7]);
-            Assert.Equal(34, sut[8]);
-        }
     }
 }

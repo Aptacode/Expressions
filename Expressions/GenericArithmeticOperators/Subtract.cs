@@ -6,7 +6,9 @@ namespace Aptacode.Expressions.GenericArithmeticOperators
 
     {
         public Subtract(IExpression<TType, TContext> lhs, IExpression<TType, TContext> rhs) : base(lhs,
-            rhs) { }
+            rhs)
+        {
+        }
 
         public override TType Interpret(TContext context)
         {

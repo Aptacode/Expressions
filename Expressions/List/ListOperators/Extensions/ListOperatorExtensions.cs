@@ -6,25 +6,29 @@ namespace Aptacode.Expressions.List.ListOperators.Extensions
     {
         public static First<TType, TContext> First<TType, TContext>(
             this IListExpression<TType, TContext> expression)
-            =>
-                new First<TType, TContext>(expression);
+        {
+            return new First<TType, TContext>(expression);
+        }
 
         public static Last<TType, TContext> Last<TType, TContext>(
             this IListExpression<TType, TContext> expression)
-            =>
-                new Last<TType, TContext>(expression);
+        {
+            return new Last<TType, TContext>(expression);
+        }
 
         public static TakeFirst<TType, TContext> TakeFirst<TType, TContext>(
             this IListExpression<TType, TContext> expression,
             IExpression<int, TContext> count)
-            =>
-                new TakeFirst<TType, TContext>(expression, count);
+        {
+            return new TakeFirst<TType, TContext>(expression, count);
+        }
 
         public static TakeLast<TType, TContext> TakeLast<TType, TContext>(
             this IListExpression<TType, TContext> expression,
             IExpression<int, TContext> count)
-            =>
-                new TakeLast<TType, TContext>(expression, count);
+        {
+            return new TakeLast<TType, TContext>(expression, count);
+        }
 
         public static IListExpression<TType, TContext> ConcatList<TType, TContext>(
             this IListExpression<TType, TContext> expression,
@@ -38,7 +42,8 @@ namespace Aptacode.Expressions.List.ListOperators.Extensions
         public static GetValue<TType, TContext> GetValue<TType, TContext>(
             this IListExpression<TType, TContext> expression,
             IExpression<int, TContext> index)
-            =>
-                new GetValue<TType, TContext>(expression, index);
+        {
+            return new GetValue<TType, TContext>(expression, index);
+        }
     }
 }

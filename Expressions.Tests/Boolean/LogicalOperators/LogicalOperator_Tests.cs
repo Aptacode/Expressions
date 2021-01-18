@@ -1,19 +1,18 @@
 ﻿using Aptacode.Expressions.Bool;
 using Aptacode.Expressions.Bool.LogicalOperators;
-using Expressions.Tests.Boolean.Comparison;
 using Moq;
 using Xunit;
 
-namespace Expressions.Tests.Boolean.Expression
+namespace Expressions.Tests.Boolean.LogicalOperators
 {
     public class LogicalOperator_Tests
     {
+        private readonly IContext _context;
+
         public LogicalOperator_Tests()
         {
             _context = new Mock<IContext>().Object;
         }
-
-        private readonly IContext _context;
 
         [Fact]
         public void And()

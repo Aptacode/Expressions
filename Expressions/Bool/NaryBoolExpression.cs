@@ -4,12 +4,12 @@ namespace Aptacode.Expressions.Bool
 {
     public abstract class NaryBoolExpression<TContext> : IExpression<bool, TContext>
     {
+        public readonly IExpression<bool, TContext>[] Expressions;
+
         protected NaryBoolExpression(params IExpression<bool, TContext>[] expressions)
         {
             Expressions = expressions;
         }
-
-        public readonly IExpression<bool, TContext>[] Expressions;
 
         public abstract bool Interpret(TContext context);
 

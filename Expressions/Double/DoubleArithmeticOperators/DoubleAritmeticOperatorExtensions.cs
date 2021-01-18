@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Aptacode.Expressions.GenericArithmeticOperators;
 
-namespace Aptacode.Expressions.Numeric.Extensions
+namespace Aptacode.Expressions.Double.DoubleArithmeticOperators
 {
     public static class DoubleArithmeticOperatorExtensions
     {
@@ -15,8 +15,8 @@ namespace Aptacode.Expressions.Numeric.Extensions
         }
 
         public static IExpression<double, TContext> SubtractDouble<TContext>(
-        this IExpression<double, TContext> doubleExpression,
-        params IExpression<double, TContext>[] doubleExpressions)
+            this IExpression<double, TContext> doubleExpression,
+            params IExpression<double, TContext>[] doubleExpressions)
 
         {
             return doubleExpressions.Aggregate(doubleExpression,
@@ -25,13 +25,12 @@ namespace Aptacode.Expressions.Numeric.Extensions
 
 
         public static IExpression<double, TContext> MultiplyDouble<TContext>(
-        this IExpression<double, TContext> doubleExpression,
-        params IExpression<double, TContext>[] doubleExpressions)
+            this IExpression<double, TContext> doubleExpression,
+            params IExpression<double, TContext>[] doubleExpressions)
 
         {
             return doubleExpressions.Aggregate(doubleExpression,
                 (current, aggregateExpression) => new Multiply<double, TContext>(current, aggregateExpression));
         }
-
     }
 }

@@ -4,12 +4,12 @@ namespace Aptacode.Expressions.GenericExpressions
 {
     public abstract class UnaryExpression<TType, TContext> : IExpression<TType, TContext>
     {
+        public readonly IExpression<TType, TContext> Expression;
+
         protected UnaryExpression(IExpression<TType, TContext> expression)
         {
             Expression = expression;
         }
-
-        public readonly IExpression<TType, TContext> Expression;
 
         public abstract TType Interpret(TContext context);
 

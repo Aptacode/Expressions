@@ -4,7 +4,8 @@
     {
         public static Count<TType, TContext> Count<TType, TContext>(
             this IListExpression<TType, TContext> expression)
-            =>
-                new Count<TType, TContext>(expression);
+        {
+            return new Count<TType, TContext>(expression);
+        }
     }
 }

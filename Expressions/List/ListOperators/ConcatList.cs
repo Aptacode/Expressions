@@ -3,7 +3,7 @@
 namespace Aptacode.Expressions.List.ListOperators
 {
     /// <summary>
-    /// The class for operation of concatenating two list expressions.
+    ///     The class for operation of concatenating two list expressions.
     /// </summary>
     /// <typeparam name="TType"></typeparam>
     /// <typeparam name="TContext"></typeparam>
@@ -11,9 +11,13 @@ namespace Aptacode.Expressions.List.ListOperators
 
     {
         public ConcatList(IListExpression<TType, TContext> lhs, IListExpression<TType, TContext> rhs) :
-            base(lhs, rhs) { }
+            base(lhs, rhs)
+        {
+        }
 
-        public override TType[] Interpret(TContext context) =>
-            Lhs.Interpret(context).Concat(Rhs.Interpret(context)).ToArray();
+        public override TType[] Interpret(TContext context)
+        {
+            return Lhs.Interpret(context).Concat(Rhs.Interpret(context)).ToArray();
+        }
     }
 }

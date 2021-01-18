@@ -1,20 +1,18 @@
 ﻿using Aptacode.Expressions.Bool.EqualityOperators;
-using Aptacode.Expressions.Bool.RelationalOperators;
 using Aptacode.Expressions.Integer;
-using Expressions.Tests;
 using Moq;
 using Xunit;
 
-namespace Expressions.Tests.Boolean
+namespace Expressions.Tests.Boolean.EqualityOperators
 {
     public class EqualityOperator_Tests
     {
+        private readonly IContext _context;
+
         public EqualityOperator_Tests()
         {
             _context = new Mock<IContext>().Object;
         }
-
-        private readonly IContext _context;
 
         [Fact]
         public void EqualTo()

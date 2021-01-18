@@ -1,7 +1,7 @@
-﻿using Aptacode.Expressions.GenericArithmeticOperators;
-using System.Linq;
+﻿using System.Linq;
+using Aptacode.Expressions.GenericArithmeticOperators;
 
-namespace Aptacode.Expressions.Numeric.Extensions
+namespace Aptacode.Expressions.Decimal.DecimalArithmeticOperators
 {
     public static class DecimalArithmeticOperatorExtensions
     {
@@ -15,8 +15,8 @@ namespace Aptacode.Expressions.Numeric.Extensions
         }
 
         public static IExpression<decimal, TContext> SubtractDecimal<TContext>(
-        this IExpression<decimal, TContext> decimalExpression,
-        params IExpression<decimal, TContext>[] decimalExpressions)
+            this IExpression<decimal, TContext> decimalExpression,
+            params IExpression<decimal, TContext>[] decimalExpressions)
 
         {
             return decimalExpressions.Aggregate(decimalExpression,
@@ -25,8 +25,8 @@ namespace Aptacode.Expressions.Numeric.Extensions
 
 
         public static IExpression<decimal, TContext> MultiplyDecimal<TContext>(
-        this IExpression<decimal, TContext> decimalExpression,
-        params IExpression<decimal, TContext>[] decimalExpressions)
+            this IExpression<decimal, TContext> decimalExpression,
+            params IExpression<decimal, TContext>[] decimalExpressions)
 
         {
             return decimalExpressions.Aggregate(decimalExpression,

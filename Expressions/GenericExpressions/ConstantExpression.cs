@@ -3,14 +3,16 @@
 namespace Aptacode.Expressions.GenericExpressions
 {
     /// <summary>
-    /// The class for a constant expression of any type.
+    ///     The class for a constant expression of any type.
     /// </summary>
     /// <typeparam name="TType"></typeparam>
     /// <typeparam name="TContext"></typeparam>
     public class ConstantExpression<TType, TContext> : TerminalExpression<TType, TContext>
     {
+        public readonly TType Value;
+
         /// <summary>
-        /// Constructor to initialise a constant expression.
+        ///     Constructor to initialise a constant expression.
         /// </summary>
         /// <param name="value">An object of any given type.</param>
         public ConstantExpression(TType value)
@@ -18,10 +20,14 @@ namespace Aptacode.Expressions.GenericExpressions
             Value = value;
         }
 
-        public readonly TType Value;
+        public override TType Interpret(TContext context)
+        {
+            return Value;
+        }
 
-        public override TType Interpret(TContext context) => Value;
-
-        public new void Visit(IExpressionVisitor<TContext> visitor) => visitor.Visit(this);
+        public new void Visit(IExpressionVisitor<TContext> visitor)
+        {
+            visitor.Visit(this);
+        }
     }
 }

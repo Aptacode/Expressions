@@ -1,7 +1,7 @@
 ﻿namespace Aptacode.Expressions.List
 {
     /// <summary>
-    /// The class for a constant list expression containing expressions of any type.
+    ///     The class for a constant list expression containing expressions of any type.
     /// </summary>
     /// <typeparam name="TType"></typeparam>
     /// <typeparam name="TContext"></typeparam>
@@ -15,6 +15,9 @@
 
         public TType[] Value { get; }
 
-        public override TType[] Interpret(TContext context) => Value;
+        public override TType[] Interpret(TContext context)
+        {
+            return Value;
+        }
     }
 }

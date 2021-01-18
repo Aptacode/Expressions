@@ -21,18 +21,26 @@ namespace Aptacode.Expressions.Bool.LogicalOperators.Extensions
         }
 
         public static IExpression<bool, TContext> Not<TContext>(this IExpression<bool, TContext> expression)
-            => new Not<TContext>(expression);
+        {
+            return new Not<TContext>(expression);
+        }
 
         public static IExpression<bool, TContext> Or<TContext>(this IExpression<bool, TContext> lhs,
             IExpression<bool, TContext> rhs)
-            => new Or<TContext>(lhs, rhs);
+        {
+            return new Or<TContext>(lhs, rhs);
+        }
 
         public static IExpression<bool, TContext> And<TContext>(this IExpression<bool, TContext> lhs,
             IExpression<bool, TContext> rhs)
-            => new And<TContext>(lhs, rhs);
+        {
+            return new And<TContext>(lhs, rhs);
+        }
 
         public static IExpression<bool, TContext> XOr<TContext>(this IExpression<bool, TContext> lhs,
             IExpression<bool, TContext> rhs)
-            => new XOr<TContext>(lhs, rhs);
+        {
+            return new XOr<TContext>(lhs, rhs);
+        }
     }
 }
