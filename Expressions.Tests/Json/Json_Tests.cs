@@ -19,7 +19,7 @@ namespace Expressions.Tests.Json
 
             //Act
             var intExpressions = ExpressionsJsonExtensions.IntExpressions<IContext>();
-            var boolExpressions = ExpressionsJsonExtensions.BoolExpressions<IContext>().AddBoolExpressions<int, IContext>();
+            var boolExpressions = ExpressionsJsonExtensions.BoolExpressions<IContext>().ExtendBoolExpressions<int, IContext>();
             var settings = new JsonSerializerSettings().Add(intExpressions).Add(boolExpressions);
 
             var json = JsonConvert.SerializeObject(isGreaterThan, settings);
