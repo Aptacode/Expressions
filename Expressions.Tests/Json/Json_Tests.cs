@@ -17,10 +17,11 @@ namespace Expressions.Tests.Json
                 new GreaterThanOrEqualTo<int, IContext>(new ConstantInteger<IContext>(2),
                     new ConstantInteger<IContext>(1));
 
+            var expressionSubtypes = new ExpressionsSubTypes().AddBool<IContext>().AddBool<int,IContext>().AddInt<IContext>();
+            
+
             //Act
-            var intExpressions = ExpressionsJsonExtensions.IntExpressions<IContext>();
-            var boolExpressions = ExpressionsJsonExtensions.BoolExpressions<IContext>().ExtendBoolExpressions<int, IContext>();
-            var settings = new JsonSerializerSettings().Add(intExpressions).Add(boolExpressions);
+            var settings = new JsonSerializerSettings().Add(expressionSubtypes);
 
             var json = JsonConvert.SerializeObject(isGreaterThan, settings);
 

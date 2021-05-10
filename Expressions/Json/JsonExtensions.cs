@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Aptacode.Expressions.Bool;
+﻿using Aptacode.Expressions.Bool;
 using Aptacode.Expressions.Bool.EqualityOperators;
 using Aptacode.Expressions.Bool.LogicalOperators;
 using Aptacode.Expressions.Bool.RelationalOperators;
@@ -19,143 +18,101 @@ using Aptacode.Expressions.List.IntegerListOperators;
 using Aptacode.Expressions.List.ListOperators;
 using Aptacode.Expressions.String;
 using Aptacode.Expressions.String.StringOperators;
-using JsonSubTypes;
 using Newtonsoft.Json;
 
 namespace Aptacode.Expressions.Json
 {
     public static class ExpressionsJsonExtensions
-
     {
-        public static JsonSerializerSettings Add(this JsonSerializerSettings settings, JsonSubtypesConverterBuilder builder)
+        public static JsonSerializerSettings Add(this JsonSerializerSettings settings, ExpressionsSubTypes subTypes)
         {
-            settings.Converters.Add(builder
-                .SerializeDiscriminatorProperty(true)
-                .Build());
-
-            return settings;
+            return subTypes.AddSubTypes(settings);
         }
 
-        public static JsonSubtypesConverterBuilder ColorExpressions<T>()
+        public static ExpressionsSubTypes AddColor<B>(this ExpressionsSubTypes subTypes)
         {
-            return JsonSubtypesConverterBuilder.Of<IExpression<System.Drawing.Color, T>>(nameof(IExpression<System.Drawing.Color, T>))
-                .Register<ConstantColor<T>>();
+            return subTypes.Add<ConstantColor<B>>();
         }
 
-        public static JsonSubtypesConverterBuilder DecimalExpressions<T>()
+        public static ExpressionsSubTypes AddDecimal<B>(this ExpressionsSubTypes subTypes)
         {
-            return JsonSubtypesConverterBuilder.Of<IExpression<decimal, T>>(nameof(IExpression<decimal, T>))
-                .Register<AddDecimal<T>>()
-                .Register<MultiplyDecimal<T>>()
-                .Register<SubtractDecimal<T>>()
-                .Register<ConstantDecimal<T>>();
+            return subTypes.Add<ConstantDecimal<B>>()
+                .Add<AddDecimal<B>>()
+                .Add<MultiplyDecimal<B>>()
+                .Add<SubtractDecimal<B>>();
         }
 
-        public static JsonSubtypesConverterBuilder DoubleExpressions<T>()
+        public static ExpressionsSubTypes AddDouble<B>(this ExpressionsSubTypes subTypes)
         {
-            return JsonSubtypesConverterBuilder.Of<IExpression<double, T>>(nameof(IExpression<double, T>))
-                .Register<AddDouble<T>>()
-                .Register<MultiplyDouble<T>>()
-                .Register<SubtractDouble<T>>()
-                .Register<ConstantDouble<T>>();
+            return subTypes.Add<ConstantDouble<B>>()
+                .Add<AddDouble<B>>()
+                .Add<MultiplyDouble<B>>()
+                .Add<SubtractDouble<B>>();
+        }
+        public static ExpressionsSubTypes AddFloat<B>(this ExpressionsSubTypes subTypes)
+        {
+            return subTypes.Add<ConstantFloat<B>>()
+                .Add<AddFloat<B>>()
+                .Add<MultiplyFloat<B>>()
+                .Add<SubtractFloat<B>>();
         }
 
-        public static JsonSubtypesConverterBuilder FloatExpressions<T>()
+        public static ExpressionsSubTypes AddInt<B>(this ExpressionsSubTypes subTypes)
         {
-            return JsonSubtypesConverterBuilder.Of<IExpression<float, T>>(nameof(IExpression<float, T>))
-                .Register<AddFloat<T>>()
-                .Register<MultiplyFloat<T>>()
-                .Register<SubtractFloat<T>>()
-                .Register<ConstantFloat<T>>();
+            return subTypes.Add<ConstantInteger<B>>()
+                .Add<AddInteger<B>>()
+                .Add<MultiplyInteger<B>>()
+                .Add<SubtractInteger<B>>();
         }
 
-        public static JsonSubtypesConverterBuilder IntExpressions<T>()
+        public static ExpressionsSubTypes AddGuid<B>(this ExpressionsSubTypes subTypes)
         {
-            return JsonSubtypesConverterBuilder.Of<IExpression<int, T>>(nameof(IExpression<int, T>))
-                .Register<ConstantInteger<T>>()
-                .Register<AddInteger<T>>()
-                .Register<MultiplyInteger<T>>()
-                .Register<SubtractInteger<T>>();
+            return subTypes.Add<ConstantGuid<B>>();
         }
 
-        public static JsonSubtypesConverterBuilder GuidExpressions<T>()
+        public static ExpressionsSubTypes AddBool<B>(this ExpressionsSubTypes subTypes)
         {
-            return JsonSubtypesConverterBuilder
-                .Of<IExpression<System.Guid, T>>(nameof(IExpression<System.Guid, T>))
-                .SerializeDiscriminatorProperty(true)
-                .Register<ConstantGuid<T>>();
+            return subTypes.Add<All<B>>()
+                .Add<And<B>>()
+                .Add<Any<B>>()
+                .Add<Not<B>>()
+                .Add<Or<B>>()
+                .Add<XOr<B>>()
+                .Add<ConstantBool<B>>();
         }
 
-        public static JsonSubtypesConverterBuilder BoolExpressions<B>()
+        public static ExpressionsSubTypes AddList<A,B>(this ExpressionsSubTypes subTypes)
         {
-            return JsonSubtypesConverterBuilder
-                .Of<IExpression<bool, B>>(nameof(IExpression<bool, B>))
-                .SerializeDiscriminatorProperty(true)
-                .Register<All<B>>()
-                .Register<And<B>>()
-                .Register<Any<B>>()
-                .Register<Not<B>>()
-                .Register<Or<B>>()
-                .Register<XOr<B>>()
-                .Register<ConstantBool<B>>();
+            return subTypes
+                .Add<Append<A, B>>()
+                .Add<ConcatList<A, B>>()
+                .Add<ConditionalListExpression<A, B>>()
+                .Add<ConstantList<A, B>>()
+                .Add<Count<A, B>>()
+                .Add<First<A, B>>()
+                .Add<GetValue<A, B>>()
+                .Add<Last<A, B>>()
+                .Add<TakeFirst<A, B>>()
+                .Add<TakeLast<A, B>>();
+        }
+        public static ExpressionsSubTypes AddString<B>(this ExpressionsSubTypes subTypes)
+        {
+            return subTypes.Add<ConstantString<B>>()
+                .Add<ConcatString<B>>();
         }
 
-        public static JsonSubtypesConverterBuilder ListExpressions<A, B>()
+        public static ExpressionsSubTypes AddBool<A, B>(this ExpressionsSubTypes subTypes)
         {
-            return JsonSubtypesConverterBuilder
-                .Of<IExpression<A[], B>>(nameof(IExpression<A[], B>))
-                .SerializeDiscriminatorProperty(true)
-                .Register<Append<A, B>>()
-                .Register<ConcatList<A, B>>()
-                .Register<ConditionalListExpression<A, B>>()
-                .Register<ConstantList<A, B>>();
-        }
+            subTypes
+                .Add<ConditionalExpression<A, B>>()
+                .Add<EqualTo<A, B>>()
+                .Add<NotEqualTo<A, B>>()
+                .Add<GreaterThan<A, B>>()
+                .Add<GreaterThanOrEqualTo<A, B>>()
+                .Add<LessThan<A, B>>()
+                .Add<LessThanOrEqualTo<A, B>>();
 
-        public static JsonSubtypesConverterBuilder ListOperations<A, B>(this JsonSubtypesConverterBuilder settings)
-        {
-            return settings
-                .Register<Count<A, B>>()
-                .Register<First<A, B>>()
-                .Register<GetValue<A, B>>()
-                .Register<Last<A, B>>()
-                .Register<TakeFirst<A, B>>()
-                .Register<TakeLast<A, B>>();
-        }
-
-        public static JsonSubtypesConverterBuilder StringExpressions<B>()
-        {
-            return JsonSubtypesConverterBuilder
-                .Of<IExpression<string, B>>(nameof(IExpression<string, B>))
-                .SerializeDiscriminatorProperty(true)
-                .Register<ConcatString<B>>()
-                .Register<ConstantString<B>>();
-        }
-
-        public static JsonSubtypesConverterBuilder ExtendBoolExpressions<A, B>(this JsonSubtypesConverterBuilder builder)
-        {
-            builder
-                .Register<ConditionalExpression<A, B>>()
-                .Register<EqualTo<A, B>>()
-                .Register<NotEqualTo<A, B>>()
-                .Register<GreaterThan<A, B>>()
-                .Register<GreaterThanOrEqualTo<A, B>>()
-                .Register<LessThan<A, B>>()
-                .Register<LessThanOrEqualTo<A, B>>();
-
-            return builder;
-        }
-
-        public static JsonSubtypesConverterBuilder Register<T>(this JsonSubtypesConverterBuilder builder)
-        {
-            return builder
-                .RegisterSubtype<T>(GetName<T>());
-        }
-
-        public static string GetName<T>()
-        {
-            var type = typeof(T);
-            var genericArguments = string.Join(",", type.GenericTypeArguments.Select(t => t.Name));
-            return $"{type.Name}<{genericArguments}>";
+            return subTypes;
         }
     }
 }
