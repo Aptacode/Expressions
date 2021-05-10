@@ -12,6 +12,13 @@ using Aptacode.Expressions.List.ListOperators;
 using Aptacode.Expressions.List;
 using Aptacode.Expressions.String.StringOperators;
 using Aptacode.Expressions.String;
+using Aptacode.Expressions.Color;
+using Aptacode.Expressions.Float;
+using Aptacode.Expressions.Double;
+using Aptacode.Expressions.Decimal;
+using Aptacode.Expressions.Float.FloatArithmeticOperators;
+using Aptacode.Expressions.Double.DoubleArithmeticOperators;
+using Aptacode.Expressions.Decimal.DecimalArithmeticOperators;
 
 namespace Aptacode.Expressions.Json
 {
@@ -25,6 +32,39 @@ namespace Aptacode.Expressions.Json
                 .Build());
 
             return settings;
+        }
+
+        public static JsonSubtypesConverterBuilder ColorExpressions<T>()
+        {
+            return JsonSubtypesConverterBuilder.Of<IExpression<System.Drawing.Color, T>>(nameof(IExpression<System.Drawing.Color, T>))
+                .RegisterSubtype<ConstantColor<T>>(nameof(ConstantColor<T>));
+        }
+
+        public static JsonSubtypesConverterBuilder DecimalExpressions<T>()
+        {
+            return JsonSubtypesConverterBuilder.Of<IExpression<decimal, T>>(nameof(IExpression<decimal, T>))
+                .RegisterSubtype<AddDecimal<T>>(nameof(AddDecimal<T>))
+                .RegisterSubtype<MultiplyDecimal<T>>(nameof(MultiplyDecimal<T>))
+                .RegisterSubtype<SubtractDecimal<T>>(nameof(SubtractDecimal<T>))
+                .RegisterSubtype<ConstantDecimal<T>>(nameof(ConstantDecimal<T>));
+        }
+
+        public static JsonSubtypesConverterBuilder DoubleExpressions<T>()
+        {
+            return JsonSubtypesConverterBuilder.Of<IExpression<double, T>>(nameof(IExpression<double, T>))
+                .RegisterSubtype<AddDouble<T>>(nameof(AddDouble<T>))
+                .RegisterSubtype<MultiplyDouble<T>>(nameof(MultiplyDouble<T>))
+                .RegisterSubtype<SubtractDouble<T>>(nameof(SubtractDouble<T>))
+                .RegisterSubtype<ConstantDouble<T>>(nameof(ConstantDouble<T>));
+        }
+
+        public static JsonSubtypesConverterBuilder FloatExpressions<T>()
+        {
+            return JsonSubtypesConverterBuilder.Of<IExpression<float, T>>(nameof(IExpression<float, T>))
+                .RegisterSubtype<AddFloat<T>>(nameof(AddFloat<T>))
+                .RegisterSubtype<MultiplyFloat<T>>(nameof(MultiplyFloat<T>))
+                .RegisterSubtype<SubtractFloat<T>>(nameof(SubtractFloat<T>))
+                .RegisterSubtype<ConstantFloat<T>>(nameof(ConstantFloat<T>));
         }
         public static JsonSubtypesConverterBuilder IntExpressions<T>()
         {
