@@ -111,7 +111,6 @@ namespace Aptacode.Expressions.Json
                 .RegisterSubtype<Last<A, B>>(nameof(Last<A, B>))
                 .RegisterSubtype<TakeFirst<A, B>>(nameof(TakeFirst<A, B>))
                 .RegisterSubtype<TakeLast<A, B>>(nameof(TakeLast<A, B>))
-                .RegisterSubtype<Count<A, B>>(nameof(Count<A, B>))
                 .RegisterSubtype<ConditionalListExpression<A, B>>(nameof(ConditionalListExpression<A, B>))
                 .RegisterSubtype<ConstantList<A, B>>(nameof(ConstantList<A, B>));
         }
