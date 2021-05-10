@@ -32,9 +32,15 @@ namespace Aptacode.Expressions.GenericExpressions
 
         #region IEquatable
 
-        public override bool Equals(object obj) => obj is ConstantExpression<TType, TContext> expression && Equals(expression);
+        public override bool Equals(object obj)
+        {
+            return obj is ConstantExpression<TType, TContext> expression && Equals(expression);
+        }
 
-        public override bool Equals(IExpression<TType, TContext> other) => other is ConstantExpression<TType, TContext> expression && expression == this;
+        public override bool Equals(IExpression<TType, TContext> other)
+        {
+            return other is ConstantExpression<TType, TContext> expression && expression == this;
+        }
 
         public static bool operator ==(ConstantExpression<TType, TContext> lhs, ConstantExpression<TType, TContext> rhs)
         {
@@ -46,7 +52,10 @@ namespace Aptacode.Expressions.GenericExpressions
             return lhs.Value.Equals(rhs.Value);
         }
 
-        public static bool operator !=(ConstantExpression<TType, TContext> lhs, ConstantExpression<TType, TContext> rhs) => !(lhs == rhs);
+        public static bool operator !=(ConstantExpression<TType, TContext> lhs, ConstantExpression<TType, TContext> rhs)
+        {
+            return !(lhs == rhs);
+        }
 
         #endregion
     }

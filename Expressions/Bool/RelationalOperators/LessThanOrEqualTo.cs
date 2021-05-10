@@ -28,9 +28,15 @@ namespace Aptacode.Expressions.Bool.RelationalOperators
 
         #region IEquatable
 
-        public override bool Equals(object obj) => obj is LessThanOrEqualTo<TType, TContext> expression && Equals(expression);
+        public override bool Equals(object obj)
+        {
+            return obj is LessThanOrEqualTo<TType, TContext> expression && Equals(expression);
+        }
 
-        public override bool Equals(IExpression<bool, TContext> other) => other is LessThanOrEqualTo<TType, TContext> expression && expression == this;
+        public override bool Equals(IExpression<bool, TContext> other)
+        {
+            return other is LessThanOrEqualTo<TType, TContext> expression && expression == this;
+        }
 
         public static bool operator ==(LessThanOrEqualTo<TType, TContext> lhs, LessThanOrEqualTo<TType, TContext> rhs)
         {
@@ -42,7 +48,10 @@ namespace Aptacode.Expressions.Bool.RelationalOperators
             return lhs.Lhs.Equals(rhs.Lhs) && lhs.Rhs.Equals(rhs.Rhs);
         }
 
-        public static bool operator !=(LessThanOrEqualTo<TType, TContext> lhs, LessThanOrEqualTo<TType, TContext> rhs) => !(lhs == rhs);
+        public static bool operator !=(LessThanOrEqualTo<TType, TContext> lhs, LessThanOrEqualTo<TType, TContext> rhs)
+        {
+            return !(lhs == rhs);
+        }
 
         #endregion
     }

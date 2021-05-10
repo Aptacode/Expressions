@@ -1,5 +1,5 @@
-﻿using Aptacode.Expressions.Visitor;
-using System;
+﻿using System;
+using Aptacode.Expressions.Visitor;
 
 namespace Aptacode.Expressions
 {

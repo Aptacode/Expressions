@@ -21,6 +21,5 @@ namespace Aptacode.Expressions.Bool
         {
             visitor.Visit(this);
         }
-
     }
-    }
+}

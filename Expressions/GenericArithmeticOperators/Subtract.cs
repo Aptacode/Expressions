@@ -19,9 +19,15 @@ namespace Aptacode.Expressions.GenericArithmeticOperators
 
         #region IEquatable
 
-        public override bool Equals(object obj) => obj is Add<TType, TContext> expression && Equals(expression);
+        public override bool Equals(object obj)
+        {
+            return obj is Add<TType, TContext> expression && Equals(expression);
+        }
 
-        public override bool Equals(IExpression<TType, TContext> other) => other is Subtract<TType, TContext> expression && expression == this;
+        public override bool Equals(IExpression<TType, TContext> other)
+        {
+            return other is Subtract<TType, TContext> expression && expression == this;
+        }
 
         public static bool operator ==(Subtract<TType, TContext> lhs, Subtract<TType, TContext> rhs)
         {
@@ -33,7 +39,10 @@ namespace Aptacode.Expressions.GenericArithmeticOperators
             return lhs.Lhs.Equals(rhs.Lhs) && lhs.Rhs.Equals(rhs.Rhs);
         }
 
-        public static bool operator !=(Subtract<TType, TContext> lhs, Subtract<TType, TContext> rhs) => !(lhs == rhs);
+        public static bool operator !=(Subtract<TType, TContext> lhs, Subtract<TType, TContext> rhs)
+        {
+            return !(lhs == rhs);
+        }
 
         #endregion
     }

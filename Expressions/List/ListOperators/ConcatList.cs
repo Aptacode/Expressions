@@ -23,9 +23,15 @@ namespace Aptacode.Expressions.List.ListOperators
 
         #region IEquatable
 
-        public override bool Equals(object obj) => obj is ConcatList<TType, TContext> expression && Equals(expression);
+        public override bool Equals(object obj)
+        {
+            return obj is ConcatList<TType, TContext> expression && Equals(expression);
+        }
 
-        public override bool Equals(IExpression<TType[], TContext> other) => other is ConcatList<TType, TContext> expression && expression == this;
+        public override bool Equals(IExpression<TType[], TContext> other)
+        {
+            return other is ConcatList<TType, TContext> expression && expression == this;
+        }
 
         public static bool operator ==(ConcatList<TType, TContext> lhs, ConcatList<TType, TContext> rhs)
         {
@@ -37,7 +43,10 @@ namespace Aptacode.Expressions.List.ListOperators
             return lhs.Lhs.Equals(rhs.Lhs) && lhs.Rhs.Equals(rhs.Rhs);
         }
 
-        public static bool operator !=(ConcatList<TType, TContext> lhs, ConcatList<TType, TContext> rhs) => !(lhs == rhs);
+        public static bool operator !=(ConcatList<TType, TContext> lhs, ConcatList<TType, TContext> rhs)
+        {
+            return !(lhs == rhs);
+        }
 
         #endregion
     }

@@ -19,9 +19,16 @@
 
         #region IEquatable
 
-        public override bool Equals(object obj) => obj is Count<TType, TContext> expression && Equals(expression);
+        public override bool Equals(object obj)
+        {
+            return obj is Count<TType, TContext> expression && Equals(expression);
+        }
 
-        public override bool Equals(IExpression<int, TContext> other) => other is Count<TType, TContext> expression && expression == this;
+        public override bool Equals(IExpression<int, TContext> other)
+        {
+            return other is Count<TType, TContext> expression && expression == this;
+        }
+
         public static bool operator ==(Count<TType, TContext> lhs, Count<TType, TContext> rhs)
         {
             if (lhs is null || rhs is null)
@@ -32,7 +39,10 @@
             return lhs.Expression.Equals(rhs.Expression);
         }
 
-        public static bool operator !=(Count<TType, TContext> lhs, Count<TType, TContext> rhs) => !(lhs == rhs);
+        public static bool operator !=(Count<TType, TContext> lhs, Count<TType, TContext> rhs)
+        {
+            return !(lhs == rhs);
+        }
 
         #endregion
     }

@@ -24,7 +24,7 @@ namespace Expressions.Tests.Json
 
             var json = JsonConvert.SerializeObject(isGreaterThan, settings);
 
-            var result = JsonConvert.DeserializeObject<IExpression<bool,IContext>>(json, settings);
+            var result = JsonConvert.DeserializeObject<IExpression<bool, IContext>>(json, settings);
 
 
             //Assert

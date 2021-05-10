@@ -19,11 +19,17 @@ namespace Aptacode.Expressions.Bool.LogicalOperators
 
         #region IEquatable
 
-        public override bool Equals(object obj) => obj is All<TContext> expression && Equals(expression);
+        public override bool Equals(object obj)
+        {
+            return obj is All<TContext> expression && Equals(expression);
+        }
 
-        public override bool Equals(IExpression<bool, TContext> other) => other is All<TContext> expression && expression == this;
+        public override bool Equals(IExpression<bool, TContext> other)
+        {
+            return other is All<TContext> expression && expression == this;
+        }
 
-        public static bool operator ==(All<TContext> lhs, All< TContext> rhs)
+        public static bool operator ==(All<TContext> lhs, All<TContext> rhs)
         {
             if (lhs is null || rhs is null)
             {
@@ -33,7 +39,10 @@ namespace Aptacode.Expressions.Bool.LogicalOperators
             return lhs.Expressions.SequenceEqual(rhs.Expressions);
         }
 
-        public static bool operator !=(All<TContext> lhs, All< TContext> rhs) => !(lhs == rhs);
+        public static bool operator !=(All<TContext> lhs, All<TContext> rhs)
+        {
+            return !(lhs == rhs);
+        }
 
         #endregion
     }

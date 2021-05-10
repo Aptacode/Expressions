@@ -18,9 +18,16 @@ namespace Aptacode.Expressions.Bool.LogicalOperators
 
         #region IEquatable
 
-        public override bool Equals(object obj) => obj is Or<TContext> expression && Equals(expression);
+        public override bool Equals(object obj)
+        {
+            return obj is Or<TContext> expression && Equals(expression);
+        }
 
-        public override bool Equals(IExpression<bool, TContext> other) => other is Or<TContext> expression && expression == this;
+        public override bool Equals(IExpression<bool, TContext> other)
+        {
+            return other is Or<TContext> expression && expression == this;
+        }
+
         public static bool operator ==(Or<TContext> lhs, Or<TContext> rhs)
         {
             if (lhs is null || rhs is null)
@@ -31,7 +38,10 @@ namespace Aptacode.Expressions.Bool.LogicalOperators
             return lhs.Lhs.Equals(rhs.Lhs) && lhs.Rhs.Equals(rhs.Rhs);
         }
 
-        public static bool operator !=(Or<TContext> lhs, Or<TContext> rhs) => !(lhs == rhs);
+        public static bool operator !=(Or<TContext> lhs, Or<TContext> rhs)
+        {
+            return !(lhs == rhs);
+        }
 
         #endregion
     }

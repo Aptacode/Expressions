@@ -26,9 +26,15 @@ namespace Aptacode.Expressions.List.ListOperators
 
         #region IEquatable
 
-        public override bool Equals(object obj) => obj is Append<TType, TContext> expression && Equals(expression);
+        public override bool Equals(object obj)
+        {
+            return obj is Append<TType, TContext> expression && Equals(expression);
+        }
 
-        public override bool Equals(IExpression<TType[], TContext> other) => other is Append<TType, TContext> expression && expression == this;
+        public override bool Equals(IExpression<TType[], TContext> other)
+        {
+            return other is Append<TType, TContext> expression && expression == this;
+        }
 
         public static bool operator ==(Append<TType, TContext> lhs, Append<TType, TContext> rhs)
         {
@@ -40,7 +46,10 @@ namespace Aptacode.Expressions.List.ListOperators
             return lhs.Expression.Equals(rhs.Expression) && lhs.ElementExpression.Equals(rhs.ElementExpression);
         }
 
-        public static bool operator !=(Append<TType, TContext> lhs, Append<TType, TContext> rhs) => !(lhs == rhs);
+        public static bool operator !=(Append<TType, TContext> lhs, Append<TType, TContext> rhs)
+        {
+            return !(lhs == rhs);
+        }
 
         #endregion
     }

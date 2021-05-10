@@ -19,9 +19,16 @@ namespace Aptacode.Expressions.GenericArithmeticOperators
 
         #region IEquatable
 
-        public override bool Equals(object obj) => obj is Multiply<TType, TContext> expression && Equals(expression);
+        public override bool Equals(object obj)
+        {
+            return obj is Multiply<TType, TContext> expression && Equals(expression);
+        }
 
-        public override bool Equals(IExpression<TType, TContext> other) => other is Multiply<TType, TContext> expression && expression == this;
+        public override bool Equals(IExpression<TType, TContext> other)
+        {
+            return other is Multiply<TType, TContext> expression && expression == this;
+        }
+
         public static bool operator ==(Multiply<TType, TContext> lhs, Multiply<TType, TContext> rhs)
         {
             if (lhs is null || rhs is null)
@@ -32,7 +39,10 @@ namespace Aptacode.Expressions.GenericArithmeticOperators
             return lhs.Lhs.Equals(rhs.Lhs) && lhs.Rhs.Equals(rhs.Rhs);
         }
 
-        public static bool operator !=(Multiply<TType, TContext> lhs, Multiply<TType, TContext> rhs) => !(lhs == rhs);
+        public static bool operator !=(Multiply<TType, TContext> lhs, Multiply<TType, TContext> rhs)
+        {
+            return !(lhs == rhs);
+        }
 
         #endregion
     }

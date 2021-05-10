@@ -27,9 +27,16 @@
 
         #region IEquatable
 
-        public override bool Equals(object obj) => obj is GetValue<TType, TContext> expression && Equals(expression);
+        public override bool Equals(object obj)
+        {
+            return obj is GetValue<TType, TContext> expression && Equals(expression);
+        }
 
-        public override bool Equals(IExpression<TType, TContext> other) => other is GetValue<TType, TContext> expression && expression == this;
+        public override bool Equals(IExpression<TType, TContext> other)
+        {
+            return other is GetValue<TType, TContext> expression && expression == this;
+        }
+
         public static bool operator ==(GetValue<TType, TContext> lhs, GetValue<TType, TContext> rhs)
         {
             if (lhs is null || rhs is null)
@@ -40,7 +47,10 @@
             return lhs.Expression.Equals(rhs.Expression) && lhs.IndexExpression.Equals(rhs.IndexExpression);
         }
 
-        public static bool operator !=(GetValue<TType, TContext> lhs, GetValue<TType, TContext> rhs) => !(lhs == rhs);
+        public static bool operator !=(GetValue<TType, TContext> lhs, GetValue<TType, TContext> rhs)
+        {
+            return !(lhs == rhs);
+        }
 
         #endregion
     }

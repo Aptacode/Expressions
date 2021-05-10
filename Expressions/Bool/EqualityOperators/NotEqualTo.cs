@@ -21,9 +21,15 @@ namespace Aptacode.Expressions.Bool.EqualityOperators
 
         #region IEquatable
 
-        public override bool Equals(object obj) => obj is NotEqualTo<TType, TContext> expression && Equals(expression);
+        public override bool Equals(object obj)
+        {
+            return obj is NotEqualTo<TType, TContext> expression && Equals(expression);
+        }
 
-        public override bool Equals(IExpression<bool, TContext> other) => other is NotEqualTo<TType, TContext> expression && expression == this;
+        public override bool Equals(IExpression<bool, TContext> other)
+        {
+            return other is NotEqualTo<TType, TContext> expression && expression == this;
+        }
 
         public static bool operator ==(NotEqualTo<TType, TContext> lhs, NotEqualTo<TType, TContext> rhs)
         {
@@ -35,7 +41,10 @@ namespace Aptacode.Expressions.Bool.EqualityOperators
             return lhs.Lhs.Equals(rhs.Lhs) && lhs.Rhs.Equals(rhs.Rhs);
         }
 
-        public static bool operator !=(NotEqualTo<TType, TContext> lhs, NotEqualTo<TType, TContext> rhs) => !(lhs == rhs);
+        public static bool operator !=(NotEqualTo<TType, TContext> lhs, NotEqualTo<TType, TContext> rhs)
+        {
+            return !(lhs == rhs);
+        }
 
         #endregion
     }

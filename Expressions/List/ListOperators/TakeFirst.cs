@@ -30,9 +30,16 @@ namespace Aptacode.Expressions.List.ListOperators
 
         #region IEquatable
 
-        public override bool Equals(object obj) => obj is TakeFirst<TType, TContext> expression && Equals(expression);
+        public override bool Equals(object obj)
+        {
+            return obj is TakeFirst<TType, TContext> expression && Equals(expression);
+        }
 
-        public override bool Equals(IExpression<TType[], TContext> other) => other is TakeFirst<TType, TContext> expression && expression == this;
+        public override bool Equals(IExpression<TType[], TContext> other)
+        {
+            return other is TakeFirst<TType, TContext> expression && expression == this;
+        }
+
         public static bool operator ==(TakeFirst<TType, TContext> lhs, TakeFirst<TType, TContext> rhs)
         {
             if (lhs is null || rhs is null)
@@ -43,7 +50,10 @@ namespace Aptacode.Expressions.List.ListOperators
             return lhs.Expression.Equals(rhs.Expression) && lhs.CountExpression.Equals(rhs.CountExpression);
         }
 
-        public static bool operator !=(TakeFirst<TType, TContext> lhs, TakeFirst<TType, TContext> rhs) => !(lhs == rhs);
+        public static bool operator !=(TakeFirst<TType, TContext> lhs, TakeFirst<TType, TContext> rhs)
+        {
+            return !(lhs == rhs);
+        }
 
         #endregion
     }

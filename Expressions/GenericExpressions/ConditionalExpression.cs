@@ -28,9 +28,15 @@
 
         #region IEquatable
 
-        public override bool Equals(object obj) => obj is ConditionalExpression<TType, TContext> expression && Equals(expression);
+        public override bool Equals(object obj)
+        {
+            return obj is ConditionalExpression<TType, TContext> expression && Equals(expression);
+        }
 
-        public override bool Equals(IExpression<TType, TContext> other) => other is ConditionalExpression<TType, TContext> expression && expression == this;
+        public override bool Equals(IExpression<TType, TContext> other)
+        {
+            return other is ConditionalExpression<TType, TContext> expression && expression == this;
+        }
 
         public static bool operator ==(ConditionalExpression<TType, TContext> lhs, ConditionalExpression<TType, TContext> rhs)
         {
@@ -42,7 +48,10 @@
             return lhs.Condition.Equals(rhs.Condition) && lhs.PassExpression.Equals(rhs.PassExpression) && lhs.FailExpression.Equals(rhs.FailExpression);
         }
 
-        public static bool operator !=(ConditionalExpression<TType, TContext> lhs, ConditionalExpression<TType, TContext> rhs) => !(lhs == rhs);
+        public static bool operator !=(ConditionalExpression<TType, TContext> lhs, ConditionalExpression<TType, TContext> rhs)
+        {
+            return !(lhs == rhs);
+        }
 
         #endregion
     }

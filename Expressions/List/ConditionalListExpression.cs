@@ -30,9 +30,15 @@
 
         #region IEquatable
 
-        public override bool Equals(object obj) => obj is ConditionalListExpression<TType, TContext> expression && Equals(expression);
+        public override bool Equals(object obj)
+        {
+            return obj is ConditionalListExpression<TType, TContext> expression && Equals(expression);
+        }
 
-        public override bool Equals(IExpression<TType[], TContext> other) => other is ConditionalListExpression<TType, TContext> expression && expression == this;
+        public override bool Equals(IExpression<TType[], TContext> other)
+        {
+            return other is ConditionalListExpression<TType, TContext> expression && expression == this;
+        }
 
         public static bool operator ==(ConditionalListExpression<TType, TContext> lhs, ConditionalListExpression<TType, TContext> rhs)
         {
@@ -41,10 +47,13 @@
                 return lhs is null && rhs is null;
             }
 
-            return lhs.Condition .Equals( rhs.Condition) && lhs.PassExpression.Equals(rhs.PassExpression) && lhs.FailExpression.Equals( rhs.FailExpression);
+            return lhs.Condition.Equals(rhs.Condition) && lhs.PassExpression.Equals(rhs.PassExpression) && lhs.FailExpression.Equals(rhs.FailExpression);
         }
 
-        public static bool operator !=(ConditionalListExpression<TType, TContext> lhs, ConditionalListExpression<TType, TContext> rhs) => !(lhs == rhs);
+        public static bool operator !=(ConditionalListExpression<TType, TContext> lhs, ConditionalListExpression<TType, TContext> rhs)
+        {
+            return !(lhs == rhs);
+        }
 
         #endregion
     }
