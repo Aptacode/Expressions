@@ -13,9 +13,9 @@
     <RepositoryUrl>https://github.com/Aptacode/Expressions</RepositoryUrl>
     <RepositoryType />
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.11</Version>
-    <AssemblyVersion>1.0.11</AssemblyVersion>
-    <FileVersion>1.0.11</FileVersion>
+    <Version>1.0.12</Version>
+    <AssemblyVersion>1.0.12</AssemblyVersion>
+    <FileVersion>1.0.12</FileVersion>
     <Nullable>enable</Nullable>
     <LangVersion>8.0</LangVersion>
     <ApplicationIcon>Logo.ico</ApplicationIcon>
