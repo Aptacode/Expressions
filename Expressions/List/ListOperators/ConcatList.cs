@@ -19,5 +19,26 @@ namespace Aptacode.Expressions.List.ListOperators
         {
             return Lhs.Interpret(context).Concat(Rhs.Interpret(context)).ToArray();
         }
+
+
+        #region IEquatable
+
+        public override bool Equals(object obj) => obj is ConcatList<TType, TContext> expression && Equals(expression);
+
+        public override bool Equals(IExpression<TType[], TContext> other) => other is ConcatList<TType, TContext> expression && expression == this;
+
+        public static bool operator ==(ConcatList<TType, TContext> lhs, ConcatList<TType, TContext> rhs)
+        {
+            if (lhs is null || rhs is null)
+            {
+                return lhs is null && rhs is null;
+            }
+
+            return lhs.Lhs.Equals(rhs.Lhs) && lhs.Rhs.Equals(rhs.Rhs);
+        }
+
+        public static bool operator !=(ConcatList<TType, TContext> lhs, ConcatList<TType, TContext> rhs) => !(lhs == rhs);
+
+        #endregion
     }
 }

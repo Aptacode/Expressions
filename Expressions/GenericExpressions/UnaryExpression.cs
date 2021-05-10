@@ -11,6 +11,7 @@ namespace Aptacode.Expressions.GenericExpressions
             Expression = expression;
         }
 
+        public abstract bool Equals(IExpression<TType, TContext> other);
         public abstract TType Interpret(TContext context);
 
         public void Visit(IExpressionVisitor<TContext> visitor)

@@ -27,5 +27,25 @@
                 ? PassExpression.Interpret(context)
                 : FailExpression.Interpret(context);
         }
+
+        #region IEquatable
+
+        public override bool Equals(object obj) => obj is ConditionalListExpression<TType, TContext> expression && Equals(expression);
+
+        public override bool Equals(IExpression<TType[], TContext> other) => other is ConditionalListExpression<TType, TContext> expression && expression == this;
+
+        public static bool operator ==(ConditionalListExpression<TType, TContext> lhs, ConditionalListExpression<TType, TContext> rhs)
+        {
+            if (lhs is null || rhs is null)
+            {
+                return lhs is null && rhs is null;
+            }
+
+            return lhs.Condition .Equals( rhs.Condition) && lhs.PassExpression.Equals(rhs.PassExpression) && lhs.FailExpression.Equals( rhs.FailExpression);
+        }
+
+        public static bool operator !=(ConditionalListExpression<TType, TContext> lhs, ConditionalListExpression<TType, TContext> rhs) => !(lhs == rhs);
+
+        #endregion
     }
 }

@@ -16,5 +16,24 @@
         {
             return Expression.Interpret(context).Length;
         }
+
+        #region IEquatable
+
+        public override bool Equals(object obj) => obj is Count<TType, TContext> expression && Equals(expression);
+
+        public override bool Equals(IExpression<int, TContext> other) => other is Count<TType, TContext> expression && expression == this;
+        public static bool operator ==(Count<TType, TContext> lhs, Count<TType, TContext> rhs)
+        {
+            if (lhs is null || rhs is null)
+            {
+                return lhs is null && rhs is null;
+            }
+
+            return lhs.Expression.Equals(rhs.Expression);
+        }
+
+        public static bool operator !=(Count<TType, TContext> lhs, Count<TType, TContext> rhs) => !(lhs == rhs);
+
+        #endregion
     }
 }

@@ -16,5 +16,24 @@ namespace Aptacode.Expressions.GenericArithmeticOperators
             dynamic dynamic2 = Rhs.Interpret(context);
             return dynamic1 * dynamic2;
         }
+
+        #region IEquatable
+
+        public override bool Equals(object obj) => obj is Multiply<TType, TContext> expression && Equals(expression);
+
+        public override bool Equals(IExpression<TType, TContext> other) => other is Multiply<TType, TContext> expression && expression == this;
+        public static bool operator ==(Multiply<TType, TContext> lhs, Multiply<TType, TContext> rhs)
+        {
+            if (lhs is null || rhs is null)
+            {
+                return lhs is null && rhs is null;
+            }
+
+            return lhs.Lhs.Equals(rhs.Lhs) && lhs.Rhs.Equals(rhs.Rhs);
+        }
+
+        public static bool operator !=(Multiply<TType, TContext> lhs, Multiply<TType, TContext> rhs) => !(lhs == rhs);
+
+        #endregion
     }
 }

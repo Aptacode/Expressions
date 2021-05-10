@@ -23,5 +23,25 @@ namespace Aptacode.Expressions.List.ListOperators
         {
             return Expression.Interpret(context).Concat(Enumerable.Repeat(ElementExpression.Interpret(context), 1)).ToArray();
         }
+
+        #region IEquatable
+
+        public override bool Equals(object obj) => obj is Append<TType, TContext> expression && Equals(expression);
+
+        public override bool Equals(IExpression<TType[], TContext> other) => other is Append<TType, TContext> expression && expression == this;
+
+        public static bool operator ==(Append<TType, TContext> lhs, Append<TType, TContext> rhs)
+        {
+            if (lhs is null || rhs is null)
+            {
+                return lhs is null && rhs is null;
+            }
+
+            return lhs.Expression.Equals(rhs.Expression) && lhs.ElementExpression.Equals(rhs.ElementExpression);
+        }
+
+        public static bool operator !=(Append<TType, TContext> lhs, Append<TType, TContext> rhs) => !(lhs == rhs);
+
+        #endregion
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Aptacode.Expressions.Visitor;
+using System;
 
 namespace Aptacode.Expressions
 {
@@ -7,7 +8,7 @@ namespace Aptacode.Expressions
     /// </summary>
     /// <typeparam name="TType">The object type of the expression.</typeparam>
     /// <typeparam name="TContext">The context of the expression.</typeparam>
-    public interface IExpression<out TType, TContext>
+    public interface IExpression<TType, TContext> : IEquatable<IExpression<TType, TContext>>
     {
         /// <summary>
         ///     The method called on an expression to evaluate it.

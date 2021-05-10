@@ -29,5 +29,25 @@ namespace Aptacode.Expressions.GenericExpressions
         {
             visitor.Visit(this);
         }
+
+        #region IEquatable
+
+        public override bool Equals(object obj) => obj is ConstantExpression<TType, TContext> expression && Equals(expression);
+
+        public override bool Equals(IExpression<TType, TContext> other) => other is ConstantExpression<TType, TContext> expression && expression == this;
+
+        public static bool operator ==(ConstantExpression<TType, TContext> lhs, ConstantExpression<TType, TContext> rhs)
+        {
+            if (lhs is null || rhs is null)
+            {
+                return lhs is null && rhs is null;
+            }
+
+            return lhs.Value.Equals(rhs.Value);
+        }
+
+        public static bool operator !=(ConstantExpression<TType, TContext> lhs, ConstantExpression<TType, TContext> rhs) => !(lhs == rhs);
+
+        #endregion
     }
 }

@@ -12,6 +12,7 @@ namespace Aptacode.Expressions.List
 
         public IListExpression<TType, TContext> Expression { get; }
 
+        public abstract bool Equals(IExpression<int, TContext> other);
         public abstract int Interpret(TContext context);
 
         public void Visit(IExpressionVisitor<TContext> visitor)

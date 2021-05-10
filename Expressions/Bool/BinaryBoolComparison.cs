@@ -14,11 +14,13 @@ namespace Aptacode.Expressions.Bool
             Rhs = rhs;
         }
 
+        public abstract bool Equals(IExpression<bool, TContext> other);
         public abstract bool Interpret(TContext context);
 
         public void Visit(IExpressionVisitor<TContext> visitor)
         {
             visitor.Visit(this);
         }
+
     }
-}
+    }

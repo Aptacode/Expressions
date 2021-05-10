@@ -10,7 +10,8 @@ using Aptacode.Expressions.Guid;
 
 namespace Aptacode.Expressions.Json
 {
-    public static class JsonExtensions
+    public static class ExpressionsJsonExtensions
+
     {
         public static JsonSubtypesConverterBuilder IntExpressions<T>()
         {

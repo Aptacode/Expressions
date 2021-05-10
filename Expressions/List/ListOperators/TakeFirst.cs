@@ -26,5 +26,25 @@ namespace Aptacode.Expressions.List.ListOperators
 
             return list.Length <= count ? list : Expression.Interpret(context).Take(CountExpression.Interpret(context)).ToArray();
         }
+
+
+        #region IEquatable
+
+        public override bool Equals(object obj) => obj is TakeFirst<TType, TContext> expression && Equals(expression);
+
+        public override bool Equals(IExpression<TType[], TContext> other) => other is TakeFirst<TType, TContext> expression && expression == this;
+        public static bool operator ==(TakeFirst<TType, TContext> lhs, TakeFirst<TType, TContext> rhs)
+        {
+            if (lhs is null || rhs is null)
+            {
+                return lhs is null && rhs is null;
+            }
+
+            return lhs.Expression.Equals(rhs.Expression) && lhs.CountExpression.Equals(rhs.CountExpression);
+        }
+
+        public static bool operator !=(TakeFirst<TType, TContext> lhs, TakeFirst<TType, TContext> rhs) => !(lhs == rhs);
+
+        #endregion
     }
 }
