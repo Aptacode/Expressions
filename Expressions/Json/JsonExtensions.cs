@@ -12,18 +12,13 @@ namespace Aptacode.Expressions.Json
 {
     public static class JsonExtensions
     {
-        public static JsonSerializerSettings AddIntExpressions<T>(this JsonSerializerSettings settings)
+        public static JsonSubtypesConverterBuilder IntExpressions<T>()
         {
-            settings.Converters.Add(JsonSubtypesConverterBuilder
-                .Of<IExpression<int, T>>(nameof(IExpression<int, T>))
+            return JsonSubtypesConverterBuilder.Of<IExpression<int, T>>(nameof(IExpression<int, T>))
                 .RegisterSubtype<ConstantInteger<T>>(nameof(ConstantInteger<T>))
                 .RegisterSubtype<AddInteger<T>>(nameof(AddInteger<T>))
                 .RegisterSubtype<MultiplyInteger<T>>(nameof(MultiplyInteger<T>))
-                .RegisterSubtype<SubtractInteger<T>>(nameof(SubtractInteger<T>))
-                .SerializeDiscriminatorProperty(true)
-                .Build());
-
-            return settings;
+                .RegisterSubtype<SubtractInteger<T>>(nameof(SubtractInteger<T>));
         }
 
         public static JsonSerializerSettings AddGuidExpressions<T>(this JsonSerializerSettings settings)
