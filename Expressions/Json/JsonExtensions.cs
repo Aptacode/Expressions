@@ -9,6 +9,7 @@ using Aptacode.Expressions.Double;
 using Aptacode.Expressions.Double.DoubleArithmeticOperators;
 using Aptacode.Expressions.Float;
 using Aptacode.Expressions.Float.FloatArithmeticOperators;
+using Aptacode.Expressions.GenericExpressions;
 using Aptacode.Expressions.Guid;
 using Aptacode.Expressions.Integer;
 using Aptacode.Expressions.Integer.IntegerArithmeticOperators;
@@ -103,16 +104,21 @@ namespace Aptacode.Expressions.Json
             return JsonSubtypesConverterBuilder
                 .Of<IExpression<A[], B>>(nameof(IExpression<A[], B>))
                 .SerializeDiscriminatorProperty(true)
-                .RegisterSubtype<Count<A, B>>(nameof(Count<A, B>))
                 .RegisterSubtype<Append<A, B>>(nameof(Append<A, B>))
                 .RegisterSubtype<ConcatList<A, B>>(nameof(ConcatList<A, B>))
+                .RegisterSubtype<ConditionalListExpression<A, B>>(nameof(ConditionalListExpression<A, B>))
+                .RegisterSubtype<ConstantList<A, B>>(nameof(ConstantList<A, B>));
+        }
+
+        public static JsonSubtypesConverterBuilder ListOperations<A, B>(this JsonSubtypesConverterBuilder settings)
+        {
+            return settings
+                .RegisterSubtype<Count<A, B>>(nameof(Count<A, B>))
                 .RegisterSubtype<First<A, B>>(nameof(First<A, B>))
                 .RegisterSubtype<GetValue<A, B>>(nameof(GetValue<A, B>))
                 .RegisterSubtype<Last<A, B>>(nameof(Last<A, B>))
                 .RegisterSubtype<TakeFirst<A, B>>(nameof(TakeFirst<A, B>))
-                .RegisterSubtype<TakeLast<A, B>>(nameof(TakeLast<A, B>))
-                .RegisterSubtype<ConditionalListExpression<A, B>>(nameof(ConditionalListExpression<A, B>))
-                .RegisterSubtype<ConstantList<A, B>>(nameof(ConstantList<A, B>));
+                .RegisterSubtype<TakeLast<A, B>>(nameof(TakeLast<A, B>));
         }
 
         public static JsonSubtypesConverterBuilder StringExpressions<B>()
@@ -127,6 +133,7 @@ namespace Aptacode.Expressions.Json
         public static JsonSubtypesConverterBuilder ExtendBoolExpressions<A, B>(this JsonSubtypesConverterBuilder builder)
         {
             builder
+                .RegisterSubtype<ConditionalExpression<A, B>>(nameof(ConditionalExpression<A, B>))
                 .RegisterSubtype<EqualTo<A, B>>(nameof(EqualTo<A, B>))
                 .RegisterSubtype<NotEqualTo<A, B>>(nameof(NotEqualTo<A, B>))
                 .RegisterSubtype<GreaterThan<A, B>>(nameof(GreaterThan<A, B>))
