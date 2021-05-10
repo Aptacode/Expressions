@@ -1,4 +1,5 @@
-﻿using Aptacode.Expressions.Bool;
+﻿using System.Linq;
+using Aptacode.Expressions.Bool;
 using Aptacode.Expressions.Bool.EqualityOperators;
 using Aptacode.Expressions.Bool.LogicalOperators;
 using Aptacode.Expressions.Bool.RelationalOperators;
@@ -38,43 +39,43 @@ namespace Aptacode.Expressions.Json
         public static JsonSubtypesConverterBuilder ColorExpressions<T>()
         {
             return JsonSubtypesConverterBuilder.Of<IExpression<System.Drawing.Color, T>>(nameof(IExpression<System.Drawing.Color, T>))
-                .RegisterSubtype<ConstantColor<T>>(nameof(ConstantColor<T>));
+                .Register<ConstantColor<T>>();
         }
 
         public static JsonSubtypesConverterBuilder DecimalExpressions<T>()
         {
             return JsonSubtypesConverterBuilder.Of<IExpression<decimal, T>>(nameof(IExpression<decimal, T>))
-                .RegisterSubtype<AddDecimal<T>>(nameof(AddDecimal<T>))
-                .RegisterSubtype<MultiplyDecimal<T>>(nameof(MultiplyDecimal<T>))
-                .RegisterSubtype<SubtractDecimal<T>>(nameof(SubtractDecimal<T>))
-                .RegisterSubtype<ConstantDecimal<T>>(nameof(ConstantDecimal<T>));
+                .Register<AddDecimal<T>>()
+                .Register<MultiplyDecimal<T>>()
+                .Register<SubtractDecimal<T>>()
+                .Register<ConstantDecimal<T>>();
         }
 
         public static JsonSubtypesConverterBuilder DoubleExpressions<T>()
         {
             return JsonSubtypesConverterBuilder.Of<IExpression<double, T>>(nameof(IExpression<double, T>))
-                .RegisterSubtype<AddDouble<T>>(nameof(AddDouble<T>))
-                .RegisterSubtype<MultiplyDouble<T>>(nameof(MultiplyDouble<T>))
-                .RegisterSubtype<SubtractDouble<T>>(nameof(SubtractDouble<T>))
-                .RegisterSubtype<ConstantDouble<T>>(nameof(ConstantDouble<T>));
+                .Register<AddDouble<T>>()
+                .Register<MultiplyDouble<T>>()
+                .Register<SubtractDouble<T>>()
+                .Register<ConstantDouble<T>>();
         }
 
         public static JsonSubtypesConverterBuilder FloatExpressions<T>()
         {
             return JsonSubtypesConverterBuilder.Of<IExpression<float, T>>(nameof(IExpression<float, T>))
-                .RegisterSubtype<AddFloat<T>>(nameof(AddFloat<T>))
-                .RegisterSubtype<MultiplyFloat<T>>(nameof(MultiplyFloat<T>))
-                .RegisterSubtype<SubtractFloat<T>>(nameof(SubtractFloat<T>))
-                .RegisterSubtype<ConstantFloat<T>>(nameof(ConstantFloat<T>));
+                .Register<AddFloat<T>>()
+                .Register<MultiplyFloat<T>>()
+                .Register<SubtractFloat<T>>()
+                .Register<ConstantFloat<T>>();
         }
 
         public static JsonSubtypesConverterBuilder IntExpressions<T>()
         {
             return JsonSubtypesConverterBuilder.Of<IExpression<int, T>>(nameof(IExpression<int, T>))
-                .RegisterSubtype<ConstantInteger<T>>(nameof(ConstantInteger<T>))
-                .RegisterSubtype<AddInteger<T>>(nameof(AddInteger<T>))
-                .RegisterSubtype<MultiplyInteger<T>>(nameof(MultiplyInteger<T>))
-                .RegisterSubtype<SubtractInteger<T>>(nameof(SubtractInteger<T>));
+                .Register<ConstantInteger<T>>()
+                .Register<AddInteger<T>>()
+                .Register<MultiplyInteger<T>>()
+                .Register<SubtractInteger<T>>();
         }
 
         public static JsonSubtypesConverterBuilder GuidExpressions<T>()
@@ -82,7 +83,7 @@ namespace Aptacode.Expressions.Json
             return JsonSubtypesConverterBuilder
                 .Of<IExpression<System.Guid, T>>(nameof(IExpression<System.Guid, T>))
                 .SerializeDiscriminatorProperty(true)
-                .RegisterSubtype<ConstantGuid<T>>(nameof(ConstantInteger<T>));
+                .Register<ConstantGuid<T>>();
         }
 
         public static JsonSubtypesConverterBuilder BoolExpressions<B>()
@@ -90,13 +91,13 @@ namespace Aptacode.Expressions.Json
             return JsonSubtypesConverterBuilder
                 .Of<IExpression<bool, B>>(nameof(IExpression<bool, B>))
                 .SerializeDiscriminatorProperty(true)
-                .RegisterSubtype<All<B>>(nameof(All<B>))
-                .RegisterSubtype<And<B>>(nameof(And<B>))
-                .RegisterSubtype<Any<B>>(nameof(Any<B>))
-                .RegisterSubtype<Not<B>>(nameof(Not<B>))
-                .RegisterSubtype<Or<B>>(nameof(Or<B>))
-                .RegisterSubtype<XOr<B>>(nameof(XOr<B>))
-                .RegisterSubtype<ConstantBool<B>>(nameof(ConstantBool<B>));
+                .Register<All<B>>()
+                .Register<And<B>>()
+                .Register<Any<B>>()
+                .Register<Not<B>>()
+                .Register<Or<B>>()
+                .Register<XOr<B>>()
+                .Register<ConstantBool<B>>();
         }
 
         public static JsonSubtypesConverterBuilder ListExpressions<A, B>()
@@ -104,21 +105,21 @@ namespace Aptacode.Expressions.Json
             return JsonSubtypesConverterBuilder
                 .Of<IExpression<A[], B>>(nameof(IExpression<A[], B>))
                 .SerializeDiscriminatorProperty(true)
-                .RegisterSubtype<Append<A, B>>(nameof(Append<A, B>))
-                .RegisterSubtype<ConcatList<A, B>>(nameof(ConcatList<A, B>))
-                .RegisterSubtype<ConditionalListExpression<A, B>>(nameof(ConditionalListExpression<A, B>))
-                .RegisterSubtype<ConstantList<A, B>>(nameof(ConstantList<A, B>));
+                .Register<Append<A, B>>()
+                .Register<ConcatList<A, B>>()
+                .Register<ConditionalListExpression<A, B>>()
+                .Register<ConstantList<A, B>>();
         }
 
         public static JsonSubtypesConverterBuilder ListOperations<A, B>(this JsonSubtypesConverterBuilder settings)
         {
             return settings
-                .RegisterSubtype<Count<A, B>>(nameof(Count<A, B>))
-                .RegisterSubtype<First<A, B>>(nameof(First<A, B>))
-                .RegisterSubtype<GetValue<A, B>>(nameof(GetValue<A, B>))
-                .RegisterSubtype<Last<A, B>>(nameof(Last<A, B>))
-                .RegisterSubtype<TakeFirst<A, B>>(nameof(TakeFirst<A, B>))
-                .RegisterSubtype<TakeLast<A, B>>(nameof(TakeLast<A, B>));
+                .Register<Count<A, B>>()
+                .Register<First<A, B>>()
+                .Register<GetValue<A, B>>()
+                .Register<Last<A, B>>()
+                .Register<TakeFirst<A, B>>()
+                .Register<TakeLast<A, B>>();
         }
 
         public static JsonSubtypesConverterBuilder StringExpressions<B>()
@@ -126,22 +127,35 @@ namespace Aptacode.Expressions.Json
             return JsonSubtypesConverterBuilder
                 .Of<IExpression<string, B>>(nameof(IExpression<string, B>))
                 .SerializeDiscriminatorProperty(true)
-                .RegisterSubtype<ConcatString<B>>(nameof(ConcatString<B>))
-                .RegisterSubtype<ConstantString<B>>(nameof(ConstantString<B>));
+                .Register<ConcatString<B>>()
+                .Register<ConstantString<B>>();
         }
 
         public static JsonSubtypesConverterBuilder ExtendBoolExpressions<A, B>(this JsonSubtypesConverterBuilder builder)
         {
             builder
-                .RegisterSubtype<ConditionalExpression<A, B>>(nameof(ConditionalExpression<A, B>))
-                .RegisterSubtype<EqualTo<A, B>>(nameof(EqualTo<A, B>))
-                .RegisterSubtype<NotEqualTo<A, B>>(nameof(NotEqualTo<A, B>))
-                .RegisterSubtype<GreaterThan<A, B>>(nameof(GreaterThan<A, B>))
-                .RegisterSubtype<GreaterThanOrEqualTo<A, B>>(nameof(GreaterThanOrEqualTo<A, B>))
-                .RegisterSubtype<LessThan<A, B>>(nameof(LessThan<A, B>))
-                .RegisterSubtype<LessThanOrEqualTo<A, B>>(nameof(LessThanOrEqualTo<A, B>));
+                .Register<ConditionalExpression<A, B>>()
+                .Register<EqualTo<A, B>>()
+                .Register<NotEqualTo<A, B>>()
+                .Register<GreaterThan<A, B>>()
+                .Register<GreaterThanOrEqualTo<A, B>>()
+                .Register<LessThan<A, B>>()
+                .Register<LessThanOrEqualTo<A, B>>();
 
             return builder;
+        }
+
+        public static JsonSubtypesConverterBuilder Register<T>(this JsonSubtypesConverterBuilder builder)
+        {
+            return builder
+                .RegisterSubtype<T>(GetName<T>());
+        }
+
+        public static string GetName<T>()
+        {
+            var type = typeof(T);
+            var genericArguments = string.Join(",", type.GenericTypeArguments.Select(t => t.Name));
+            return $"{type.Name}<{genericArguments}>";
         }
     }
 }
