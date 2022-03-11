@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<RootNamespace>Aptacode.Expressions</RootNamespace>
+		<AssemblyName>Aptacode.Expressions</AssemblyName>
+		<Authors>Timothy Jones, Thomas Schmidt</Authors>
+		<Company>Aptacode</Company>
+		<Copyright>MIT</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/Aptacode/Expressions</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Aptacode/Expressions</RepositoryUrl>
+		<Version>1.0.13</Version>
+		<AssemblyVersion>1.0.13</AssemblyVersion>
+		<FileVersion>1.0.13</FileVersion>
+		<Nullable>enable</Nullable>
+		<LangVersion>10.0</LangVersion>
+		<ApplicationIcon>Logo.ico</ApplicationIcon>
+		<PackageIcon>Logo256.png</PackageIcon>
+		<Description>A light, cross platform &amp; flexible .net library for creating, storing and dynamically evaluating expression trees using C#</Description>
+		<PackageTags>Expression Interpreter Aptacode</PackageTags>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\Resources\Logo256.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+</Project>
