@@ -7,6 +7,7 @@
 
 [![tests](https://github.com/Aptacode/Expressions/actions/workflows/test.yml/badge.svg)](https://github.com/Aptacode/Expressions/actions/workflows/test.yml)
 [![code metrics](https://github.com/Aptacode/Geometry/actions/workflows/metrics.yml/badge.svg)](https://github.com/Aptacode/Geometry/blob/main/CODE_METRICS.md)
+[![code quality](https://app.codacy.com/project/badge/Grade/fbc700bba83c476da496c11e718f9ad4)](https://www.codacy.com/gh/Aptacode/Expressions/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Aptacode/Expressions&amp;utm_campaign=Badge_Grade)
 [![nuget](https://img.shields.io/nuget/v/Aptacode.Expressions.svg?style=flat&color=brightgreen)](https://www.nuget.org/packages/Aptacode.Expressions/)
 ![last commit](https://img.shields.io/github/last-commit/Aptacode/Expressions?style=flat&cacheSeconds=86000&color=brightgreen)
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
