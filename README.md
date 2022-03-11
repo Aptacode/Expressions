@@ -4,6 +4,13 @@
 </div>
 </p>
 
+
+[![tests](https://github.com/Aptacode/Expressions/actions/workflows/test.yml/badge.svg)](https://github.com/Aptacode/Expressions/actions/workflows/test.yml)
+[![code metrics](https://github.com/Aptacode/Geometry/actions/workflows/metrics.yml/badge.svg)](https://github.com/Aptacode/Geometry/blob/main/CODE_METRICS.md)
+[![nuget](https://img.shields.io/nuget/v/Aptacode.Expressions.svg?style=flat&color=brightgreen)](https://www.nuget.org/packages/Aptacode.Expressions/)
+![last commit](https://img.shields.io/github/last-commit/Aptacode/Expressions?style=flat&cacheSeconds=86000&color=brightgreen)
+[![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
+
 Whilst originally designed to be used to represent and determine connection weights in [StateNet](https://github.com/Aptacode/StateNet), Expressions is a C# library used for writing and evaluating [expressions](https://en.wikipedia.org/wiki/Expression_(computer_science)) in a given context.
 
 ## Overview
