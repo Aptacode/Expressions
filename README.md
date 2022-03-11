@@ -1,6 +1,6 @@
 <p align="center">
    <div style="width:640;height:320">
-       <img style="width: inherit" src="https://raw.githubusercontent.com/Aptacode/Expressions/Development/Resources/Banner.png">
+       <img style="width: inherit" src="https://raw.githubusercontent.com/Aptacode/Expressions/main/Resources/Banner.png">
 </div>
 </p>
 
