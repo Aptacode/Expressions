@@ -1,11 +1,6 @@
 ﻿using Aptacode.Expressions.GenericArithmeticOperators;
 
-namespace Aptacode.Expressions.Float.FloatArithmeticOperators
-{
-    public class MultiplyFloat<TContext> : Multiply<float, TContext>
-    {
-        public MultiplyFloat(IExpression<float, TContext> lhs, IExpression<float, TContext> rhs) : base(lhs, rhs)
-        {
-        }
-    }
-}
+namespace Aptacode.Expressions.Float.FloatArithmeticOperators;
+
+public record MultiplyFloat<TContext>
+    (IExpression<float, TContext> Lhs, IExpression<float, TContext> Rhs) : Multiply<float, TContext>(Lhs, Rhs);

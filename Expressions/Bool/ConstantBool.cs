@@ -1,11 +1,5 @@
 ﻿using Aptacode.Expressions.GenericExpressions;
 
-namespace Aptacode.Expressions.Bool
-{
-    public class ConstantBool<TContext> : ConstantExpression<bool, TContext>
-    {
-        public ConstantBool(bool value) : base(value)
-        {
-        }
-    }
-}
+namespace Aptacode.Expressions.Bool;
+
+public record ConstantBool<TContext>(bool Value) : ConstantExpression<bool, TContext>(Value);

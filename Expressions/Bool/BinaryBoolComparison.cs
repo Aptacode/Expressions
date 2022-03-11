@@ -1,25 +1,14 @@
 ﻿using Aptacode.Expressions.Visitor;
 
-namespace Aptacode.Expressions.Bool
+namespace Aptacode.Expressions.Bool;
+
+public abstract record BinaryBoolComparison<TType, TContext>(IExpression<TType, TContext> Lhs,
+    IExpression<TType, TContext> Rhs) : IExpression<bool, TContext>
 {
-    public abstract class BinaryBoolComparison<TType, TContext> : IExpression<bool, TContext>
+    public abstract bool Interpret(TContext context);
+
+    public void Visit(IExpressionVisitor<TContext> visitor)
     {
-        public readonly IExpression<TType, TContext> Lhs;
-
-        public readonly IExpression<TType, TContext> Rhs;
-
-        protected BinaryBoolComparison(IExpression<TType, TContext> lhs, IExpression<TType, TContext> rhs)
-        {
-            Lhs = lhs;
-            Rhs = rhs;
-        }
-
-        public abstract bool Equals(IExpression<bool, TContext> other);
-        public abstract bool Interpret(TContext context);
-
-        public void Visit(IExpressionVisitor<TContext> visitor)
-        {
-            visitor.Visit(this);
-        }
+        visitor.Visit(this);
     }
 }

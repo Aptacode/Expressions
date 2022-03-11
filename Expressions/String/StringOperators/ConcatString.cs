@@ -1,11 +1,6 @@
 ﻿using Aptacode.Expressions.GenericArithmeticOperators;
 
-namespace Aptacode.Expressions.String.StringOperators
-{
-    public class ConcatString<TContext> : Add<string, TContext>
-    {
-        public ConcatString(IExpression<string, TContext> lhs, IExpression<string, TContext> rhs) : base(lhs, rhs)
-        {
-        }
-    }
-}
+namespace Aptacode.Expressions.String.StringOperators;
+
+public record ConcatString<TContext>
+    (IExpression<string, TContext> Lhs, IExpression<string, TContext> Rhs) : Add<string, TContext>(Lhs, Rhs);

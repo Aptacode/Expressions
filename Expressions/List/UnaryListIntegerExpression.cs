@@ -1,23 +1,15 @@
 ﻿using Aptacode.Expressions.Visitor;
 
-namespace Aptacode.Expressions.List
+namespace Aptacode.Expressions.List;
+
+public abstract record UnaryListIntegerExpression<TType, TContext>
+    (IListExpression<TType, TContext> Expression) : IExpression<int, TContext>
+
 {
-    public abstract class UnaryListIntegerExpression<TType, TContext> : IExpression<int, TContext>
+    public abstract int Interpret(TContext context);
 
+    public void Visit(IExpressionVisitor<TContext> visitor)
     {
-        protected UnaryListIntegerExpression(IListExpression<TType, TContext> expression)
-        {
-            Expression = expression;
-        }
-
-        public IListExpression<TType, TContext> Expression { get; }
-
-        public abstract bool Equals(IExpression<int, TContext> other);
-        public abstract int Interpret(TContext context);
-
-        public void Visit(IExpressionVisitor<TContext> visitor)
-        {
-            visitor.Visit(this);
-        }
+        visitor.Visit(this);
     }
 }

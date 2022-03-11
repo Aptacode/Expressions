@@ -1,11 +1,6 @@
 ﻿using Aptacode.Expressions.GenericArithmeticOperators;
 
-namespace Aptacode.Expressions.Double.DoubleArithmeticOperators
-{
-    public class MultiplyDouble<TContext> : Multiply<double, TContext>
-    {
-        public MultiplyDouble(IExpression<double, TContext> lhs, IExpression<double, TContext> rhs) : base(lhs, rhs)
-        {
-        }
-    }
-}
+namespace Aptacode.Expressions.Double.DoubleArithmeticOperators;
+
+public record MultiplyDouble<TContext>
+    (IExpression<double, TContext> Lhs, IExpression<double, TContext> Rhs) : Multiply<double, TContext>(Lhs, Rhs);

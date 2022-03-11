@@ -1,11 +1,6 @@
 ﻿using Aptacode.Expressions.GenericArithmeticOperators;
 
-namespace Aptacode.Expressions.Integer.IntegerArithmeticOperators
-{
-    public class MultiplyInteger<TContext> : Multiply<int, TContext>
-    {
-        public MultiplyInteger(IExpression<int, TContext> lhs, IExpression<int, TContext> rhs) : base(lhs, rhs)
-        {
-        }
-    }
-}
+namespace Aptacode.Expressions.Integer.IntegerArithmeticOperators;
+
+public record MultiplyInteger<TContext>
+    (IExpression<int, TContext> Lhs, IExpression<int, TContext> Rhs) : Multiply<int, TContext>(Lhs, Rhs);

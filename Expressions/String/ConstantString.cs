@@ -1,11 +1,5 @@
 ﻿using Aptacode.Expressions.GenericExpressions;
 
-namespace Aptacode.Expressions.String
-{
-    public class ConstantString<TContext> : ConstantExpression<string, TContext>
-    {
-        public ConstantString(string value) : base(value)
-        {
-        }
-    }
-}
+namespace Aptacode.Expressions.String;
+
+public record ConstantString<TContext>(string Value) : ConstantExpression<string, TContext>(Value);

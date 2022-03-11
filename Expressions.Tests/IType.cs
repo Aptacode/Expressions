@@ -1,6 +1,5 @@
-﻿namespace Expressions.Tests
+﻿namespace Expressions.Tests;
+
+public interface IType
 {
-    public interface IType
-    {
-    }
 }

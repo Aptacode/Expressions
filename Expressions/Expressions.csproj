@@ -1,53 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net45;netcoreapp3.1;net5.0</TargetFrameworks>
-    <RootNamespace>Aptacode.Expressions</RootNamespace>
-    <AssemblyName>Aptacode.Expressions</AssemblyName>
-    <Authors>Timothy Jones, Thomas Schmidt</Authors>
-    <Company>Aptacode</Company>
-    <Copyright>MIT</Copyright>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/Aptacode/Expressions</PackageProjectUrl>
-    <PackageIconUrl />
-    <RepositoryUrl>https://github.com/Aptacode/Expressions</RepositoryUrl>
-    <RepositoryType />
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.12</Version>
-    <AssemblyVersion>1.0.12</AssemblyVersion>
-    <FileVersion>1.0.12</FileVersion>
-    <Nullable>enable</Nullable>
-    <LangVersion>8.0</LangVersion>
-    <ApplicationIcon>Logo.ico</ApplicationIcon>
-    <PackageIcon>Logo256.png</PackageIcon>
-    <Description>A light, cross platform &amp; flexible .net library for creating, storing and dynamically evaluating expression trees using C#</Description>
-    <PackageTags>Expression Interpreter Aptacode</PackageTags>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<RootNamespace>Aptacode.Expressions</RootNamespace>
+		<AssemblyName>Aptacode.Expressions</AssemblyName>
+		<Authors>Timothy Jones, Thomas Schmidt</Authors>
+		<Company>Aptacode</Company>
+		<Copyright>MIT</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/Aptacode/Expressions</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Aptacode/Expressions</RepositoryUrl>
+		<Version>1.0.13</Version>
+		<AssemblyVersion>1.0.13</AssemblyVersion>
+		<FileVersion>1.0.13</FileVersion>
+		<Nullable>enable</Nullable>
+		<LangVersion>10.0</LangVersion>
+		<ApplicationIcon>Logo.ico</ApplicationIcon>
+		<PackageIcon>Logo256.png</PackageIcon>
+		<Description>A light, cross platform &amp; flexible .net library for creating, storing and dynamically evaluating expression trees using C#</Description>
+		<PackageTags>Expression Interpreter Aptacode</PackageTags>
+	</PropertyGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="System.Drawing.Common">
-      <Version>5.0.0</Version>
-    </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
-    <PackageReference Include="System.Drawing.Common">
-      <Version>5.0.0</Version>
-    </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="JsonSubTypes" Version="1.8.0" />
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\Resources\Logo256.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\Resources\Logo256.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
 
 </Project>

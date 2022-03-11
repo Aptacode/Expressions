@@ -1,11 +1,6 @@
 ﻿using Aptacode.Expressions.GenericArithmeticOperators;
 
-namespace Aptacode.Expressions.Decimal.DecimalArithmeticOperators
-{
-    public class AddDecimal<TContext> : Add<decimal, TContext>
-    {
-        public AddDecimal(IExpression<decimal, TContext> lhs, IExpression<decimal, TContext> rhs) : base(lhs, rhs)
-        {
-        }
-    }
-}
+namespace Aptacode.Expressions.Decimal.DecimalArithmeticOperators;
+
+public record AddDecimal<TContext>
+    (IExpression<decimal, TContext> Lhs, IExpression<decimal, TContext> Rhs) : Add<decimal, TContext>(Lhs, Rhs);

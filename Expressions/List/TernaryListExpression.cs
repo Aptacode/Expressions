@@ -1,30 +1,16 @@
 ﻿using Aptacode.Expressions.Visitor;
 
-namespace Aptacode.Expressions.List
+namespace Aptacode.Expressions.List;
+
+public abstract record TernaryListExpression<T1, T2, TContext>(IExpression<T1, TContext> Condition,
+    IListExpression<T2, TContext> PassExpression,
+    IListExpression<T2, TContext> FailExpression) : IListExpression<T2, TContext>
+
 {
-    public abstract class TernaryListExpression<T1, T2, TContext> : IListExpression<T2, TContext>
+    public abstract T2[] Interpret(TContext context);
 
+    public void Visit(IExpressionVisitor<TContext> visitor)
     {
-        protected TernaryListExpression(IExpression<T1, TContext> condition,
-            IListExpression<T2, TContext> passExpression, IListExpression<T2, TContext> failExpression)
-        {
-            Condition = condition;
-            PassExpression = passExpression;
-            FailExpression = failExpression;
-        }
-
-        public IExpression<T1, TContext> Condition { get; }
-
-        public IListExpression<T2, TContext> PassExpression { get; }
-
-        public IListExpression<T2, TContext> FailExpression { get; }
-
-        public abstract bool Equals(IExpression<T2[], TContext> other);
-        public abstract T2[] Interpret(TContext context);
-
-        public void Visit(IExpressionVisitor<TContext> visitor)
-        {
-            visitor.Visit(this);
-        }
+        visitor.Visit(this);
     }
 }

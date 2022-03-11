@@ -1,6 +1,5 @@
-﻿namespace Expressions.Tests
+﻿namespace Expressions.Tests;
+
+public interface IContext
 {
-    public interface IContext
-    {
-    }
 }

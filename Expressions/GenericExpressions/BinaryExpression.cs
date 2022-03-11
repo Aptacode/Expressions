@@ -1,25 +1,14 @@
 ﻿using Aptacode.Expressions.Visitor;
 
-namespace Aptacode.Expressions.GenericExpressions
+namespace Aptacode.Expressions.GenericExpressions;
+
+public abstract record BinaryExpression<TType, TContext>(IExpression<TType, TContext> Lhs,
+    IExpression<TType, TContext> Rhs) : IExpression<TType, TContext>
 {
-    public abstract class BinaryExpression<TType, TContext> : IExpression<TType, TContext>
+    public abstract TType Interpret(TContext context);
+
+    public void Visit(IExpressionVisitor<TContext> visitor)
     {
-        public readonly IExpression<TType, TContext> Lhs;
-
-        public readonly IExpression<TType, TContext> Rhs;
-
-        protected BinaryExpression(IExpression<TType, TContext> lhs, IExpression<TType, TContext> rhs)
-        {
-            Lhs = lhs;
-            Rhs = rhs;
-        }
-
-        public abstract bool Equals(IExpression<TType, TContext> other);
-        public abstract TType Interpret(TContext context);
-
-        public void Visit(IExpressionVisitor<TContext> visitor)
-        {
-            visitor.Visit(this);
-        }
+        visitor.Visit(this);
     }
 }
